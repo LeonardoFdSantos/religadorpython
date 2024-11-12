@@ -4,6 +4,8 @@ import math
 import streamlit as st
 import plotly.graph_objects as go
 
+st.set_page_config(layout="wide")
+
 CurvaInrushTrafos = {
     'a': 1.7687,
     'b': 0.2220,

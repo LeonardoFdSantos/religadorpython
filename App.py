@@ -442,9 +442,9 @@ Tensao = st.selectbox(
     'Valor de Tensão em V:',
     (13800, 23100, 34500))
 
-TMS = st.selectbox(
+TMS = st.slider(
     'Valor de TMS:',
-    (0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10))
+    (0.1, 20, 0.5))
 
 st.write('Valor do Transformador em kVA:', Transformador)
 st.write('Valor de Tensão em V:', Tensao)

@@ -7,6 +7,9 @@ rtc0 = 10;
 rtc1 = 10;
 rtc2 = 10;
 rtc3 = 10;
+m1 = 0.5;
+m2 = 0.5;
+m3 = 0.5;
 
 %%DIMENCIONAMENTO DAS INDUTANCIAS
 f=60; %frequencia da rede       ####ALTERAR####

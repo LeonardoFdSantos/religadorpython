@@ -1,0 +1,8 @@
+{
+    "title": "IEEE 34 node islanding with Artificial Neural Network",
+    "description": "In this example, the use of an artificial neural network (ANN) for islanding detection in an IEEE34 bus system is shown. The example demonstrates the training and testing processes of an artificial neural network (ANN), and its implementation for islanding detection.",
+    "model": "ieee 34 node islanding.tse",
+    "images": ["ieee 34 node islanding.svg"],
+    "tags": ["power systems", "IEEE34 bus", "islanding", "wind power plant"],
+    "app_note": "..\\..\\..\\..\\package-documentation\\IEEE 34 node islanding with Artificial Neural Network\\ieee_34_node_islanding.pdf"
+}

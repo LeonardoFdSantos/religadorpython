@@ -1,0 +1,3900 @@
+// generated using template: cop_main.template---------------------------------------------
+/******************************************************************************************
+**
+**  Module Name: cop_main.c
+**  NOTE: Automatically generated file. DO NOT MODIFY!
+**  Description:
+**            Main file
+**
+******************************************************************************************/
+// generated using template: arm/custom_include.template-----------------------------------
+
+
+#ifdef __cplusplus
+#include <limits>
+
+extern "C" {
+#endif
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdint.h>
+#include <complex.h>
+
+// x86 libraries:
+#include "../include/sp_functions_dev0.h"
+
+
+#ifdef __cplusplus
+}
+#endif
+
+
+// ----------------------------------------------------------------------------------------                // generated using template:generic_macros.template-----------------------------------------
+/*********************** Macros (Inline Functions) Definitions ***************************/
+
+// ----------------------------------------------------------------------------------------
+
+#ifndef MAX
+#define MAX(value, limit) (((value) > (limit)) ? (value) : (limit))
+#endif
+#ifndef MIN
+#define MIN(value, limit) (((value) < (limit)) ? (value) : (limit))
+#endif
+
+// generated using template: VirtualHIL/custom_defines.template----------------------------
+
+typedef unsigned char X_UnInt8;
+typedef char X_Int8;
+typedef signed short X_Int16;
+typedef unsigned short X_UnInt16;
+typedef int X_Int32;
+typedef unsigned int X_UnInt32;
+typedef unsigned int uint;
+typedef double real;
+
+// ----------------------------------------------------------------------------------------
+// generated using template: custom_consts.template----------------------------------------
+
+// arithmetic constants
+#define C_SQRT_2                    1.4142135623730950488016887242097f
+#define C_SQRT_3                    1.7320508075688772935274463415059f
+#define C_PI                        3.1415926535897932384626433832795f
+#define C_E                         2.7182818284590452353602874713527f
+#define C_2PI                       6.283185307179586476925286766559f
+
+//@cmp.def.start
+//component defines
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define SQRT_2OVER3 0.8164965809277260327324280249019f
+#define SQRT3_OVER_2 0.8660254037844386467637231707529f
+#define ONE_DIV_BY_SQRT_3 0.57735026918962576450914878f
+
+
+
+
+
+
+
+
+
+
+
+
+
+#define SQRT_2OVER3 0.8164965809277260327324280249019f
+#define SQRT3_OVER_2 0.8660254037844386467637231707529f
+#define ONE_DIV_BY_SQRT_3 0.57735026918962576450914878f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//@cmp.def.end
+
+//#define SP_SCOPE_FILE_DEBUG
+#define SP_SCOPE_BUFF_SIZE (8388608*4)
+#define SP_SCOPE_BUFF_SIZE_PER_ER (SP_SCOPE_BUFF_SIZE/4)
+
+//-----------------------------------------------------------------------------------------
+// generated using template: common_variables.template-------------------------------------
+// true global variables
+
+
+
+
+extern X_UnInt8* sp_scope_buffer_dev0;
+extern FILE* f_sp_scope_debug;
+uint64_t sp_scope_buff_addr_cpu0_er0_dev0;
+uint64_t sp_scope_buff_start_addr_cpu0_er0_dev0;
+uint32_t sp_scope_buff_index_cpu0_er0_dev0;
+
+// const variables
+
+//@cmp.var.start
+// variables
+double _node_800_ia_ia1__out;
+double _node_800_ib_ia1__out;
+double _node_800_ic_ia1__out;
+
+double _node_800_phase_difference1__correction_ref;
+X_UnInt32 _node_800_phase_difference1__zc_flag_ref;
+
+double _node_800_phase_difference1__phase_diff;
+double _node_800_phase_difference1__correction_in;
+X_UnInt32 _node_800_phase_difference1__zc_flag_in;
+
+double _node_800_phase_difference2__correction_ref;
+X_UnInt32 _node_800_phase_difference2__zc_flag_ref;
+
+double _node_800_phase_difference2__phase_diff;
+double _node_800_phase_difference2__correction_in;
+X_UnInt32 _node_800_phase_difference2__zc_flag_in;
+
+double _node_800_phase_difference3__correction_ref;
+X_UnInt32 _node_800_phase_difference3__zc_flag_ref;
+
+double _node_800_phase_difference3__phase_diff;
+double _node_800_phase_difference3__correction_in;
+X_UnInt32 _node_800_phase_difference3__zc_flag_in;
+
+double _node_800_phase_difference4__correction_ref;
+X_UnInt32 _node_800_phase_difference4__zc_flag_ref;
+
+double _node_800_phase_difference4__phase_diff;
+double _node_800_phase_difference4__correction_in;
+X_UnInt32 _node_800_phase_difference4__zc_flag_in;
+
+double _node_800_phase_difference5__correction_ref;
+X_UnInt32 _node_800_phase_difference5__zc_flag_ref;
+
+double _node_800_phase_difference5__phase_diff;
+double _node_800_phase_difference5__correction_in;
+X_UnInt32 _node_800_phase_difference5__zc_flag_in;
+
+double _node_800_phase_difference6__correction_ref;
+X_UnInt32 _node_800_phase_difference6__zc_flag_ref;
+
+double _node_800_phase_difference6__phase_diff;
+double _node_800_phase_difference6__correction_in;
+X_UnInt32 _node_800_phase_difference6__zc_flag_in;
+double _node_800_va_va1__out;
+double _node_800_vb_va1__out;
+double _node_800_vc_va1__out;
+double _node_dg_ia_ia1__out;
+double _node_dg_ib_ia1__out;
+double _node_dg_ic_ia1__out;
+
+double _node_dg_phase_difference1__correction_ref;
+X_UnInt32 _node_dg_phase_difference1__zc_flag_ref;
+
+double _node_dg_phase_difference1__phase_diff;
+double _node_dg_phase_difference1__correction_in;
+X_UnInt32 _node_dg_phase_difference1__zc_flag_in;
+
+double _node_dg_phase_difference2__correction_ref;
+X_UnInt32 _node_dg_phase_difference2__zc_flag_ref;
+
+double _node_dg_phase_difference2__phase_diff;
+double _node_dg_phase_difference2__correction_in;
+X_UnInt32 _node_dg_phase_difference2__zc_flag_in;
+
+double _node_dg_phase_difference3__correction_ref;
+X_UnInt32 _node_dg_phase_difference3__zc_flag_ref;
+
+double _node_dg_phase_difference3__phase_diff;
+double _node_dg_phase_difference3__correction_in;
+X_UnInt32 _node_dg_phase_difference3__zc_flag_in;
+
+double _node_dg_phase_difference4__correction_ref;
+X_UnInt32 _node_dg_phase_difference4__zc_flag_ref;
+
+double _node_dg_phase_difference4__phase_diff;
+double _node_dg_phase_difference4__correction_in;
+X_UnInt32 _node_dg_phase_difference4__zc_flag_in;
+
+double _node_dg_phase_difference5__correction_ref;
+X_UnInt32 _node_dg_phase_difference5__zc_flag_ref;
+
+double _node_dg_phase_difference5__phase_diff;
+double _node_dg_phase_difference5__correction_in;
+X_UnInt32 _node_dg_phase_difference5__zc_flag_in;
+
+double _node_dg_phase_difference6__correction_ref;
+X_UnInt32 _node_dg_phase_difference6__zc_flag_ref;
+
+double _node_dg_phase_difference6__phase_diff;
+double _node_dg_phase_difference6__correction_in;
+X_UnInt32 _node_dg_phase_difference6__zc_flag_in;
+double _node_dg_va_va1__out;
+double _node_dg_vb_va1__out;
+double _node_dg_vc_va1__out;
+double _reference_vref_va1__out;
+double _wind_power_plant__average_1_control_grid_follow_constant1__out = 0.0;
+double _wind_power_plant__average_1_control_grid_follow_constant2__out = 0.0;
+double _wind_power_plant__average_1_control_grid_follow_constant3__out = 1.0;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_damp__out = 0.0;
+double _wind_power_plant__average_1_control_grid_follow_edge_detection1_unit_delay1__out;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay1__out;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay2__out;
+double _wind_power_plant__average_1_control_grid_follow_air_density__out = 1.225;
+double _wind_power_plant__average_1_control_grid_follow_effective_area__out = 1345.0;
+double _wind_power_plant__average_1_control_grid_follow_three__out = 3.0;
+double _wind_power_plant__average_1_control_pll_constant1__out = 0.0;
+double _wind_power_plant__average_1_control_pll_pll_lpf_lpf__out;
+double _wind_power_plant__average_1_control_pll_pll_lpf_lpf__b_coeff[1] = {0.0003553056106007091};
+double _wind_power_plant__average_1_control_pll_pll_lpf_lpf__a_coeff[3] = {1.0, -1.9733467334719998, 0.9737020390826006};
+double _wind_power_plant__average_1_control_pll_pll_lpf_lpf__a_sum;
+double _wind_power_plant__average_1_control_pll_pll_lpf_lpf__b_sum;
+double _wind_power_plant__average_1_control_pll_pll_lpf_lpf__delay_line_in;
+double _wind_power_plant__average_1_control_pll_pll_pid_integrator1__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_integrator2__out;
+double _wind_power_plant__average_1_control_pll_pll_unit_delay1__out;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__out;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__previous_filtered_value;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__out;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__previous_filtered_value;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_constant1__out = 0.5;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_constant2__out = 1.0;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_constant3__out = 1.0;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_constant4__out = 1.0;
+double _wind_power_plant__average_1_control_duty_cycle_o_ref__out = 0.0;
+double _wind_power_plant__average_1_ia_ia1__out;
+double _wind_power_plant__average_1_ib_ia1__out;
+double _wind_power_plant__average_1_ic_ia1__out;
+double _wind_power_plant__average_1_va_va1__out;
+double _wind_power_plant__average_1_vb_va1__out;
+double _wind_power_plant__average_1_vc_va1__out;
+double _wind_power_plant__average_1_vdc__out = 1000.0;
+double _wind_power_plant_ui_enable__out;
+double _wind_power_plant_ui_q_ref__out = 0.0;
+double _wind_power_plant_ui_v_ref__out = 0.0;
+double _wind_power_plant_ui_v_ref1__out = 1.0;
+double _wind_power_plant_ui_wind_speed__out;
+double _node_800_rms_value4__out;
+X_UnInt32 _node_800_rms_value4__zc;
+double _node_800_rms_value5__out;
+X_UnInt32 _node_800_rms_value5__zc;
+double _node_800_rms_value6__out;
+X_UnInt32 _node_800_rms_value6__zc;
+double _node_800_rms_value1__out;
+X_UnInt32 _node_800_rms_value1__zc;
+double _node_800_rms_value2__out;
+X_UnInt32 _node_800_rms_value2__zc;
+double _node_800_power_meter__Pdc;
+double _node_800_power_meter__Qdc;
+double _node_800_power_meter__P0dc;
+double _node_800_power_meter__Pac;
+double _node_800_power_meter__Qac;
+double _node_800_power_meter__P0ac;
+double _node_800_power_meter__apparent;
+double _node_800_power_meter__k_factor;
+double _node_800_power_meter__v_alpha;
+double _node_800_power_meter__v_beta;
+double _node_800_power_meter__i_alpha;
+double _node_800_power_meter__i_beta;
+double _node_800_power_meter__v_zero;
+double _node_800_power_meter__i_zero;
+double _node_800_power_meter__filter_1_output;
+double _node_800_power_meter__filter_1_outputQ;
+double _node_800_power_meter__filter_1_outputP0;
+double _node_800_rms_value3__out;
+X_UnInt32 _node_800_rms_value3__zc;
+double _node_dg_rms_value4__out;
+X_UnInt32 _node_dg_rms_value4__zc;
+double _node_dg_rms_value5__out;
+X_UnInt32 _node_dg_rms_value5__zc;
+double _node_dg_rms_value6__out;
+X_UnInt32 _node_dg_rms_value6__zc;
+double _node_dg_rms_value1__out;
+X_UnInt32 _node_dg_rms_value1__zc;
+double _node_dg_rms_value2__out;
+X_UnInt32 _node_dg_rms_value2__zc;
+double _node_dg_power_meter__Pdc;
+double _node_dg_power_meter__Qdc;
+double _node_dg_power_meter__P0dc;
+double _node_dg_power_meter__Pac;
+double _node_dg_power_meter__Qac;
+double _node_dg_power_meter__P0ac;
+double _node_dg_power_meter__apparent;
+double _node_dg_power_meter__k_factor;
+double _node_dg_power_meter__v_alpha;
+double _node_dg_power_meter__v_beta;
+double _node_dg_power_meter__i_alpha;
+double _node_dg_power_meter__i_beta;
+double _node_dg_power_meter__v_zero;
+double _node_dg_power_meter__i_zero;
+double _node_dg_power_meter__filter_1_output;
+double _node_dg_power_meter__filter_1_outputQ;
+double _node_dg_power_meter__filter_1_outputP0;
+double _node_dg_rms_value3__out;
+X_UnInt32 _node_dg_rms_value3__zc;
+double _wind_power_plant__average_1_control_pll_pll_to_hz__out;
+double _wind_power_plant__average_1_control_pll_gain4__out;
+double _wind_power_plant__average_1_control_pll_gain3__out;
+double _wind_power_plant__average_1_control_pll_pll_normalize__in1;
+double _wind_power_plant__average_1_control_pll_pll_normalize__in2;
+
+double _wind_power_plant__average_1_control_pll_pll_normalize__in2_pu;
+double _wind_power_plant__average_1_control_pll_pll_normalize__pk;
+
+double _wind_power_plant__average_1_control_duty_cycle_zsm_limit1__out;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__alpha;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__beta;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__gamma;
+double _wind_power_plant__average_1_control_grid_follow_gain3__out;
+double _wind_power_plant__average_1_control_duty_cycle_gain1__out;
+double _wind_power_plant_ui_bus_join1__out[6];
+float _wind_power_plant_ui_wind_speed_streaming_probe__in;
+double _wind_power_plant__average_1_control_pll_gain1__out;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_product4__out;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_product5__out;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_product3__out;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_product6__out;
+double _wind_power_plant__average_1_control_pll_gain5__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_kd__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_ki__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_kp__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_sum2__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_sum8__out;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__d;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__q;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__k1;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__k2;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__b_coeff[2] = {0.0003768490496860455, 0.0003768490496860455};
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__a_coeff[2] = {1.0, -0.9992463019006278};
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__a_sum;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__b_sum;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__delay_line_in;
+double _wind_power_plant__average_1_input_bus_split2__out;
+double _wind_power_plant__average_1_input_bus_split2__out1;
+double _wind_power_plant__average_1_input_bus_split2__out2;
+double _wind_power_plant__average_1_input_bus_split2__out3;
+double _wind_power_plant__average_1_input_bus_split2__out4;
+double _wind_power_plant__average_1_input_bus_split2__out5;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_sum3__out;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_sum4__out;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_product7__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_sum8__out;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain1__out;
+double _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain2__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_limit3__out;
+double _wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out;
+double _wind_power_plant__average_1_control_grid_follow_gain2__out;
+double _wind_power_plant__average_1_control_grid_follow_gain4__out;
+double _wind_power_plant__average_1_control_grid_follow_logical_operator1__out;
+float _wind_power_plant__average_1_control_grid_follow_qmode__tmp;
+double _wind_power_plant__average_1_control_grid_follow_delay__in;
+
+double _wind_power_plant__average_1_control_grid_follow_delay__out;
+
+double _wind_power_plant__average_1_control_grid_follow_power__out;
+double _wind_power_plant__average_1_control_pll_signal_switch1__out;
+double _wind_power_plant__average_1_control_pll_signal_switch2__out;
+double _wind_power_plant__average_1_control_pll_signal_switch3__out;
+float _wind_power_plant__average_1_enable__tmp;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_limit3__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_gain1__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain2__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product5__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product1__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product4__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain1__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product6__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product2__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product3__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain5__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__out;
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__out;
+double _wind_power_plant__average_1_control_grid_follow_logical_operator2__out;
+double _wind_power_plant__average_1_control_grid_follow_product1__out;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__alpha;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__beta;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__gamma;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_product1__out;
+double _wind_power_plant__average_1_control_grid_follow_current_ref_product2__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_sum5__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product2__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product1__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_sum1__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_sum2__out;
+double _wind_power_plant__average_1_control_grid_follow_signal_switch3__out;
+double _wind_power_plant__average_1_control_grid_follow_signal_switch4__out;
+double _wind_power_plant__average_1_control_grid_follow_gain1__out;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__d;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__q;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__k1;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__k2;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum2__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum1__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_limit1__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum6__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum5__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__b_coeff[2] = {0.0003768490496860455, 0.0003768490496860455};
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__a_coeff[2] = {1.0, -0.9992463019006278};
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__a_sum;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__b_sum;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__delay_line_in;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__b_coeff[2] = {0.0003768490496860455, 0.0003768490496860455};
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__a_coeff[2] = {1.0, -0.9992463019006278};
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__a_sum;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__b_sum;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__delay_line_in;
+double _wind_power_plant__average_1_control_grid_follow_sum1__out;
+double _wind_power_plant__average_1_control_grid_follow_efficiency__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_ki__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_kp__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_ki__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_kp__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_sum6__out;
+double _wind_power_plant__average_1_control_pll_pll_rate_limiter1__out;
+
+double _wind_power_plant__average_1_control_pll_pll_rate_limiter1__rising_rate_lim[1];
+double _wind_power_plant__average_1_control_pll_pll_rate_limiter1__falling_rate_lim[1];
+
+double _wind_power_plant__average_1_control_pll_pll_integrator__in;
+
+double _wind_power_plant__average_1_control_pll_pll_integrator__out;
+
+double _wind_power_plant__average_1_control_grid_follow_power_meas_gain4__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_gain5__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__P;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__Q;
+
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__S;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__pf;
+
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_ki__out;
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_kp__out;
+double _wind_power_plant__average_1_control_grid_follow_to_pu__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum5__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum5__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_kb__out;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_gain6__out;
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_sum5__out;
+double _wind_power_plant__average_1_control_grid_follow_signal_switch2__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_limit1__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_limit1__out;
+double _wind_power_plant__average_1_control_pll_pll_pid_sum7__out;
+double _wind_power_plant__average_1_output_bus_join1__out[14];
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_limit1__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum6__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum7__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum6__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum3__out;
+double _wind_power_plant_ui_bus_split1__out;
+double _wind_power_plant_ui_bus_split1__out1;
+double _wind_power_plant_ui_bus_split1__out2;
+double _wind_power_plant_ui_bus_split1__out3;
+double _wind_power_plant_ui_bus_split1__out4;
+double _wind_power_plant_ui_bus_split1__out5;
+double _wind_power_plant_ui_bus_split1__out6;
+double _wind_power_plant_ui_bus_split1__out7;
+double _wind_power_plant_ui_bus_split1__out8;
+double _wind_power_plant_ui_bus_split1__out9;
+double _wind_power_plant_ui_bus_split1__out10;
+double _wind_power_plant_ui_bus_split1__out11;
+double _wind_power_plant_ui_bus_split1__out12;
+double _wind_power_plant_ui_bus_split1__out13;
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_sum6__out;
+double _wind_power_plant__average_1_control_grid_follow_signal_switch1__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_kb__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product7__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_kb__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product8__out;
+float _wind_power_plant_ui_pa_streaming_probe__in;
+float _wind_power_plant_ui_va_streaming_probe__in;
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_kb__out;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax;
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S;
+
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum7__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain11__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum7__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain10__out;
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_sum7__out;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__out;
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__rising_rate_lim[1];
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__falling_rate_lim[1];
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__out;
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__rising_rate_lim[1];
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__falling_rate_lim[1];
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__out;
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__rising_rate_lim[1];
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__falling_rate_lim[1];
+
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum9__out;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum8__out;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Pref;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Qref;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Sref;
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__P;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Q;
+
+double _wind_power_plant__average_1_control_duty_cycle_limit3__out;
+double _wind_power_plant__average_1_control_duty_cycle_limit2__out;
+double _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__alpha;
+double _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__beta;
+double _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__k1;
+double _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__k2;
+double _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__A;
+double _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__B;
+double _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__C;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_min_max1__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_min_max2__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_product2__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_sum1__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_product1__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_sum3__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_sum5__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_sum6__out;
+double _wind_power_plant__average_1_control_duty_cycle_zsm_sum7__out;
+double _wind_power_plant__average_1_control_duty_cycle_product1__out;
+double _wind_power_plant__average_1_control_duty_cycle_product2__out;
+double _wind_power_plant__average_1_control_duty_cycle_product3__out;
+//@cmp.var.end
+
+//@cmp.svar.start
+// state variables
+
+double _node_800_phase_difference1__previous_correction_ref;
+double _node_800_phase_difference1__sample_cnt_ref;
+double _node_800_phase_difference1__previous_filtered_ref;
+double _node_800_phase_difference1__filtered_ref;
+
+double _node_800_phase_difference1__phase_state;
+double _node_800_phase_difference1__previous_correction_in;
+double _node_800_phase_difference1__sample_cnt_in;
+double _node_800_phase_difference1__previous_filtered_in;
+double _node_800_phase_difference1__filtered_in;
+X_UnInt32 _node_800_phase_difference1__no_zc_flag_in;
+
+double _node_800_phase_difference2__previous_correction_ref;
+double _node_800_phase_difference2__sample_cnt_ref;
+double _node_800_phase_difference2__previous_filtered_ref;
+double _node_800_phase_difference2__filtered_ref;
+
+double _node_800_phase_difference2__phase_state;
+double _node_800_phase_difference2__previous_correction_in;
+double _node_800_phase_difference2__sample_cnt_in;
+double _node_800_phase_difference2__previous_filtered_in;
+double _node_800_phase_difference2__filtered_in;
+X_UnInt32 _node_800_phase_difference2__no_zc_flag_in;
+
+double _node_800_phase_difference3__previous_correction_ref;
+double _node_800_phase_difference3__sample_cnt_ref;
+double _node_800_phase_difference3__previous_filtered_ref;
+double _node_800_phase_difference3__filtered_ref;
+
+double _node_800_phase_difference3__phase_state;
+double _node_800_phase_difference3__previous_correction_in;
+double _node_800_phase_difference3__sample_cnt_in;
+double _node_800_phase_difference3__previous_filtered_in;
+double _node_800_phase_difference3__filtered_in;
+X_UnInt32 _node_800_phase_difference3__no_zc_flag_in;
+
+double _node_800_phase_difference4__previous_correction_ref;
+double _node_800_phase_difference4__sample_cnt_ref;
+double _node_800_phase_difference4__previous_filtered_ref;
+double _node_800_phase_difference4__filtered_ref;
+
+double _node_800_phase_difference4__phase_state;
+double _node_800_phase_difference4__previous_correction_in;
+double _node_800_phase_difference4__sample_cnt_in;
+double _node_800_phase_difference4__previous_filtered_in;
+double _node_800_phase_difference4__filtered_in;
+X_UnInt32 _node_800_phase_difference4__no_zc_flag_in;
+
+double _node_800_phase_difference5__previous_correction_ref;
+double _node_800_phase_difference5__sample_cnt_ref;
+double _node_800_phase_difference5__previous_filtered_ref;
+double _node_800_phase_difference5__filtered_ref;
+
+double _node_800_phase_difference5__phase_state;
+double _node_800_phase_difference5__previous_correction_in;
+double _node_800_phase_difference5__sample_cnt_in;
+double _node_800_phase_difference5__previous_filtered_in;
+double _node_800_phase_difference5__filtered_in;
+X_UnInt32 _node_800_phase_difference5__no_zc_flag_in;
+
+double _node_800_phase_difference6__previous_correction_ref;
+double _node_800_phase_difference6__sample_cnt_ref;
+double _node_800_phase_difference6__previous_filtered_ref;
+double _node_800_phase_difference6__filtered_ref;
+
+double _node_800_phase_difference6__phase_state;
+double _node_800_phase_difference6__previous_correction_in;
+double _node_800_phase_difference6__sample_cnt_in;
+double _node_800_phase_difference6__previous_filtered_in;
+double _node_800_phase_difference6__filtered_in;
+X_UnInt32 _node_800_phase_difference6__no_zc_flag_in;
+
+double _node_dg_phase_difference1__previous_correction_ref;
+double _node_dg_phase_difference1__sample_cnt_ref;
+double _node_dg_phase_difference1__previous_filtered_ref;
+double _node_dg_phase_difference1__filtered_ref;
+
+double _node_dg_phase_difference1__phase_state;
+double _node_dg_phase_difference1__previous_correction_in;
+double _node_dg_phase_difference1__sample_cnt_in;
+double _node_dg_phase_difference1__previous_filtered_in;
+double _node_dg_phase_difference1__filtered_in;
+X_UnInt32 _node_dg_phase_difference1__no_zc_flag_in;
+
+double _node_dg_phase_difference2__previous_correction_ref;
+double _node_dg_phase_difference2__sample_cnt_ref;
+double _node_dg_phase_difference2__previous_filtered_ref;
+double _node_dg_phase_difference2__filtered_ref;
+
+double _node_dg_phase_difference2__phase_state;
+double _node_dg_phase_difference2__previous_correction_in;
+double _node_dg_phase_difference2__sample_cnt_in;
+double _node_dg_phase_difference2__previous_filtered_in;
+double _node_dg_phase_difference2__filtered_in;
+X_UnInt32 _node_dg_phase_difference2__no_zc_flag_in;
+
+double _node_dg_phase_difference3__previous_correction_ref;
+double _node_dg_phase_difference3__sample_cnt_ref;
+double _node_dg_phase_difference3__previous_filtered_ref;
+double _node_dg_phase_difference3__filtered_ref;
+
+double _node_dg_phase_difference3__phase_state;
+double _node_dg_phase_difference3__previous_correction_in;
+double _node_dg_phase_difference3__sample_cnt_in;
+double _node_dg_phase_difference3__previous_filtered_in;
+double _node_dg_phase_difference3__filtered_in;
+X_UnInt32 _node_dg_phase_difference3__no_zc_flag_in;
+
+double _node_dg_phase_difference4__previous_correction_ref;
+double _node_dg_phase_difference4__sample_cnt_ref;
+double _node_dg_phase_difference4__previous_filtered_ref;
+double _node_dg_phase_difference4__filtered_ref;
+
+double _node_dg_phase_difference4__phase_state;
+double _node_dg_phase_difference4__previous_correction_in;
+double _node_dg_phase_difference4__sample_cnt_in;
+double _node_dg_phase_difference4__previous_filtered_in;
+double _node_dg_phase_difference4__filtered_in;
+X_UnInt32 _node_dg_phase_difference4__no_zc_flag_in;
+
+double _node_dg_phase_difference5__previous_correction_ref;
+double _node_dg_phase_difference5__sample_cnt_ref;
+double _node_dg_phase_difference5__previous_filtered_ref;
+double _node_dg_phase_difference5__filtered_ref;
+
+double _node_dg_phase_difference5__phase_state;
+double _node_dg_phase_difference5__previous_correction_in;
+double _node_dg_phase_difference5__sample_cnt_in;
+double _node_dg_phase_difference5__previous_filtered_in;
+double _node_dg_phase_difference5__filtered_in;
+X_UnInt32 _node_dg_phase_difference5__no_zc_flag_in;
+
+double _node_dg_phase_difference6__previous_correction_ref;
+double _node_dg_phase_difference6__sample_cnt_ref;
+double _node_dg_phase_difference6__previous_filtered_ref;
+double _node_dg_phase_difference6__filtered_ref;
+
+double _node_dg_phase_difference6__phase_state;
+double _node_dg_phase_difference6__previous_correction_in;
+double _node_dg_phase_difference6__sample_cnt_in;
+double _node_dg_phase_difference6__previous_filtered_in;
+double _node_dg_phase_difference6__filtered_in;
+X_UnInt32 _node_dg_phase_difference6__no_zc_flag_in;
+double _wind_power_plant__average_1_control_grid_follow_edge_detection1_unit_delay1__state;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay1__state;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay2__state;
+double _wind_power_plant__average_1_control_pll_pll_lpf_lpf__states[2];
+double _wind_power_plant__average_1_control_pll_pll_pid_integrator1__state;
+double _wind_power_plant__average_1_control_pll_pll_pid_integrator2__state;
+double _wind_power_plant__average_1_control_pll_pll_unit_delay1__state;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__filtered_value;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__previous_in;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__filtered_value;
+double _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__previous_in;
+double _node_800_rms_value4__square_sum;
+double _node_800_rms_value4__sample_cnt;
+double _node_800_rms_value4__period_cnt;
+double _node_800_rms_value4__db_timer;
+double _node_800_rms_value4__previous_filtered_value;
+double _node_800_rms_value4__previous_correction;
+double _node_800_rms_value4__previous_value;
+double _node_800_rms_value4__correction;
+double _node_800_rms_value4__filtered_value;
+double _node_800_rms_value4__out_state;
+double _node_800_rms_value5__square_sum;
+double _node_800_rms_value5__sample_cnt;
+double _node_800_rms_value5__period_cnt;
+double _node_800_rms_value5__db_timer;
+double _node_800_rms_value5__previous_filtered_value;
+double _node_800_rms_value5__previous_correction;
+double _node_800_rms_value5__previous_value;
+double _node_800_rms_value5__correction;
+double _node_800_rms_value5__filtered_value;
+double _node_800_rms_value5__out_state;
+double _node_800_rms_value6__square_sum;
+double _node_800_rms_value6__sample_cnt;
+double _node_800_rms_value6__period_cnt;
+double _node_800_rms_value6__db_timer;
+double _node_800_rms_value6__previous_filtered_value;
+double _node_800_rms_value6__previous_correction;
+double _node_800_rms_value6__previous_value;
+double _node_800_rms_value6__correction;
+double _node_800_rms_value6__filtered_value;
+double _node_800_rms_value6__out_state;
+double _node_800_rms_value1__square_sum;
+double _node_800_rms_value1__sample_cnt;
+double _node_800_rms_value1__period_cnt;
+double _node_800_rms_value1__db_timer;
+double _node_800_rms_value1__previous_filtered_value;
+double _node_800_rms_value1__previous_correction;
+double _node_800_rms_value1__previous_value;
+double _node_800_rms_value1__correction;
+double _node_800_rms_value1__filtered_value;
+double _node_800_rms_value1__out_state;
+double _node_800_rms_value2__square_sum;
+double _node_800_rms_value2__sample_cnt;
+double _node_800_rms_value2__period_cnt;
+double _node_800_rms_value2__db_timer;
+double _node_800_rms_value2__previous_filtered_value;
+double _node_800_rms_value2__previous_correction;
+double _node_800_rms_value2__previous_value;
+double _node_800_rms_value2__correction;
+double _node_800_rms_value2__filtered_value;
+double _node_800_rms_value2__out_state;
+double _node_800_power_meter__filter_1_output_k_minus_1;
+double _node_800_power_meter__filter_1_input_k_minus_1;
+double _node_800_power_meter__filter_1_output_k_minus_1Q;
+double _node_800_power_meter__filter_1_input_k_minus_1Q;
+double _node_800_power_meter__filter_1_output_k_minus_1P0;
+double _node_800_power_meter__filter_1_input_k_minus_1P0;
+double _node_800_rms_value3__square_sum;
+double _node_800_rms_value3__sample_cnt;
+double _node_800_rms_value3__period_cnt;
+double _node_800_rms_value3__db_timer;
+double _node_800_rms_value3__previous_filtered_value;
+double _node_800_rms_value3__previous_correction;
+double _node_800_rms_value3__previous_value;
+double _node_800_rms_value3__correction;
+double _node_800_rms_value3__filtered_value;
+double _node_800_rms_value3__out_state;
+double _node_dg_rms_value4__square_sum;
+double _node_dg_rms_value4__sample_cnt;
+double _node_dg_rms_value4__period_cnt;
+double _node_dg_rms_value4__db_timer;
+double _node_dg_rms_value4__previous_filtered_value;
+double _node_dg_rms_value4__previous_correction;
+double _node_dg_rms_value4__previous_value;
+double _node_dg_rms_value4__correction;
+double _node_dg_rms_value4__filtered_value;
+double _node_dg_rms_value4__out_state;
+double _node_dg_rms_value5__square_sum;
+double _node_dg_rms_value5__sample_cnt;
+double _node_dg_rms_value5__period_cnt;
+double _node_dg_rms_value5__db_timer;
+double _node_dg_rms_value5__previous_filtered_value;
+double _node_dg_rms_value5__previous_correction;
+double _node_dg_rms_value5__previous_value;
+double _node_dg_rms_value5__correction;
+double _node_dg_rms_value5__filtered_value;
+double _node_dg_rms_value5__out_state;
+double _node_dg_rms_value6__square_sum;
+double _node_dg_rms_value6__sample_cnt;
+double _node_dg_rms_value6__period_cnt;
+double _node_dg_rms_value6__db_timer;
+double _node_dg_rms_value6__previous_filtered_value;
+double _node_dg_rms_value6__previous_correction;
+double _node_dg_rms_value6__previous_value;
+double _node_dg_rms_value6__correction;
+double _node_dg_rms_value6__filtered_value;
+double _node_dg_rms_value6__out_state;
+double _node_dg_rms_value1__square_sum;
+double _node_dg_rms_value1__sample_cnt;
+double _node_dg_rms_value1__period_cnt;
+double _node_dg_rms_value1__db_timer;
+double _node_dg_rms_value1__previous_filtered_value;
+double _node_dg_rms_value1__previous_correction;
+double _node_dg_rms_value1__previous_value;
+double _node_dg_rms_value1__correction;
+double _node_dg_rms_value1__filtered_value;
+double _node_dg_rms_value1__out_state;
+double _node_dg_rms_value2__square_sum;
+double _node_dg_rms_value2__sample_cnt;
+double _node_dg_rms_value2__period_cnt;
+double _node_dg_rms_value2__db_timer;
+double _node_dg_rms_value2__previous_filtered_value;
+double _node_dg_rms_value2__previous_correction;
+double _node_dg_rms_value2__previous_value;
+double _node_dg_rms_value2__correction;
+double _node_dg_rms_value2__filtered_value;
+double _node_dg_rms_value2__out_state;
+double _node_dg_power_meter__filter_1_output_k_minus_1;
+double _node_dg_power_meter__filter_1_input_k_minus_1;
+double _node_dg_power_meter__filter_1_output_k_minus_1Q;
+double _node_dg_power_meter__filter_1_input_k_minus_1Q;
+double _node_dg_power_meter__filter_1_output_k_minus_1P0;
+double _node_dg_power_meter__filter_1_input_k_minus_1P0;
+double _node_dg_rms_value3__square_sum;
+double _node_dg_rms_value3__sample_cnt;
+double _node_dg_rms_value3__period_cnt;
+double _node_dg_rms_value3__db_timer;
+double _node_dg_rms_value3__previous_filtered_value;
+double _node_dg_rms_value3__previous_correction;
+double _node_dg_rms_value3__previous_value;
+double _node_dg_rms_value3__correction;
+double _node_dg_rms_value3__filtered_value;
+double _node_dg_rms_value3__out_state;
+
+
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__states[1];
+double _wind_power_plant__average_1_control_grid_follow_delay__counter;
+
+X_UnInt32 _wind_power_plant__average_1_control_grid_follow_delay__out_state;
+
+
+
+
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__state;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__reset_state;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__state;
+double _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__reset_state;
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__state;
+double _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__reset_state;
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__states[1];
+double _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__states[1];
+double _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state;
+X_Int32 _wind_power_plant__average_1_control_pll_pll_rate_limiter1__first_step;
+double _wind_power_plant__average_1_control_pll_pll_integrator__state;
+
+
+
+
+
+
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signQ;
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signP;
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Sref;
+
+
+
+
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state;
+X_Int32 _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__first_step;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state;
+X_Int32 _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__first_step;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state;
+X_Int32 _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__first_step;
+double _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__S_PQref;
+
+
+
+
+//@cmp.svar.end
+
+//
+// Tunable parameters
+//
+static struct Tunable_params {
+} __attribute__((__packed__)) tunable_params;
+
+void *tunable_params_dev0_cpu0_ptr = &tunable_params;
+
+// Dll function pointers
+#if defined(_WIN64)
+#else
+// Define handles for loading dlls
+#endif
+
+
+
+
+
+
+
+
+// generated using template: virtual_hil/custom_functions.template---------------------------------
+void ReInit_user_sp_cpu0_dev0() {
+#if DEBUG_MODE
+    printf("\n\rReInitTimer");
+#endif
+    //@cmp.init.block.start
+    _node_800_phase_difference1__phase_state = 0x0;
+    _node_800_phase_difference1__previous_correction_in = 0x0;
+    _node_800_phase_difference1__sample_cnt_in = 0x0;
+    _node_800_phase_difference1__filtered_in = 0x0;
+    _node_800_phase_difference1__previous_filtered_in = 0x0;
+    _node_800_phase_difference1__no_zc_flag_in = 0x0;
+    _node_800_phase_difference1__previous_correction_ref = 0x0;
+    _node_800_phase_difference1__sample_cnt_ref = 0x0;
+    _node_800_phase_difference1__previous_filtered_ref = 0x0;
+    _node_800_phase_difference1__filtered_ref = 0x0;
+    _node_800_phase_difference2__phase_state = 0x0;
+    _node_800_phase_difference2__previous_correction_in = 0x0;
+    _node_800_phase_difference2__sample_cnt_in = 0x0;
+    _node_800_phase_difference2__filtered_in = 0x0;
+    _node_800_phase_difference2__previous_filtered_in = 0x0;
+    _node_800_phase_difference2__no_zc_flag_in = 0x0;
+    _node_800_phase_difference2__previous_correction_ref = 0x0;
+    _node_800_phase_difference2__sample_cnt_ref = 0x0;
+    _node_800_phase_difference2__previous_filtered_ref = 0x0;
+    _node_800_phase_difference2__filtered_ref = 0x0;
+    _node_800_phase_difference3__phase_state = 0x0;
+    _node_800_phase_difference3__previous_correction_in = 0x0;
+    _node_800_phase_difference3__sample_cnt_in = 0x0;
+    _node_800_phase_difference3__filtered_in = 0x0;
+    _node_800_phase_difference3__previous_filtered_in = 0x0;
+    _node_800_phase_difference3__no_zc_flag_in = 0x0;
+    _node_800_phase_difference3__previous_correction_ref = 0x0;
+    _node_800_phase_difference3__sample_cnt_ref = 0x0;
+    _node_800_phase_difference3__previous_filtered_ref = 0x0;
+    _node_800_phase_difference3__filtered_ref = 0x0;
+    _node_800_phase_difference4__phase_state = 0x0;
+    _node_800_phase_difference4__previous_correction_in = 0x0;
+    _node_800_phase_difference4__sample_cnt_in = 0x0;
+    _node_800_phase_difference4__filtered_in = 0x0;
+    _node_800_phase_difference4__previous_filtered_in = 0x0;
+    _node_800_phase_difference4__no_zc_flag_in = 0x0;
+    _node_800_phase_difference4__previous_correction_ref = 0x0;
+    _node_800_phase_difference4__sample_cnt_ref = 0x0;
+    _node_800_phase_difference4__previous_filtered_ref = 0x0;
+    _node_800_phase_difference4__filtered_ref = 0x0;
+    _node_800_phase_difference5__phase_state = 0x0;
+    _node_800_phase_difference5__previous_correction_in = 0x0;
+    _node_800_phase_difference5__sample_cnt_in = 0x0;
+    _node_800_phase_difference5__filtered_in = 0x0;
+    _node_800_phase_difference5__previous_filtered_in = 0x0;
+    _node_800_phase_difference5__no_zc_flag_in = 0x0;
+    _node_800_phase_difference5__previous_correction_ref = 0x0;
+    _node_800_phase_difference5__sample_cnt_ref = 0x0;
+    _node_800_phase_difference5__previous_filtered_ref = 0x0;
+    _node_800_phase_difference5__filtered_ref = 0x0;
+    _node_800_phase_difference6__phase_state = 0x0;
+    _node_800_phase_difference6__previous_correction_in = 0x0;
+    _node_800_phase_difference6__sample_cnt_in = 0x0;
+    _node_800_phase_difference6__filtered_in = 0x0;
+    _node_800_phase_difference6__previous_filtered_in = 0x0;
+    _node_800_phase_difference6__no_zc_flag_in = 0x0;
+    _node_800_phase_difference6__previous_correction_ref = 0x0;
+    _node_800_phase_difference6__sample_cnt_ref = 0x0;
+    _node_800_phase_difference6__previous_filtered_ref = 0x0;
+    _node_800_phase_difference6__filtered_ref = 0x0;
+    _node_dg_phase_difference1__phase_state = 0x0;
+    _node_dg_phase_difference1__previous_correction_in = 0x0;
+    _node_dg_phase_difference1__sample_cnt_in = 0x0;
+    _node_dg_phase_difference1__filtered_in = 0x0;
+    _node_dg_phase_difference1__previous_filtered_in = 0x0;
+    _node_dg_phase_difference1__no_zc_flag_in = 0x0;
+    _node_dg_phase_difference1__previous_correction_ref = 0x0;
+    _node_dg_phase_difference1__sample_cnt_ref = 0x0;
+    _node_dg_phase_difference1__previous_filtered_ref = 0x0;
+    _node_dg_phase_difference1__filtered_ref = 0x0;
+    _node_dg_phase_difference2__phase_state = 0x0;
+    _node_dg_phase_difference2__previous_correction_in = 0x0;
+    _node_dg_phase_difference2__sample_cnt_in = 0x0;
+    _node_dg_phase_difference2__filtered_in = 0x0;
+    _node_dg_phase_difference2__previous_filtered_in = 0x0;
+    _node_dg_phase_difference2__no_zc_flag_in = 0x0;
+    _node_dg_phase_difference2__previous_correction_ref = 0x0;
+    _node_dg_phase_difference2__sample_cnt_ref = 0x0;
+    _node_dg_phase_difference2__previous_filtered_ref = 0x0;
+    _node_dg_phase_difference2__filtered_ref = 0x0;
+    _node_dg_phase_difference3__phase_state = 0x0;
+    _node_dg_phase_difference3__previous_correction_in = 0x0;
+    _node_dg_phase_difference3__sample_cnt_in = 0x0;
+    _node_dg_phase_difference3__filtered_in = 0x0;
+    _node_dg_phase_difference3__previous_filtered_in = 0x0;
+    _node_dg_phase_difference3__no_zc_flag_in = 0x0;
+    _node_dg_phase_difference3__previous_correction_ref = 0x0;
+    _node_dg_phase_difference3__sample_cnt_ref = 0x0;
+    _node_dg_phase_difference3__previous_filtered_ref = 0x0;
+    _node_dg_phase_difference3__filtered_ref = 0x0;
+    _node_dg_phase_difference4__phase_state = 0x0;
+    _node_dg_phase_difference4__previous_correction_in = 0x0;
+    _node_dg_phase_difference4__sample_cnt_in = 0x0;
+    _node_dg_phase_difference4__filtered_in = 0x0;
+    _node_dg_phase_difference4__previous_filtered_in = 0x0;
+    _node_dg_phase_difference4__no_zc_flag_in = 0x0;
+    _node_dg_phase_difference4__previous_correction_ref = 0x0;
+    _node_dg_phase_difference4__sample_cnt_ref = 0x0;
+    _node_dg_phase_difference4__previous_filtered_ref = 0x0;
+    _node_dg_phase_difference4__filtered_ref = 0x0;
+    _node_dg_phase_difference5__phase_state = 0x0;
+    _node_dg_phase_difference5__previous_correction_in = 0x0;
+    _node_dg_phase_difference5__sample_cnt_in = 0x0;
+    _node_dg_phase_difference5__filtered_in = 0x0;
+    _node_dg_phase_difference5__previous_filtered_in = 0x0;
+    _node_dg_phase_difference5__no_zc_flag_in = 0x0;
+    _node_dg_phase_difference5__previous_correction_ref = 0x0;
+    _node_dg_phase_difference5__sample_cnt_ref = 0x0;
+    _node_dg_phase_difference5__previous_filtered_ref = 0x0;
+    _node_dg_phase_difference5__filtered_ref = 0x0;
+    _node_dg_phase_difference6__phase_state = 0x0;
+    _node_dg_phase_difference6__previous_correction_in = 0x0;
+    _node_dg_phase_difference6__sample_cnt_in = 0x0;
+    _node_dg_phase_difference6__filtered_in = 0x0;
+    _node_dg_phase_difference6__previous_filtered_in = 0x0;
+    _node_dg_phase_difference6__no_zc_flag_in = 0x0;
+    _node_dg_phase_difference6__previous_correction_ref = 0x0;
+    _node_dg_phase_difference6__sample_cnt_ref = 0x0;
+    _node_dg_phase_difference6__previous_filtered_ref = 0x0;
+    _node_dg_phase_difference6__filtered_ref = 0x0;
+    _wind_power_plant__average_1_control_grid_follow_edge_detection1_unit_delay1__state = 0.0;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay1__state = 0.0;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay2__state = 0.0;
+    X_UnInt32 _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i;
+    for (_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i = 0; _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i < 2; _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i++) {
+        _wind_power_plant__average_1_control_pll_pll_lpf_lpf__states[_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i] = 0;
+    }
+    _wind_power_plant__average_1_control_pll_pll_pid_integrator1__state = 376.99111843;
+    _wind_power_plant__average_1_control_pll_pll_pid_integrator2__state = 0.0;
+    _wind_power_plant__average_1_control_pll_pll_unit_delay1__state = 0.0;
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__filtered_value = 0.0 / (1 - 1.0 * 62.83185307 * 0.00012 );
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__previous_in = 0x0;
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__filtered_value = 0.0 / (1 - 1.0 * 62.83185307 * 0.00012 );
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__previous_in = 0x0;
+    _node_800_rms_value4__square_sum = 0x0;
+    _node_800_rms_value4__sample_cnt = 0x0;
+    _node_800_rms_value4__period_cnt = 0x0;
+    _node_800_rms_value4__db_timer = 0x0;
+    _node_800_rms_value4__previous_filtered_value = 0x0;
+    _node_800_rms_value4__previous_correction = 0x0;
+    _node_800_rms_value4__correction = 0x0;
+    _node_800_rms_value4__previous_value = 0x0;
+    _node_800_rms_value4__out_state = 0x0;
+    _node_800_rms_value4__filtered_value = 0x0;
+    _node_800_rms_value4__db_timer = 0x0;
+    _node_800_rms_value5__square_sum = 0x0;
+    _node_800_rms_value5__sample_cnt = 0x0;
+    _node_800_rms_value5__period_cnt = 0x0;
+    _node_800_rms_value5__db_timer = 0x0;
+    _node_800_rms_value5__previous_filtered_value = 0x0;
+    _node_800_rms_value5__previous_correction = 0x0;
+    _node_800_rms_value5__correction = 0x0;
+    _node_800_rms_value5__previous_value = 0x0;
+    _node_800_rms_value5__out_state = 0x0;
+    _node_800_rms_value5__filtered_value = 0x0;
+    _node_800_rms_value5__db_timer = 0x0;
+    _node_800_rms_value6__square_sum = 0x0;
+    _node_800_rms_value6__sample_cnt = 0x0;
+    _node_800_rms_value6__period_cnt = 0x0;
+    _node_800_rms_value6__db_timer = 0x0;
+    _node_800_rms_value6__previous_filtered_value = 0x0;
+    _node_800_rms_value6__previous_correction = 0x0;
+    _node_800_rms_value6__correction = 0x0;
+    _node_800_rms_value6__previous_value = 0x0;
+    _node_800_rms_value6__out_state = 0x0;
+    _node_800_rms_value6__filtered_value = 0x0;
+    _node_800_rms_value6__db_timer = 0x0;
+    HIL_OutAO(0x2009, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x200b, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x200d, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2000, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2002, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2004, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    _node_800_rms_value1__square_sum = 0x0;
+    _node_800_rms_value1__sample_cnt = 0x0;
+    _node_800_rms_value1__period_cnt = 0x0;
+    _node_800_rms_value1__db_timer = 0x0;
+    _node_800_rms_value1__previous_filtered_value = 0x0;
+    _node_800_rms_value1__previous_correction = 0x0;
+    _node_800_rms_value1__correction = 0x0;
+    _node_800_rms_value1__previous_value = 0x0;
+    _node_800_rms_value1__out_state = 0x0;
+    _node_800_rms_value1__filtered_value = 0x0;
+    _node_800_rms_value1__db_timer = 0x0;
+    _node_800_rms_value2__square_sum = 0x0;
+    _node_800_rms_value2__sample_cnt = 0x0;
+    _node_800_rms_value2__period_cnt = 0x0;
+    _node_800_rms_value2__db_timer = 0x0;
+    _node_800_rms_value2__previous_filtered_value = 0x0;
+    _node_800_rms_value2__previous_correction = 0x0;
+    _node_800_rms_value2__correction = 0x0;
+    _node_800_rms_value2__previous_value = 0x0;
+    _node_800_rms_value2__out_state = 0x0;
+    _node_800_rms_value2__filtered_value = 0x0;
+    _node_800_rms_value2__db_timer = 0x0;
+    _node_800_power_meter__filter_1_output_k_minus_1 = 0.0;
+    _node_800_power_meter__filter_1_input_k_minus_1 = 0.0;
+    _node_800_power_meter__filter_1_output_k_minus_1Q = 0.0;
+    _node_800_power_meter__filter_1_input_k_minus_1Q = 0.0;
+    _node_800_power_meter__filter_1_output_k_minus_1P0 = 0.0;
+    _node_800_power_meter__filter_1_input_k_minus_1P0 = 0.0;
+    _node_800_rms_value3__square_sum = 0x0;
+    _node_800_rms_value3__sample_cnt = 0x0;
+    _node_800_rms_value3__period_cnt = 0x0;
+    _node_800_rms_value3__db_timer = 0x0;
+    _node_800_rms_value3__previous_filtered_value = 0x0;
+    _node_800_rms_value3__previous_correction = 0x0;
+    _node_800_rms_value3__correction = 0x0;
+    _node_800_rms_value3__previous_value = 0x0;
+    _node_800_rms_value3__out_state = 0x0;
+    _node_800_rms_value3__filtered_value = 0x0;
+    _node_800_rms_value3__db_timer = 0x0;
+    _node_dg_rms_value4__square_sum = 0x0;
+    _node_dg_rms_value4__sample_cnt = 0x0;
+    _node_dg_rms_value4__period_cnt = 0x0;
+    _node_dg_rms_value4__db_timer = 0x0;
+    _node_dg_rms_value4__previous_filtered_value = 0x0;
+    _node_dg_rms_value4__previous_correction = 0x0;
+    _node_dg_rms_value4__correction = 0x0;
+    _node_dg_rms_value4__previous_value = 0x0;
+    _node_dg_rms_value4__out_state = 0x0;
+    _node_dg_rms_value4__filtered_value = 0x0;
+    _node_dg_rms_value4__db_timer = 0x0;
+    _node_dg_rms_value5__square_sum = 0x0;
+    _node_dg_rms_value5__sample_cnt = 0x0;
+    _node_dg_rms_value5__period_cnt = 0x0;
+    _node_dg_rms_value5__db_timer = 0x0;
+    _node_dg_rms_value5__previous_filtered_value = 0x0;
+    _node_dg_rms_value5__previous_correction = 0x0;
+    _node_dg_rms_value5__correction = 0x0;
+    _node_dg_rms_value5__previous_value = 0x0;
+    _node_dg_rms_value5__out_state = 0x0;
+    _node_dg_rms_value5__filtered_value = 0x0;
+    _node_dg_rms_value5__db_timer = 0x0;
+    _node_dg_rms_value6__square_sum = 0x0;
+    _node_dg_rms_value6__sample_cnt = 0x0;
+    _node_dg_rms_value6__period_cnt = 0x0;
+    _node_dg_rms_value6__db_timer = 0x0;
+    _node_dg_rms_value6__previous_filtered_value = 0x0;
+    _node_dg_rms_value6__previous_correction = 0x0;
+    _node_dg_rms_value6__correction = 0x0;
+    _node_dg_rms_value6__previous_value = 0x0;
+    _node_dg_rms_value6__out_state = 0x0;
+    _node_dg_rms_value6__filtered_value = 0x0;
+    _node_dg_rms_value6__db_timer = 0x0;
+    HIL_OutAO(0x2019, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x201b, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x201d, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2010, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2012, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2014, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    _node_dg_rms_value1__square_sum = 0x0;
+    _node_dg_rms_value1__sample_cnt = 0x0;
+    _node_dg_rms_value1__period_cnt = 0x0;
+    _node_dg_rms_value1__db_timer = 0x0;
+    _node_dg_rms_value1__previous_filtered_value = 0x0;
+    _node_dg_rms_value1__previous_correction = 0x0;
+    _node_dg_rms_value1__correction = 0x0;
+    _node_dg_rms_value1__previous_value = 0x0;
+    _node_dg_rms_value1__out_state = 0x0;
+    _node_dg_rms_value1__filtered_value = 0x0;
+    _node_dg_rms_value1__db_timer = 0x0;
+    _node_dg_rms_value2__square_sum = 0x0;
+    _node_dg_rms_value2__sample_cnt = 0x0;
+    _node_dg_rms_value2__period_cnt = 0x0;
+    _node_dg_rms_value2__db_timer = 0x0;
+    _node_dg_rms_value2__previous_filtered_value = 0x0;
+    _node_dg_rms_value2__previous_correction = 0x0;
+    _node_dg_rms_value2__correction = 0x0;
+    _node_dg_rms_value2__previous_value = 0x0;
+    _node_dg_rms_value2__out_state = 0x0;
+    _node_dg_rms_value2__filtered_value = 0x0;
+    _node_dg_rms_value2__db_timer = 0x0;
+    _node_dg_power_meter__filter_1_output_k_minus_1 = 0.0;
+    _node_dg_power_meter__filter_1_input_k_minus_1 = 0.0;
+    _node_dg_power_meter__filter_1_output_k_minus_1Q = 0.0;
+    _node_dg_power_meter__filter_1_input_k_minus_1Q = 0.0;
+    _node_dg_power_meter__filter_1_output_k_minus_1P0 = 0.0;
+    _node_dg_power_meter__filter_1_input_k_minus_1P0 = 0.0;
+    _node_dg_rms_value3__square_sum = 0x0;
+    _node_dg_rms_value3__sample_cnt = 0x0;
+    _node_dg_rms_value3__period_cnt = 0x0;
+    _node_dg_rms_value3__db_timer = 0x0;
+    _node_dg_rms_value3__previous_filtered_value = 0x0;
+    _node_dg_rms_value3__previous_correction = 0x0;
+    _node_dg_rms_value3__correction = 0x0;
+    _node_dg_rms_value3__previous_value = 0x0;
+    _node_dg_rms_value3__out_state = 0x0;
+    _node_dg_rms_value3__filtered_value = 0x0;
+    _node_dg_rms_value3__db_timer = 0x0;
+    HIL_OutAO(0x2032, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    {
+    }
+    HIL_OutAO(0x203e, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2050, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2001, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2003, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2005, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x200a, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x200c, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2006, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2007, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2008, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x200f, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x200e, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2011, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2013, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2015, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x201a, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x201c, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2016, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2017, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2018, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x201f, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x201e, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2034, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x202a, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x202b, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2033, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    X_UnInt32 _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i;
+    for (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i = 0; _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i < 1; _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i++) {
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__states[_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i] = 0;
+    }
+    HIL_OutAO(0x2030, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x202c, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    {
+        _wind_power_plant__average_1_control_grid_follow_delay__out_state = 0 ;
+        _wind_power_plant__average_1_control_grid_follow_delay__counter = 0 ;
+    }
+    HIL_OutAO(0x2031, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x202d, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x202e, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2020, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__state = 0.0;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__reset_state = 2;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__state = 0.0;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__reset_state = 2;
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__state = 0.0;
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__reset_state = 2;
+    HIL_OutAO(0x2022, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2021, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    X_UnInt32 _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i;
+    for (_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i = 0; _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i < 1; _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i++) {
+        _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__states[_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i] = 0;
+    }
+    X_UnInt32 _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i;
+    for (_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i = 0; _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i < 1; _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i++) {
+        _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__states[_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i] = 0;
+    }
+    _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state = 0;
+    _wind_power_plant__average_1_control_pll_pll_rate_limiter1__first_step = 1;
+    {
+        _wind_power_plant__average_1_control_pll_pll_integrator__state = 0 ;
+    }
+    {
+    }
+    HIL_OutAO(0x2023, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2025, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x202f, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2027, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2024, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x203f, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2040, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2041, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2042, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2043, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2044, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2045, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2046, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2047, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2048, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2049, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x204a, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x204b, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x204c, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x204d, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x204e, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x204f, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Sref = 0 ;
+    }
+    HIL_OutAO(0x2026, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state = 0;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__first_step = 1;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state = 0;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__first_step = 1;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state = 0;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__first_step = 1;
+    {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__S_PQref = 0 ;
+    }
+    HIL_OutAO(0x2029, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2028, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x203d, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x203c, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2035, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2036, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2037, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x203b, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2038, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x2039, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutAO(0x203a, 0.0f);
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    HIL_OutFloat(145489920, 0.0);
+    HIL_OutFloat(145489921, 0.0);
+    HIL_OutFloat(145489922, 0.0);
+    //@cmp.init.block.end
+}
+
+
+// Dll function pointers and dll reload function
+#if defined(_WIN64)
+// Define method for reloading dll functions
+void ReloadDllFunctions_user_sp_cpu0_dev0(void) {
+    // Load each library and setup function pointers
+}
+
+void FreeDllFunctions_user_sp_cpu0_dev0(void) {
+}
+
+#else
+// Define method for reloading dll functions
+void ReloadDllFunctions_user_sp_cpu0_dev0(void) {
+    // Load each library and setup function pointers
+}
+
+void FreeDllFunctions_user_sp_cpu0_dev0(void) {
+}
+#endif
+
+void load_fmi_libraries_user_sp_cpu0_dev0(void) {
+#if defined(_WIN64)
+#else
+#endif
+}
+
+
+void ReInit_sp_scope_user_sp_cpu0_dev0() {
+    // initialise SP Scope buffer pointer
+    sp_scope_buff_index_cpu0_er0_dev0 = 0;
+    sp_scope_buff_start_addr_cpu0_er0_dev0 = (uint64_t)sp_scope_buffer_dev0 + 0 * SP_SCOPE_BUFF_SIZE + 0 * SP_SCOPE_BUFF_SIZE_PER_ER;
+}
+// generated using template: virtual_hil/common_timer_counter_handler.template-------------------------
+
+/*****************************************************************************************/
+/**
+* This function is the handler which performs processing for the timer counter.
+* It is called from an interrupt context such that the amount of processing
+* performed should be minimized.  It is called when the timer counter expires
+* if interrupts are enabled.
+*
+*
+* @param    None
+*
+* @return   None
+*
+* @note     None
+*
+*****************************************************************************************/
+
+void TimerCounterHandler_0_user_sp_cpu0_dev0() {
+#if DEBUG_MODE
+    printf("\n\rTimerCounterHandler_0");
+#endif
+    //////////////////////////////////////////////////////////////////////////
+    // Set tunable parameters
+    //////////////////////////////////////////////////////////////////////////
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Constant1
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Constant2
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Constant3
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Damp
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.air_density
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.effective_area
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.three
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Constant1
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Constant1
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Constant2
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Constant3
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Constant4
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.o_ref
+    // Generated from the component: Wind Power Plant (Average)1.Vdc
+    // Generated from the component: Wind Power Plant UI.Q_ref
+    // Generated from the component: Wind Power Plant UI.V_ref
+    // Generated from the component: Wind Power Plant UI.V_ref1
+//////////////////////////////////////////////////////////////////////////
+    // Output block
+    //////////////////////////////////////////////////////////////////////////
+    //@cmp.out.block.start
+    // Generated from the component: NODE 800.Ia.Ia1
+    _node_800_ia_ia1__out = (HIL_InFloat(0xc80000 + 0x114));
+    // Generated from the component: NODE 800.Ib.Ia1
+    _node_800_ib_ia1__out = (HIL_InFloat(0xc80000 + 0x115));
+    // Generated from the component: NODE 800.Ic.Ia1
+    _node_800_ic_ia1__out = (HIL_InFloat(0xc80000 + 0x116));
+    // Generated from the component: NODE 800.Phase Difference1
+    _node_800_phase_difference1__phase_diff = _node_800_phase_difference1__phase_state;
+    // Generated from the component: NODE 800.Phase Difference2
+    _node_800_phase_difference2__phase_diff = _node_800_phase_difference2__phase_state;
+    // Generated from the component: NODE 800.Phase Difference3
+    _node_800_phase_difference3__phase_diff = _node_800_phase_difference3__phase_state;
+    // Generated from the component: NODE 800.Phase Difference4
+    _node_800_phase_difference4__phase_diff = _node_800_phase_difference4__phase_state;
+    // Generated from the component: NODE 800.Phase Difference5
+    _node_800_phase_difference5__phase_diff = _node_800_phase_difference5__phase_state;
+    // Generated from the component: NODE 800.Phase Difference6
+    _node_800_phase_difference6__phase_diff = _node_800_phase_difference6__phase_state;
+    // Generated from the component: NODE 800.Va.Va1
+    _node_800_va_va1__out = (HIL_InFloat(0xc80000 + 0x110));
+    // Generated from the component: NODE 800.Vb.Va1
+    _node_800_vb_va1__out = (HIL_InFloat(0xc80000 + 0x111));
+    // Generated from the component: NODE 800.Vc.Va1
+    _node_800_vc_va1__out = (HIL_InFloat(0xc80000 + 0x112));
+    // Generated from the component: NODE DG.Ia.Ia1
+    _node_dg_ia_ia1__out = (HIL_InFloat(0xc80000 + 0x21d));
+    // Generated from the component: NODE DG.Ib.Ia1
+    _node_dg_ib_ia1__out = (HIL_InFloat(0xc80000 + 0x21e));
+    // Generated from the component: NODE DG.Ic.Ia1
+    _node_dg_ic_ia1__out = (HIL_InFloat(0xc80000 + 0x21f));
+    // Generated from the component: NODE DG.Phase Difference1
+    _node_dg_phase_difference1__phase_diff = _node_dg_phase_difference1__phase_state;
+    // Generated from the component: NODE DG.Phase Difference2
+    _node_dg_phase_difference2__phase_diff = _node_dg_phase_difference2__phase_state;
+    // Generated from the component: NODE DG.Phase Difference3
+    _node_dg_phase_difference3__phase_diff = _node_dg_phase_difference3__phase_state;
+    // Generated from the component: NODE DG.Phase Difference4
+    _node_dg_phase_difference4__phase_diff = _node_dg_phase_difference4__phase_state;
+    // Generated from the component: NODE DG.Phase Difference5
+    _node_dg_phase_difference5__phase_diff = _node_dg_phase_difference5__phase_state;
+    // Generated from the component: NODE DG.Phase Difference6
+    _node_dg_phase_difference6__phase_diff = _node_dg_phase_difference6__phase_state;
+    // Generated from the component: NODE DG.Va.Va1
+    _node_dg_va_va1__out = (HIL_InFloat(0xc80000 + 0x211));
+    // Generated from the component: NODE DG.Vb.Va1
+    _node_dg_vb_va1__out = (HIL_InFloat(0xc80000 + 0x212));
+    // Generated from the component: NODE DG.Vc.Va1
+    _node_dg_vc_va1__out = (HIL_InFloat(0xc80000 + 0x213));
+    // Generated from the component: Reference.Vref.Va1
+    _reference_vref_va1__out = (HIL_InFloat(0xc80000 + 0x113));
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Edge Detection1.Unit Delay1
+    _wind_power_plant__average_1_control_grid_follow_edge_detection1_unit_delay1__out = _wind_power_plant__average_1_control_grid_follow_edge_detection1_unit_delay1__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.Unit Delay1
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay1__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay1__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.Unit Delay2
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay2__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay2__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.LPF.LPF
+    X_UnInt32 _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i;
+    _wind_power_plant__average_1_control_pll_pll_lpf_lpf__a_sum = 0.0f;
+    _wind_power_plant__average_1_control_pll_pll_lpf_lpf__b_sum = 0.0f;
+    _wind_power_plant__average_1_control_pll_pll_lpf_lpf__delay_line_in = 0.0f;
+    for (_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i = 0; _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i < 1; _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i++) {
+        _wind_power_plant__average_1_control_pll_pll_lpf_lpf__b_sum += _wind_power_plant__average_1_control_pll_pll_lpf_lpf__b_coeff[_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i] * _wind_power_plant__average_1_control_pll_pll_lpf_lpf__states[_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i + 1];
+    }
+    _wind_power_plant__average_1_control_pll_pll_lpf_lpf__out = _wind_power_plant__average_1_control_pll_pll_lpf_lpf__b_sum;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Integrator1
+    _wind_power_plant__average_1_control_pll_pll_pid_integrator1__out = _wind_power_plant__average_1_control_pll_pll_pid_integrator1__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Integrator2
+    _wind_power_plant__average_1_control_pll_pll_pid_integrator2__out = _wind_power_plant__average_1_control_pll_pll_pid_integrator2__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.Unit Delay1
+    _wind_power_plant__average_1_control_pll_pll_unit_delay1__out = _wind_power_plant__average_1_control_pll_pll_unit_delay1__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.abc to dq.LPF_d
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__previous_filtered_value = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__filtered_value;
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__filtered_value = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__previous_in * (1 * 62.83185307 * 0.00012) + _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__previous_filtered_value * (1 - 1 * 62.83185307 * 0.00012 );
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__out = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__filtered_value;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.abc to dq.LPF_q
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__previous_filtered_value = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__filtered_value;
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__filtered_value = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__previous_in * (1 * 62.83185307 * 0.00012) + _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__previous_filtered_value * (1 - 1 * 62.83185307 * 0.00012 );
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__out = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__filtered_value;
+    // Generated from the component: Wind Power Plant (Average)1.Ia.Ia1
+    _wind_power_plant__average_1_ia_ia1__out = (HIL_InFloat(0xc80000 + 0x220));
+    // Generated from the component: Wind Power Plant (Average)1.Ib.Ia1
+    _wind_power_plant__average_1_ib_ia1__out = (HIL_InFloat(0xc80000 + 0x221));
+    // Generated from the component: Wind Power Plant (Average)1.Ic.Ia1
+    _wind_power_plant__average_1_ic_ia1__out = (HIL_InFloat(0xc80000 + 0x222));
+    // Generated from the component: Wind Power Plant (Average)1.Va.Va1
+    _wind_power_plant__average_1_va_va1__out = (HIL_InFloat(0xc80000 + 0x214));
+    // Generated from the component: Wind Power Plant (Average)1.Vb.Va1
+    _wind_power_plant__average_1_vb_va1__out = (HIL_InFloat(0xc80000 + 0x218));
+    // Generated from the component: Wind Power Plant (Average)1.Vc.Va1
+    _wind_power_plant__average_1_vc_va1__out = (HIL_InFloat(0xc80000 + 0x21b));
+    // Generated from the component: Wind Power Plant UI.Enable
+    _wind_power_plant_ui_enable__out = XIo_InFloat(0x14400000);
+    // Generated from the component: Wind Power Plant UI.wind_speed
+    _wind_power_plant_ui_wind_speed__out = XIo_InFloat(0x14400004);
+    // Generated from the component: NODE 800.RMS value4
+    _node_800_rms_value4__previous_filtered_value = _node_800_rms_value4__filtered_value;
+    if (0)
+        _node_800_rms_value4__filtered_value = _node_800_rms_value4__previous_filtered_value * 1 + _node_800_ia_ia1__out * 1;
+    else
+        _node_800_rms_value4__filtered_value = _node_800_rms_value4__previous_filtered_value * 0.1 + _node_800_ia_ia1__out * 0.9;
+    _node_800_rms_value4__db_timer += 0.00012;
+    if( (_node_800_rms_value4__filtered_value >= 0.0) && (_node_800_rms_value4__previous_filtered_value < 0.0) && (_node_800_rms_value4__db_timer >= 0.0) ) {
+        _node_800_rms_value4__zc = 1;
+        _node_800_rms_value4__db_timer = 0;
+    } else
+        _node_800_rms_value4__zc = 0;
+    _node_800_rms_value4__out = _node_800_rms_value4__out_state;
+    // Generated from the component: NODE 800.RMS value5
+    _node_800_rms_value5__previous_filtered_value = _node_800_rms_value5__filtered_value;
+    if (0)
+        _node_800_rms_value5__filtered_value = _node_800_rms_value5__previous_filtered_value * 1 + _node_800_ib_ia1__out * 1;
+    else
+        _node_800_rms_value5__filtered_value = _node_800_rms_value5__previous_filtered_value * 0.1 + _node_800_ib_ia1__out * 0.9;
+    _node_800_rms_value5__db_timer += 0.00012;
+    if( (_node_800_rms_value5__filtered_value >= 0.0) && (_node_800_rms_value5__previous_filtered_value < 0.0) && (_node_800_rms_value5__db_timer >= 0.0) ) {
+        _node_800_rms_value5__zc = 1;
+        _node_800_rms_value5__db_timer = 0;
+    } else
+        _node_800_rms_value5__zc = 0;
+    _node_800_rms_value5__out = _node_800_rms_value5__out_state;
+    // Generated from the component: NODE 800.RMS value6
+    _node_800_rms_value6__previous_filtered_value = _node_800_rms_value6__filtered_value;
+    if (0)
+        _node_800_rms_value6__filtered_value = _node_800_rms_value6__previous_filtered_value * 1 + _node_800_ic_ia1__out * 1;
+    else
+        _node_800_rms_value6__filtered_value = _node_800_rms_value6__previous_filtered_value * 0.1 + _node_800_ic_ia1__out * 0.9;
+    _node_800_rms_value6__db_timer += 0.00012;
+    if( (_node_800_rms_value6__filtered_value >= 0.0) && (_node_800_rms_value6__previous_filtered_value < 0.0) && (_node_800_rms_value6__db_timer >= 0.0) ) {
+        _node_800_rms_value6__zc = 1;
+        _node_800_rms_value6__db_timer = 0;
+    } else
+        _node_800_rms_value6__zc = 0;
+    _node_800_rms_value6__out = _node_800_rms_value6__out_state;
+    // Generated from the component: NODE 800.Va_phase
+    HIL_OutAO(0x2009, (float)_node_800_phase_difference1__phase_diff);
+    // Generated from the component: NODE 800.Vb_phase
+    HIL_OutAO(0x200b, (float)_node_800_phase_difference2__phase_diff);
+    // Generated from the component: NODE 800.Vc_phase
+    HIL_OutAO(0x200d, (float)_node_800_phase_difference3__phase_diff);
+    // Generated from the component: NODE 800.Ia_phase
+    HIL_OutAO(0x2000, (float)_node_800_phase_difference4__phase_diff);
+    // Generated from the component: NODE 800.Ib_phase
+    HIL_OutAO(0x2002, (float)_node_800_phase_difference5__phase_diff);
+    // Generated from the component: NODE 800.Ic_phase
+    HIL_OutAO(0x2004, (float)_node_800_phase_difference6__phase_diff);
+    // Generated from the component: NODE 800.RMS value1
+    _node_800_rms_value1__previous_filtered_value = _node_800_rms_value1__filtered_value;
+    if (0)
+        _node_800_rms_value1__filtered_value = _node_800_rms_value1__previous_filtered_value * 1 + _node_800_va_va1__out * 1;
+    else
+        _node_800_rms_value1__filtered_value = _node_800_rms_value1__previous_filtered_value * 0.1 + _node_800_va_va1__out * 0.9;
+    _node_800_rms_value1__db_timer += 0.00012;
+    if( (_node_800_rms_value1__filtered_value >= 0.0) && (_node_800_rms_value1__previous_filtered_value < 0.0) && (_node_800_rms_value1__db_timer >= 0.0) ) {
+        _node_800_rms_value1__zc = 1;
+        _node_800_rms_value1__db_timer = 0;
+    } else
+        _node_800_rms_value1__zc = 0;
+    _node_800_rms_value1__out = _node_800_rms_value1__out_state;
+    // Generated from the component: NODE 800.RMS value2
+    _node_800_rms_value2__previous_filtered_value = _node_800_rms_value2__filtered_value;
+    if (0)
+        _node_800_rms_value2__filtered_value = _node_800_rms_value2__previous_filtered_value * 1 + _node_800_vb_va1__out * 1;
+    else
+        _node_800_rms_value2__filtered_value = _node_800_rms_value2__previous_filtered_value * 0.1 + _node_800_vb_va1__out * 0.9;
+    _node_800_rms_value2__db_timer += 0.00012;
+    if( (_node_800_rms_value2__filtered_value >= 0.0) && (_node_800_rms_value2__previous_filtered_value < 0.0) && (_node_800_rms_value2__db_timer >= 0.0) ) {
+        _node_800_rms_value2__zc = 1;
+        _node_800_rms_value2__db_timer = 0;
+    } else
+        _node_800_rms_value2__zc = 0;
+    _node_800_rms_value2__out = _node_800_rms_value2__out_state;
+    // Generated from the component: NODE 800.Power Meter
+    _node_800_power_meter__v_alpha = SQRT_2OVER3 * ( _node_800_va_va1__out - 0.5f * _node_800_vb_va1__out - 0.5f * _node_800_vc_va1__out);
+    _node_800_power_meter__v_beta = SQRT_2OVER3 * (SQRT3_OVER_2 * _node_800_vb_va1__out - SQRT3_OVER_2 * _node_800_vc_va1__out);
+    _node_800_power_meter__i_alpha = SQRT_2OVER3 * ( _node_800_ia_ia1__out - 0.5f * _node_800_ib_ia1__out - 0.5f * _node_800_ic_ia1__out);
+    _node_800_power_meter__i_beta = SQRT_2OVER3 * (SQRT3_OVER_2 * _node_800_ib_ia1__out - SQRT3_OVER_2 * _node_800_ic_ia1__out);
+    _node_800_power_meter__v_zero = ONE_DIV_BY_SQRT_3 * (_node_800_va_va1__out + _node_800_vb_va1__out + _node_800_vc_va1__out);
+    _node_800_power_meter__i_zero = ONE_DIV_BY_SQRT_3 * (_node_800_ia_ia1__out + _node_800_ib_ia1__out + _node_800_ic_ia1__out);
+    _node_800_power_meter__Pac = _node_800_power_meter__v_alpha * _node_800_power_meter__i_alpha + _node_800_power_meter__v_beta * _node_800_power_meter__i_beta;
+    _node_800_power_meter__Qac = _node_800_power_meter__v_beta * _node_800_power_meter__i_alpha - _node_800_power_meter__v_alpha * _node_800_power_meter__i_beta;
+    _node_800_power_meter__P0ac = _node_800_power_meter__v_zero * _node_800_power_meter__i_zero;
+    _node_800_power_meter__filter_1_output = 0.011183253930712216 * (_node_800_power_meter__Pac + _node_800_power_meter__filter_1_input_k_minus_1) - (-0.9776334921385755) * _node_800_power_meter__filter_1_output_k_minus_1;
+    _node_800_power_meter__filter_1_outputQ = 0.011183253930712216 * (_node_800_power_meter__Qac + _node_800_power_meter__filter_1_input_k_minus_1Q) - (-0.9776334921385755) * _node_800_power_meter__filter_1_output_k_minus_1Q;
+    _node_800_power_meter__filter_1_outputP0 = 0.011183253930712216 * (_node_800_power_meter__P0ac + _node_800_power_meter__filter_1_input_k_minus_1P0) - (-0.9776334921385755) * _node_800_power_meter__filter_1_output_k_minus_1P0;
+    _node_800_power_meter__filter_1_input_k_minus_1 = _node_800_power_meter__Pac;
+    _node_800_power_meter__filter_1_output_k_minus_1 = _node_800_power_meter__filter_1_output;
+    _node_800_power_meter__filter_1_input_k_minus_1Q = _node_800_power_meter__Qac;;
+    _node_800_power_meter__filter_1_output_k_minus_1Q = _node_800_power_meter__filter_1_outputQ;
+    _node_800_power_meter__filter_1_input_k_minus_1P0 = _node_800_power_meter__P0ac;
+    _node_800_power_meter__filter_1_output_k_minus_1P0 = _node_800_power_meter__filter_1_outputP0;
+    _node_800_power_meter__Pdc = _node_800_power_meter__filter_1_output;
+    _node_800_power_meter__Qdc = _node_800_power_meter__filter_1_outputQ;
+    _node_800_power_meter__P0dc = _node_800_power_meter__filter_1_outputP0;
+    _node_800_power_meter__apparent = sqrt(pow(_node_800_power_meter__Pdc, 2) + pow(_node_800_power_meter__Qdc, 2));
+    if (_node_800_power_meter__apparent > 0)
+        _node_800_power_meter__k_factor = _node_800_power_meter__Pdc / _node_800_power_meter__apparent;
+    else
+        _node_800_power_meter__k_factor = 0;
+    // Generated from the component: NODE 800.RMS value3
+    _node_800_rms_value3__previous_filtered_value = _node_800_rms_value3__filtered_value;
+    if (0)
+        _node_800_rms_value3__filtered_value = _node_800_rms_value3__previous_filtered_value * 1 + _node_800_vc_va1__out * 1;
+    else
+        _node_800_rms_value3__filtered_value = _node_800_rms_value3__previous_filtered_value * 0.1 + _node_800_vc_va1__out * 0.9;
+    _node_800_rms_value3__db_timer += 0.00012;
+    if( (_node_800_rms_value3__filtered_value >= 0.0) && (_node_800_rms_value3__previous_filtered_value < 0.0) && (_node_800_rms_value3__db_timer >= 0.0) ) {
+        _node_800_rms_value3__zc = 1;
+        _node_800_rms_value3__db_timer = 0;
+    } else
+        _node_800_rms_value3__zc = 0;
+    _node_800_rms_value3__out = _node_800_rms_value3__out_state;
+    // Generated from the component: NODE DG.RMS value4
+    _node_dg_rms_value4__previous_filtered_value = _node_dg_rms_value4__filtered_value;
+    if (0)
+        _node_dg_rms_value4__filtered_value = _node_dg_rms_value4__previous_filtered_value * 1 + _node_dg_ia_ia1__out * 1;
+    else
+        _node_dg_rms_value4__filtered_value = _node_dg_rms_value4__previous_filtered_value * 0.1 + _node_dg_ia_ia1__out * 0.9;
+    _node_dg_rms_value4__db_timer += 0.00012;
+    if( (_node_dg_rms_value4__filtered_value >= 0.0) && (_node_dg_rms_value4__previous_filtered_value < 0.0) && (_node_dg_rms_value4__db_timer >= 0.0) ) {
+        _node_dg_rms_value4__zc = 1;
+        _node_dg_rms_value4__db_timer = 0;
+    } else
+        _node_dg_rms_value4__zc = 0;
+    _node_dg_rms_value4__out = _node_dg_rms_value4__out_state;
+    // Generated from the component: NODE DG.RMS value5
+    _node_dg_rms_value5__previous_filtered_value = _node_dg_rms_value5__filtered_value;
+    if (0)
+        _node_dg_rms_value5__filtered_value = _node_dg_rms_value5__previous_filtered_value * 1 + _node_dg_ib_ia1__out * 1;
+    else
+        _node_dg_rms_value5__filtered_value = _node_dg_rms_value5__previous_filtered_value * 0.1 + _node_dg_ib_ia1__out * 0.9;
+    _node_dg_rms_value5__db_timer += 0.00012;
+    if( (_node_dg_rms_value5__filtered_value >= 0.0) && (_node_dg_rms_value5__previous_filtered_value < 0.0) && (_node_dg_rms_value5__db_timer >= 0.0) ) {
+        _node_dg_rms_value5__zc = 1;
+        _node_dg_rms_value5__db_timer = 0;
+    } else
+        _node_dg_rms_value5__zc = 0;
+    _node_dg_rms_value5__out = _node_dg_rms_value5__out_state;
+    // Generated from the component: NODE DG.RMS value6
+    _node_dg_rms_value6__previous_filtered_value = _node_dg_rms_value6__filtered_value;
+    if (0)
+        _node_dg_rms_value6__filtered_value = _node_dg_rms_value6__previous_filtered_value * 1 + _node_dg_ic_ia1__out * 1;
+    else
+        _node_dg_rms_value6__filtered_value = _node_dg_rms_value6__previous_filtered_value * 0.1 + _node_dg_ic_ia1__out * 0.9;
+    _node_dg_rms_value6__db_timer += 0.00012;
+    if( (_node_dg_rms_value6__filtered_value >= 0.0) && (_node_dg_rms_value6__previous_filtered_value < 0.0) && (_node_dg_rms_value6__db_timer >= 0.0) ) {
+        _node_dg_rms_value6__zc = 1;
+        _node_dg_rms_value6__db_timer = 0;
+    } else
+        _node_dg_rms_value6__zc = 0;
+    _node_dg_rms_value6__out = _node_dg_rms_value6__out_state;
+    // Generated from the component: NODE DG.Va_phase
+    HIL_OutAO(0x2019, (float)_node_dg_phase_difference1__phase_diff);
+    // Generated from the component: NODE DG.Vb_phase
+    HIL_OutAO(0x201b, (float)_node_dg_phase_difference2__phase_diff);
+    // Generated from the component: NODE DG.Vc_phase
+    HIL_OutAO(0x201d, (float)_node_dg_phase_difference3__phase_diff);
+    // Generated from the component: NODE DG.Ia_phase
+    HIL_OutAO(0x2010, (float)_node_dg_phase_difference4__phase_diff);
+    // Generated from the component: NODE DG.Ib_phase
+    HIL_OutAO(0x2012, (float)_node_dg_phase_difference5__phase_diff);
+    // Generated from the component: NODE DG.Ic_phase
+    HIL_OutAO(0x2014, (float)_node_dg_phase_difference6__phase_diff);
+    // Generated from the component: NODE DG.RMS value1
+    _node_dg_rms_value1__previous_filtered_value = _node_dg_rms_value1__filtered_value;
+    if (0)
+        _node_dg_rms_value1__filtered_value = _node_dg_rms_value1__previous_filtered_value * 1 + _node_dg_va_va1__out * 1;
+    else
+        _node_dg_rms_value1__filtered_value = _node_dg_rms_value1__previous_filtered_value * 0.1 + _node_dg_va_va1__out * 0.9;
+    _node_dg_rms_value1__db_timer += 0.00012;
+    if( (_node_dg_rms_value1__filtered_value >= 0.0) && (_node_dg_rms_value1__previous_filtered_value < 0.0) && (_node_dg_rms_value1__db_timer >= 0.0) ) {
+        _node_dg_rms_value1__zc = 1;
+        _node_dg_rms_value1__db_timer = 0;
+    } else
+        _node_dg_rms_value1__zc = 0;
+    _node_dg_rms_value1__out = _node_dg_rms_value1__out_state;
+    // Generated from the component: NODE DG.RMS value2
+    _node_dg_rms_value2__previous_filtered_value = _node_dg_rms_value2__filtered_value;
+    if (0)
+        _node_dg_rms_value2__filtered_value = _node_dg_rms_value2__previous_filtered_value * 1 + _node_dg_vb_va1__out * 1;
+    else
+        _node_dg_rms_value2__filtered_value = _node_dg_rms_value2__previous_filtered_value * 0.1 + _node_dg_vb_va1__out * 0.9;
+    _node_dg_rms_value2__db_timer += 0.00012;
+    if( (_node_dg_rms_value2__filtered_value >= 0.0) && (_node_dg_rms_value2__previous_filtered_value < 0.0) && (_node_dg_rms_value2__db_timer >= 0.0) ) {
+        _node_dg_rms_value2__zc = 1;
+        _node_dg_rms_value2__db_timer = 0;
+    } else
+        _node_dg_rms_value2__zc = 0;
+    _node_dg_rms_value2__out = _node_dg_rms_value2__out_state;
+    // Generated from the component: NODE DG.Power Meter
+    _node_dg_power_meter__v_alpha = SQRT_2OVER3 * ( _node_dg_va_va1__out - 0.5f * _node_dg_vb_va1__out - 0.5f * _node_dg_vc_va1__out);
+    _node_dg_power_meter__v_beta = SQRT_2OVER3 * (SQRT3_OVER_2 * _node_dg_vb_va1__out - SQRT3_OVER_2 * _node_dg_vc_va1__out);
+    _node_dg_power_meter__i_alpha = SQRT_2OVER3 * ( _node_dg_ia_ia1__out - 0.5f * _node_dg_ib_ia1__out - 0.5f * _node_dg_ic_ia1__out);
+    _node_dg_power_meter__i_beta = SQRT_2OVER3 * (SQRT3_OVER_2 * _node_dg_ib_ia1__out - SQRT3_OVER_2 * _node_dg_ic_ia1__out);
+    _node_dg_power_meter__v_zero = ONE_DIV_BY_SQRT_3 * (_node_dg_va_va1__out + _node_dg_vb_va1__out + _node_dg_vc_va1__out);
+    _node_dg_power_meter__i_zero = ONE_DIV_BY_SQRT_3 * (_node_dg_ia_ia1__out + _node_dg_ib_ia1__out + _node_dg_ic_ia1__out);
+    _node_dg_power_meter__Pac = _node_dg_power_meter__v_alpha * _node_dg_power_meter__i_alpha + _node_dg_power_meter__v_beta * _node_dg_power_meter__i_beta;
+    _node_dg_power_meter__Qac = _node_dg_power_meter__v_beta * _node_dg_power_meter__i_alpha - _node_dg_power_meter__v_alpha * _node_dg_power_meter__i_beta;
+    _node_dg_power_meter__P0ac = _node_dg_power_meter__v_zero * _node_dg_power_meter__i_zero;
+    _node_dg_power_meter__filter_1_output = 0.011183253930712216 * (_node_dg_power_meter__Pac + _node_dg_power_meter__filter_1_input_k_minus_1) - (-0.9776334921385755) * _node_dg_power_meter__filter_1_output_k_minus_1;
+    _node_dg_power_meter__filter_1_outputQ = 0.011183253930712216 * (_node_dg_power_meter__Qac + _node_dg_power_meter__filter_1_input_k_minus_1Q) - (-0.9776334921385755) * _node_dg_power_meter__filter_1_output_k_minus_1Q;
+    _node_dg_power_meter__filter_1_outputP0 = 0.011183253930712216 * (_node_dg_power_meter__P0ac + _node_dg_power_meter__filter_1_input_k_minus_1P0) - (-0.9776334921385755) * _node_dg_power_meter__filter_1_output_k_minus_1P0;
+    _node_dg_power_meter__filter_1_input_k_minus_1 = _node_dg_power_meter__Pac;
+    _node_dg_power_meter__filter_1_output_k_minus_1 = _node_dg_power_meter__filter_1_output;
+    _node_dg_power_meter__filter_1_input_k_minus_1Q = _node_dg_power_meter__Qac;;
+    _node_dg_power_meter__filter_1_output_k_minus_1Q = _node_dg_power_meter__filter_1_outputQ;
+    _node_dg_power_meter__filter_1_input_k_minus_1P0 = _node_dg_power_meter__P0ac;
+    _node_dg_power_meter__filter_1_output_k_minus_1P0 = _node_dg_power_meter__filter_1_outputP0;
+    _node_dg_power_meter__Pdc = _node_dg_power_meter__filter_1_output;
+    _node_dg_power_meter__Qdc = _node_dg_power_meter__filter_1_outputQ;
+    _node_dg_power_meter__P0dc = _node_dg_power_meter__filter_1_outputP0;
+    _node_dg_power_meter__apparent = sqrt(pow(_node_dg_power_meter__Pdc, 2) + pow(_node_dg_power_meter__Qdc, 2));
+    if (_node_dg_power_meter__apparent > 0)
+        _node_dg_power_meter__k_factor = _node_dg_power_meter__Pdc / _node_dg_power_meter__apparent;
+    else
+        _node_dg_power_meter__k_factor = 0;
+    // Generated from the component: NODE DG.RMS value3
+    _node_dg_rms_value3__previous_filtered_value = _node_dg_rms_value3__filtered_value;
+    if (0)
+        _node_dg_rms_value3__filtered_value = _node_dg_rms_value3__previous_filtered_value * 1 + _node_dg_vc_va1__out * 1;
+    else
+        _node_dg_rms_value3__filtered_value = _node_dg_rms_value3__previous_filtered_value * 0.1 + _node_dg_vc_va1__out * 0.9;
+    _node_dg_rms_value3__db_timer += 0.00012;
+    if( (_node_dg_rms_value3__filtered_value >= 0.0) && (_node_dg_rms_value3__previous_filtered_value < 0.0) && (_node_dg_rms_value3__db_timer >= 0.0) ) {
+        _node_dg_rms_value3__zc = 1;
+        _node_dg_rms_value3__db_timer = 0;
+    } else
+        _node_dg_rms_value3__zc = 0;
+    _node_dg_rms_value3__out = _node_dg_rms_value3__out_state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.to_Hz
+    _wind_power_plant__average_1_control_pll_pll_to_hz__out = 0.15915494309189535 * _wind_power_plant__average_1_control_pll_pll_lpf_lpf__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.wt_pll
+    HIL_OutAO(0x2032, (float)_wind_power_plant__average_1_control_pll_pll_unit_delay1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Gain4
+    _wind_power_plant__average_1_control_pll_gain4__out = 0.002551551815399144 * _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Gain3
+    _wind_power_plant__average_1_control_pll_gain3__out = 0.002551551815399144 * _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.normalize
+    _wind_power_plant__average_1_control_pll_pll_normalize__in1 = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__out;
+    _wind_power_plant__average_1_control_pll_pll_normalize__in2 = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__out;
+    {
+        _wind_power_plant__average_1_control_pll_pll_normalize__pk = ( powf ( _wind_power_plant__average_1_control_pll_pll_normalize__in1, 2.0 ) + powf ( _wind_power_plant__average_1_control_pll_pll_normalize__in2, 2.0 ) ) ;
+        _wind_power_plant__average_1_control_pll_pll_normalize__pk = sqrt ( _wind_power_plant__average_1_control_pll_pll_normalize__pk ) ;
+        if ( _wind_power_plant__average_1_control_pll_pll_normalize__pk < 0.1 )     {
+            _wind_power_plant__average_1_control_pll_pll_normalize__in2_pu = _wind_power_plant__average_1_control_pll_pll_normalize__in2 / 0.1 ;
+        }
+        else     {
+            _wind_power_plant__average_1_control_pll_pll_normalize__in2_pu = _wind_power_plant__average_1_control_pll_pll_normalize__in2 / _wind_power_plant__average_1_control_pll_pll_normalize__pk ;
+        }
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Limit1
+    _wind_power_plant__average_1_control_duty_cycle_zsm_limit1__out = MIN(MAX(_wind_power_plant__average_1_control_duty_cycle_zsm_constant1__out, 0.0), 1.0);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_abc_to_dq.abc to dq1.abc to alpha beta
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__alpha = (2.0 * _wind_power_plant__average_1_ia_ia1__out - _wind_power_plant__average_1_ib_ia1__out - _wind_power_plant__average_1_ic_ia1__out) * 0.3333333333333333;
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__beta = (_wind_power_plant__average_1_ib_ia1__out - _wind_power_plant__average_1_ic_ia1__out) * 0.5773502691896258;
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__gamma = (_wind_power_plant__average_1_ia_ia1__out + _wind_power_plant__average_1_ib_ia1__out + _wind_power_plant__average_1_ic_ia1__out) * 0.3333333333333333;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Gain3
+    _wind_power_plant__average_1_control_grid_follow_gain3__out = 0.001 * _wind_power_plant__average_1_vdc__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Gain1
+    _wind_power_plant__average_1_control_duty_cycle_gain1__out = 0.5 * _wind_power_plant__average_1_vdc__out;
+    // Generated from the component: Wind Power Plant (Average)1.VDC
+    HIL_OutAO(0x203e, (float)_wind_power_plant__average_1_vdc__out);
+    // Generated from the component: Wind Power Plant UI.Bus Join1
+    _wind_power_plant_ui_bus_join1__out[0] = _wind_power_plant_ui_enable__out;
+    _wind_power_plant_ui_bus_join1__out[1] = _wind_power_plant_ui_enable__out;
+    _wind_power_plant_ui_bus_join1__out[2] = _wind_power_plant_ui_wind_speed__out;
+    _wind_power_plant_ui_bus_join1__out[3] = _wind_power_plant_ui_v_ref__out;
+    _wind_power_plant_ui_bus_join1__out[4] = _wind_power_plant_ui_v_ref1__out;
+    _wind_power_plant_ui_bus_join1__out[5] = _wind_power_plant_ui_q_ref__out;
+    // Generated from the component: Wind Power Plant UI.wind_speed_streaming_probe
+    HIL_OutAO(0x2050, (float)_wind_power_plant_ui_wind_speed__out);
+    _wind_power_plant_ui_wind_speed_streaming_probe__in = _wind_power_plant_ui_wind_speed__out;
+    sp_scope_buff_addr_cpu0_er0_dev0 = sp_scope_buff_start_addr_cpu0_er0_dev0 + sp_scope_buff_index_cpu0_er0_dev0;
+    //#ifdef SP_SCOPE_FILE_DEBUG
+    //  fprintf(f_sp_scope_debug, "\nstart = %x, index = %x, addr = %x, value = %f.", sp_scope_buff_start_addr_cpu0_er0_dev0, sp_scope_buff_index_cpuuser_sp_cpu}_cpu0_er0_dev0, sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_wind_speed_streaming_probe__in);
+    //#endif
+    memcpy((X_UnInt8 *)sp_scope_buff_addr_cpu0_er0_dev0, &_wind_power_plant_ui_wind_speed_streaming_probe__in, 4);
+    //printf("\n\sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_wind_speed_streaming_probe__in 0x%x\r\n", sp_scope_buff_addr_cpu0_er0_dev0);
+    //printf("\n\r addr 0x%x, value 0x%x\r\n", sp_scope_buff_addr_cpu0_er0_dev0, *(X_UnInt32*)(sp_scope_buff_addr_cpu0_er0_dev0));
+    //XIo_OutInt32(sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_wind_speed_streaming_probe__in);
+    sp_scope_buff_index_cpu0_er0_dev0 = (sp_scope_buff_index_cpu0_er0_dev0 + 4) % SP_SCOPE_BUFF_SIZE_PER_ER;
+    // Generated from the component: NODE 800.Ia_rms
+    HIL_OutAO(0x2001, (float)_node_800_rms_value4__out);
+    // Generated from the component: NODE 800.Ib_rms
+    HIL_OutAO(0x2003, (float)_node_800_rms_value5__out);
+    // Generated from the component: NODE 800.Ic_rms
+    HIL_OutAO(0x2005, (float)_node_800_rms_value6__out);
+    // Generated from the component: NODE 800.Va_rms
+    HIL_OutAO(0x200a, (float)_node_800_rms_value1__out);
+    // Generated from the component: NODE 800.Vb_rms
+    HIL_OutAO(0x200c, (float)_node_800_rms_value2__out);
+    // Generated from the component: NODE 800.P
+    HIL_OutAO(0x2006, (float)_node_800_power_meter__Pdc);
+    // Generated from the component: NODE 800.Q
+    HIL_OutAO(0x2007, (float)_node_800_power_meter__Qdc);
+    // Generated from the component: NODE 800.S
+    HIL_OutAO(0x2008, (float)_node_800_power_meter__apparent);
+    // Generated from the component: NODE 800.Termination1
+    // Generated from the component: NODE 800.Termination2
+    // Generated from the component: NODE 800.pf
+    HIL_OutAO(0x200f, (float)_node_800_power_meter__k_factor);
+    // Generated from the component: NODE 800.Vc_rms
+    HIL_OutAO(0x200e, (float)_node_800_rms_value3__out);
+    // Generated from the component: NODE DG.Ia_rms
+    HIL_OutAO(0x2011, (float)_node_dg_rms_value4__out);
+    // Generated from the component: NODE DG.Ib_rms
+    HIL_OutAO(0x2013, (float)_node_dg_rms_value5__out);
+    // Generated from the component: NODE DG.Ic_rms
+    HIL_OutAO(0x2015, (float)_node_dg_rms_value6__out);
+    // Generated from the component: NODE DG.Va_rms
+    HIL_OutAO(0x201a, (float)_node_dg_rms_value1__out);
+    // Generated from the component: NODE DG.Vb_rms
+    HIL_OutAO(0x201c, (float)_node_dg_rms_value2__out);
+    // Generated from the component: NODE DG.P
+    HIL_OutAO(0x2016, (float)_node_dg_power_meter__Pdc);
+    // Generated from the component: NODE DG.Q
+    HIL_OutAO(0x2017, (float)_node_dg_power_meter__Qdc);
+    // Generated from the component: NODE DG.S
+    HIL_OutAO(0x2018, (float)_node_dg_power_meter__apparent);
+    // Generated from the component: NODE DG.Termination1
+    // Generated from the component: NODE DG.Termination2
+    // Generated from the component: NODE DG.pf
+    HIL_OutAO(0x201f, (float)_node_dg_power_meter__k_factor);
+    // Generated from the component: NODE DG.Vc_rms
+    HIL_OutAO(0x201e, (float)_node_dg_rms_value3__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Gain1
+    _wind_power_plant__average_1_control_pll_gain1__out = 0.016666666666666666 * _wind_power_plant__average_1_control_pll_pll_to_hz__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.f_meas
+    HIL_OutAO(0x2034, (float)_wind_power_plant__average_1_control_pll_pll_to_hz__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Product4
+    _wind_power_plant__average_1_control_grid_follow_current_ref_product4__out = (_wind_power_plant__average_1_control_pll_gain4__out * _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Product5
+    _wind_power_plant__average_1_control_grid_follow_current_ref_product5__out = (_wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay1__out * _wind_power_plant__average_1_control_pll_gain4__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Vd
+    HIL_OutAO(0x202a, (float)_wind_power_plant__average_1_control_pll_gain4__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Product3
+    _wind_power_plant__average_1_control_grid_follow_current_ref_product3__out = (_wind_power_plant__average_1_control_pll_gain3__out * _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Product6
+    _wind_power_plant__average_1_control_grid_follow_current_ref_product6__out = (_wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay2__out * _wind_power_plant__average_1_control_pll_gain3__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Vq
+    HIL_OutAO(0x202b, (float)_wind_power_plant__average_1_control_pll_gain3__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Gain5
+    _wind_power_plant__average_1_control_pll_gain5__out = 0.002551551815399144 * _wind_power_plant__average_1_control_pll_pll_normalize__pk;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Kd
+    _wind_power_plant__average_1_control_pll_pll_pid_kd__out = 1.0 * _wind_power_plant__average_1_control_pll_pll_normalize__in2_pu;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Ki
+    _wind_power_plant__average_1_control_pll_pll_pid_ki__out = 3200.0 * _wind_power_plant__average_1_control_pll_pll_normalize__in2_pu;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Kp
+    _wind_power_plant__average_1_control_pll_pll_pid_kp__out = 100.0 * _wind_power_plant__average_1_control_pll_pll_normalize__in2_pu;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Vt_meas
+    HIL_OutAO(0x2033, (float)_wind_power_plant__average_1_control_pll_pll_normalize__pk);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Sum2
+    _wind_power_plant__average_1_control_duty_cycle_zsm_sum2__out =  - _wind_power_plant__average_1_control_duty_cycle_zsm_limit1__out + _wind_power_plant__average_1_control_duty_cycle_zsm_constant3__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Sum8
+    _wind_power_plant__average_1_control_duty_cycle_zsm_sum8__out =  - _wind_power_plant__average_1_control_duty_cycle_zsm_limit1__out + _wind_power_plant__average_1_control_duty_cycle_zsm_constant4__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_abc_to_dq.Termination1
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_abc_to_dq.abc to dq1.alpha beta to dq
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__k1 = cos(_wind_power_plant__average_1_control_pll_pll_unit_delay1__out);
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__k2 = sin(_wind_power_plant__average_1_control_pll_pll_unit_delay1__out);
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__d = _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__k2 * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__alpha - _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__k1 * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__beta;
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__q = _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__k1 * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__alpha + _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__k2 * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_abc_to_alpha_beta__beta;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.LPF_dc
+    X_UnInt32 _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__a_sum = 0.0f;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__b_sum = 0.0f;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__delay_line_in = 0.0f;
+    for (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i = 0; _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i < 1; _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i++) {
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__b_sum += _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__b_coeff[_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i + 1] * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__states[_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__i];
+    }
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__a_sum += _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__states[0] * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__a_coeff[1];
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__delay_line_in = _wind_power_plant__average_1_control_grid_follow_gain3__out - _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__a_sum;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__b_sum += _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__b_coeff[0] * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__delay_line_in;
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__b_sum;
+    // Generated from the component: Wind Power Plant (Average)1.Input.Bus Split2
+    _wind_power_plant__average_1_input_bus_split2__out = _wind_power_plant_ui_bus_join1__out[0];
+    _wind_power_plant__average_1_input_bus_split2__out1 = _wind_power_plant_ui_bus_join1__out[1];
+    _wind_power_plant__average_1_input_bus_split2__out2 = _wind_power_plant_ui_bus_join1__out[2];
+    _wind_power_plant__average_1_input_bus_split2__out3 = _wind_power_plant_ui_bus_join1__out[3];
+    _wind_power_plant__average_1_input_bus_split2__out4 = _wind_power_plant_ui_bus_join1__out[4];
+    _wind_power_plant__average_1_input_bus_split2__out5 = _wind_power_plant_ui_bus_join1__out[5];
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.w_pu
+    HIL_OutAO(0x2030, (float)_wind_power_plant__average_1_control_pll_gain1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Sum3
+    _wind_power_plant__average_1_control_grid_follow_current_ref_sum3__out = _wind_power_plant__average_1_control_grid_follow_current_ref_product3__out - _wind_power_plant__average_1_control_grid_follow_current_ref_product4__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Sum4
+    _wind_power_plant__average_1_control_grid_follow_current_ref_sum4__out = _wind_power_plant__average_1_control_grid_follow_current_ref_product5__out + _wind_power_plant__average_1_control_grid_follow_current_ref_product6__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Product7
+    _wind_power_plant__average_1_control_grid_follow_current_ref_product7__out = (_wind_power_plant__average_1_control_pll_gain5__out * _wind_power_plant__average_1_control_pll_gain5__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Vt_pu
+    HIL_OutAO(0x202c, (float)_wind_power_plant__average_1_control_pll_gain5__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Sum8
+    _wind_power_plant__average_1_control_pll_pll_pid_sum8__out = _wind_power_plant__average_1_control_pll_pll_pid_kd__out - _wind_power_plant__average_1_control_pll_pll_pid_integrator2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_abc_to_dq.Gain1
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain1__out = 0.0003919183588453085 * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__d;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_abc_to_dq.Gain2
+    _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain2__out = 0.0003919183588453085 * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_abc_to_dq1_alpha_beta_to_dq__q;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Limit3
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_limit3__out = MAX(_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__out, 0.01);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Edge Detection1.Relational operator1
+    _wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out = (_wind_power_plant__average_1_input_bus_split2__out1 != _wind_power_plant__average_1_control_grid_follow_edge_detection1_unit_delay1__out) ? 1 : 0;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Gain2
+    _wind_power_plant__average_1_control_grid_follow_gain2__out = 0.0006666666666666666 * _wind_power_plant__average_1_input_bus_split2__out5;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Gain4
+    _wind_power_plant__average_1_control_grid_follow_gain4__out = 0.0020833333333333333 * _wind_power_plant__average_1_input_bus_split2__out3;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Logical operator1
+    _wind_power_plant__average_1_control_grid_follow_logical_operator1__out = !_wind_power_plant__average_1_input_bus_split2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Qmode
+    HIL_OutInt32(0xf00400, _wind_power_plant__average_1_input_bus_split2__out4 != 0x0);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.delay
+    _wind_power_plant__average_1_control_grid_follow_delay__in = _wind_power_plant__average_1_input_bus_split2__out;
+    {
+        _wind_power_plant__average_1_control_grid_follow_delay__out = _wind_power_plant__average_1_control_grid_follow_delay__out_state ;
+        if ( _wind_power_plant__average_1_control_grid_follow_delay__out == 0 )     {
+            if ( _wind_power_plant__average_1_control_grid_follow_delay__in > 0.5 )         {
+                _wind_power_plant__average_1_control_grid_follow_delay__counter += 0.00012 ;
+                if ( _wind_power_plant__average_1_control_grid_follow_delay__counter > 0.125 )             {
+                    _wind_power_plant__average_1_control_grid_follow_delay__out = 1 ;
+                }
+            }
+            else         {
+                _wind_power_plant__average_1_control_grid_follow_delay__counter -= _wind_power_plant__average_1_control_grid_follow_delay__counter ;
+                _wind_power_plant__average_1_control_grid_follow_delay__out = 0 ;
+            }
+        }
+        else     {
+            _wind_power_plant__average_1_control_grid_follow_delay__counter = 0 ;
+            if ( _wind_power_plant__average_1_control_grid_follow_delay__in <= 0.5 )         {
+                _wind_power_plant__average_1_control_grid_follow_delay__out = 0 ;
+            }
+        }
+        _wind_power_plant__average_1_control_grid_follow_delay__out_state = _wind_power_plant__average_1_control_grid_follow_delay__out ;
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.power
+    _wind_power_plant__average_1_control_grid_follow_power__out = pow(_wind_power_plant__average_1_input_bus_split2__out2, _wind_power_plant__average_1_control_grid_follow_three__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.wind_speed
+    HIL_OutAO(0x2031, (float)_wind_power_plant__average_1_input_bus_split2__out2);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Signal switch1
+    _wind_power_plant__average_1_control_pll_signal_switch1__out = (_wind_power_plant__average_1_input_bus_split2__out > 0.5f) ? _wind_power_plant__average_1_va_va1__out : _wind_power_plant__average_1_control_pll_constant1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Signal switch2
+    _wind_power_plant__average_1_control_pll_signal_switch2__out = (_wind_power_plant__average_1_input_bus_split2__out > 0.5f) ? _wind_power_plant__average_1_vb_va1__out : _wind_power_plant__average_1_control_pll_constant1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.Signal switch3
+    _wind_power_plant__average_1_control_pll_signal_switch3__out = (_wind_power_plant__average_1_input_bus_split2__out > 0.5f) ? _wind_power_plant__average_1_vc_va1__out : _wind_power_plant__average_1_control_pll_constant1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Enable
+    HIL_OutInt32(0xf00401, _wind_power_plant__average_1_input_bus_split2__out1 != 0x0);
+    // Generated from the component: Wind Power Plant (Average)1.S1.Triple S1 ideal.CTC_Wrapper
+    if (_wind_power_plant__average_1_input_bus_split2__out == 0x0) {
+        HIL_OutInt32(0x8a40481, 0x0);
+    }
+    else {
+        HIL_OutInt32(0x8a40481, 0x1);
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Limit3
+    _wind_power_plant__average_1_control_grid_follow_current_ref_limit3__out = MAX(_wind_power_plant__average_1_control_grid_follow_current_ref_product7__out, 0.01);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Gain1
+    _wind_power_plant__average_1_control_pll_pll_pid_gain1__out = 714.2857 * _wind_power_plant__average_1_control_pll_pll_pid_sum8__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Gain2
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain2__out = 0.19585866699723867 * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Product5
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product5__out = (_wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain1__out * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_damp__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.Product1
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product1__out = (_wind_power_plant__average_1_control_pll_gain4__out * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.Product4
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product4__out = (_wind_power_plant__average_1_control_pll_gain3__out * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.id
+    HIL_OutAO(0x202d, (float)_wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Gain1
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain1__out = 0.19585866699723867 * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Product6
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product6__out = (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_damp__out * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.Product2
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product2__out = (_wind_power_plant__average_1_control_pll_gain3__out * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.Product3
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product3__out = (_wind_power_plant__average_1_control_pll_gain4__out * _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.iq
+    HIL_OutAO(0x202e, (float)_wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Gain5
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain5__out = 0.5 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_limit3__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Vdc
+    HIL_OutAO(0x2020, (float)_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_limit3__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Integrator1
+    if (((_wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out > 0.0) && (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__reset_state <= 0)) || ((_wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out <= 0.0) && (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__reset_state == 1))) {
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__state = 0.0;
+    }
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Integrator1
+    if (((_wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out > 0.0) && (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__reset_state <= 0)) || ((_wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out <= 0.0) && (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__reset_state == 1))) {
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__state = 0.0;
+    }
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Integrator1
+    if (((_wind_power_plant__average_1_control_grid_follow_logical_operator1__out > 0.0) && (_wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__reset_state <= 0)) || ((_wind_power_plant__average_1_control_grid_follow_logical_operator1__out <= 0.0) && (_wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__reset_state == 1))) {
+        _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__state = 0.0;
+    }
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__out = _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__state;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Logical operator2
+    _wind_power_plant__average_1_control_grid_follow_logical_operator2__out = _wind_power_plant__average_1_control_grid_follow_delay__out && _wind_power_plant__average_1_input_bus_split2__out1 ;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Product1
+    _wind_power_plant__average_1_control_grid_follow_product1__out = (_wind_power_plant__average_1_control_grid_follow_effective_area__out * _wind_power_plant__average_1_control_grid_follow_air_density__out * _wind_power_plant__average_1_control_grid_follow_power__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.abc to dq.abc to alpha beta
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__alpha = (2.0 * _wind_power_plant__average_1_control_pll_signal_switch1__out - _wind_power_plant__average_1_control_pll_signal_switch2__out - _wind_power_plant__average_1_control_pll_signal_switch3__out) * 0.3333333333333333;
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__beta = (_wind_power_plant__average_1_control_pll_signal_switch2__out - _wind_power_plant__average_1_control_pll_signal_switch3__out) * 0.5773502691896258;
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__gamma = (_wind_power_plant__average_1_control_pll_signal_switch1__out + _wind_power_plant__average_1_control_pll_signal_switch2__out + _wind_power_plant__average_1_control_pll_signal_switch3__out) * 0.3333333333333333;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Product1
+    _wind_power_plant__average_1_control_grid_follow_current_ref_product1__out = (_wind_power_plant__average_1_control_grid_follow_current_ref_sum3__out) * 1.0 / (_wind_power_plant__average_1_control_grid_follow_current_ref_limit3__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Current_ref.Product2
+    _wind_power_plant__average_1_control_grid_follow_current_ref_product2__out = (_wind_power_plant__average_1_control_grid_follow_current_ref_sum4__out) * 1.0 / (_wind_power_plant__average_1_control_grid_follow_current_ref_limit3__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Sum5
+    _wind_power_plant__average_1_control_pll_pll_pid_sum5__out = _wind_power_plant__average_1_control_pll_pll_pid_kp__out + _wind_power_plant__average_1_control_pll_pll_pid_gain1__out + _wind_power_plant__average_1_control_pll_pll_pid_integrator1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Product2
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product2__out = (_wind_power_plant__average_1_control_pll_gain1__out * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Product1
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product1__out = (_wind_power_plant__average_1_control_pll_gain1__out * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.Sum1
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_sum1__out = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product1__out + _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.Sum2
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_sum2__out = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product4__out - _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_product3__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Signal switch3
+    _wind_power_plant__average_1_control_grid_follow_signal_switch3__out = (_wind_power_plant__average_1_control_grid_follow_logical_operator2__out > 0.5f) ? _wind_power_plant__average_1_control_grid_follow_gain2__out : _wind_power_plant__average_1_control_grid_follow_constant2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Signal switch4
+    _wind_power_plant__average_1_control_grid_follow_signal_switch4__out = (_wind_power_plant__average_1_control_grid_follow_logical_operator2__out > 0.5f) ? _wind_power_plant__average_1_control_grid_follow_gain4__out : _wind_power_plant__average_1_control_pll_gain5__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Gain1
+    _wind_power_plant__average_1_control_grid_follow_gain1__out = 0.2962962962962963 * _wind_power_plant__average_1_control_grid_follow_product1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.abc to dq.alpha beta to dq
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__k1 = cos(_wind_power_plant__average_1_control_pll_pll_unit_delay1__out);
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__k2 = sin(_wind_power_plant__average_1_control_pll_pll_unit_delay1__out);
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__d = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__k2 * _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__alpha - _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__k1 * _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__beta;
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__q = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__k1 * _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__alpha + _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__k2 * _wind_power_plant__average_1_control_pll_pll_abc_to_dq_abc_to_alpha_beta__beta;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.term_zero
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Sum2
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum2__out =  - _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain2__out + _wind_power_plant__average_1_control_grid_follow_current_ref_product1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Iq_ref
+    HIL_OutAO(0x2022, (float)_wind_power_plant__average_1_control_grid_follow_current_ref_product1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Sum1
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum1__out =  - _wind_power_plant__average_1_control_grid_follow_current_abc_to_dq_gain1__out + _wind_power_plant__average_1_control_grid_follow_current_ref_product2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Id_ref
+    HIL_OutAO(0x2021, (float)_wind_power_plant__average_1_control_grid_follow_current_ref_product2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Limit1
+    _wind_power_plant__average_1_control_pll_pll_pid_limit1__out = MIN(MAX(_wind_power_plant__average_1_control_pll_pll_pid_sum5__out, 0.0), 527.7875658030853);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Sum6
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum6__out = _wind_power_plant__average_1_control_pll_gain3__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Sum5
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum5__out = _wind_power_plant__average_1_control_pll_gain4__out - _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.LPF_P
+    X_UnInt32 _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__a_sum = 0.0f;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__b_sum = 0.0f;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__delay_line_in = 0.0f;
+    for (_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i = 0; _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i < 1; _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i++) {
+        _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__b_sum += _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__b_coeff[_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i + 1] * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__states[_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__i];
+    }
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__a_sum += _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__states[0] * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__a_coeff[1];
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__delay_line_in = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_sum1__out - _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__a_sum;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__b_sum += _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__b_coeff[0] * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__delay_line_in;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__out = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__b_sum;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.LPF_Q
+    X_UnInt32 _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__a_sum = 0.0f;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__b_sum = 0.0f;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__delay_line_in = 0.0f;
+    for (_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i = 0; _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i < 1; _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i++) {
+        _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__b_sum += _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__b_coeff[_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i + 1] * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__states[_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__i];
+    }
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__a_sum += _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__states[0] * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__a_coeff[1];
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__delay_line_in = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_sum2__out - _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__a_sum;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__b_sum += _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__b_coeff[0] * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__delay_line_in;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__out = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__b_sum;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Sum1
+    _wind_power_plant__average_1_control_grid_follow_sum1__out = _wind_power_plant__average_1_control_grid_follow_signal_switch4__out - _wind_power_plant__average_1_control_pll_gain5__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.efficiency
+    _wind_power_plant__average_1_control_grid_follow_efficiency__out = 0.75 * _wind_power_plant__average_1_control_grid_follow_gain1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Ki
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_ki__out = 30.0 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Kp
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_kp__out = 3.0 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Ki
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_ki__out = 30.0 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Kp
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_kp__out = 3.0 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Sum6
+    _wind_power_plant__average_1_control_pll_pll_pid_sum6__out =  - _wind_power_plant__average_1_control_pll_pll_pid_sum5__out + _wind_power_plant__average_1_control_pll_pll_pid_limit1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.Rate Limiter1
+    _wind_power_plant__average_1_control_pll_pll_rate_limiter1__rising_rate_lim[0] = 1884.9555921538758 * 0.00012;
+    _wind_power_plant__average_1_control_pll_pll_rate_limiter1__falling_rate_lim[0] = -1884.9555921538758 * 0.00012;
+    if (_wind_power_plant__average_1_control_pll_pll_rate_limiter1__first_step) {
+        _wind_power_plant__average_1_control_pll_pll_rate_limiter1__out = _wind_power_plant__average_1_control_pll_pll_pid_limit1__out;
+        _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state = _wind_power_plant__average_1_control_pll_pll_pid_limit1__out;
+    } else {
+        _wind_power_plant__average_1_control_pll_pll_rate_limiter1__out = _wind_power_plant__average_1_control_pll_pll_pid_limit1__out;
+        if (_wind_power_plant__average_1_control_pll_pll_pid_limit1__out - _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state > _wind_power_plant__average_1_control_pll_pll_rate_limiter1__rising_rate_lim[0])
+            _wind_power_plant__average_1_control_pll_pll_rate_limiter1__out = _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state + (_wind_power_plant__average_1_control_pll_pll_rate_limiter1__rising_rate_lim[0]);
+        if (_wind_power_plant__average_1_control_pll_pll_pid_limit1__out - _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state < _wind_power_plant__average_1_control_pll_pll_rate_limiter1__falling_rate_lim[0])
+            _wind_power_plant__average_1_control_pll_pll_rate_limiter1__out = _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state + (_wind_power_plant__average_1_control_pll_pll_rate_limiter1__falling_rate_lim[0]);
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.integrator
+    _wind_power_plant__average_1_control_pll_pll_integrator__in = _wind_power_plant__average_1_control_pll_pll_pid_limit1__out;
+    {
+        _wind_power_plant__average_1_control_pll_pll_integrator__state += 0.00012 * _wind_power_plant__average_1_control_pll_pll_integrator__in ;
+        if ( _wind_power_plant__average_1_control_pll_pll_integrator__in >= 0.0 )     {
+            if ( _wind_power_plant__average_1_control_pll_pll_integrator__state >= 6.283185307179586 )         {
+                _wind_power_plant__average_1_control_pll_pll_integrator__state -= 6.283185307179586 ;
+            }
+        }
+        else     {
+            if ( _wind_power_plant__average_1_control_pll_pll_integrator__state <= - 6.283185307179586 )         {
+                _wind_power_plant__average_1_control_pll_pll_integrator__state += 6.283185307179586 ;
+            }
+        }
+        _wind_power_plant__average_1_control_pll_pll_integrator__out = _wind_power_plant__average_1_control_pll_pll_integrator__state ;
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Gain4
+    _wind_power_plant__average_1_control_grid_follow_power_meas_gain4__out = 1500000.0 * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Gain5
+    _wind_power_plant__average_1_control_grid_follow_power_meas_gain5__out = 1500000.0 * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.S_and_pf
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__P = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__out;
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__Q = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__out;
+    {
+        _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__S = sqrt ( _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__P * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__P + _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__Q * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__Q ) ;
+        if ( _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__S > 0 )     {
+            _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__pf = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__P / _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__S ;
+        }
+        else     {
+            _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__pf = 0 ;
+        }
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Ki
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_ki__out = 3.0 * _wind_power_plant__average_1_control_grid_follow_sum1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Kp
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_kp__out = 15.0 * _wind_power_plant__average_1_control_grid_follow_sum1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.to_pu
+    _wind_power_plant__average_1_control_grid_follow_to_pu__out = 6.666666666666667e-07 * _wind_power_plant__average_1_control_grid_follow_efficiency__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Sum5
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum5__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_kp__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Sum5
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum5__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_kp__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Kb
+    _wind_power_plant__average_1_control_pll_pll_pid_kb__out = 1.0 * _wind_power_plant__average_1_control_pll_pll_pid_sum6__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.P
+    HIL_OutAO(0x2023, (float)_wind_power_plant__average_1_control_grid_follow_power_meas_gain4__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Q
+    HIL_OutAO(0x2025, (float)_wind_power_plant__average_1_control_grid_follow_power_meas_gain5__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Gain6
+    _wind_power_plant__average_1_control_grid_follow_power_meas_gain6__out = 1500000.0 * _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__S;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.pf
+    HIL_OutAO(0x202f, (float)_wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__pf);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Sum5
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_sum5__out = _wind_power_plant__average_1_control_grid_follow_pi_vt_kp__out + _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Signal switch2
+    _wind_power_plant__average_1_control_grid_follow_signal_switch2__out = (_wind_power_plant__average_1_control_grid_follow_logical_operator2__out > 0.5f) ? _wind_power_plant__average_1_control_grid_follow_to_pu__out : _wind_power_plant__average_1_control_grid_follow_constant1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Limit1
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_limit1__out = MIN(MAX(_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum5__out, -10.0), 10.0);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Limit1
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_limit1__out = MIN(MAX(_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum5__out, -10.0), 10.0);
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Sum7
+    _wind_power_plant__average_1_control_pll_pll_pid_sum7__out = _wind_power_plant__average_1_control_pll_pll_pid_ki__out + _wind_power_plant__average_1_control_pll_pll_pid_kb__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.S
+    HIL_OutAO(0x2027, (float)_wind_power_plant__average_1_control_grid_follow_power_meas_gain6__out);
+    // Generated from the component: Wind Power Plant (Average)1.Output.Bus Join1
+    _wind_power_plant__average_1_output_bus_join1__out[0] = _wind_power_plant__average_1_input_bus_split2__out;
+    _wind_power_plant__average_1_output_bus_join1__out[1] = _wind_power_plant__average_1_input_bus_split2__out1;
+    _wind_power_plant__average_1_output_bus_join1__out[2] = _wind_power_plant__average_1_va_va1__out;
+    _wind_power_plant__average_1_output_bus_join1__out[3] = _wind_power_plant__average_1_vb_va1__out;
+    _wind_power_plant__average_1_output_bus_join1__out[4] = _wind_power_plant__average_1_vc_va1__out;
+    _wind_power_plant__average_1_output_bus_join1__out[5] = _wind_power_plant__average_1_control_pll_pll_normalize__pk;
+    _wind_power_plant__average_1_output_bus_join1__out[6] = _wind_power_plant__average_1_ia_ia1__out;
+    _wind_power_plant__average_1_output_bus_join1__out[7] = _wind_power_plant__average_1_ib_ia1__out;
+    _wind_power_plant__average_1_output_bus_join1__out[8] = _wind_power_plant__average_1_ic_ia1__out;
+    _wind_power_plant__average_1_output_bus_join1__out[9] = _wind_power_plant__average_1_control_pll_pll_to_hz__out;
+    _wind_power_plant__average_1_output_bus_join1__out[10] = _wind_power_plant__average_1_control_grid_follow_power_meas_gain4__out;
+    _wind_power_plant__average_1_output_bus_join1__out[11] = _wind_power_plant__average_1_control_grid_follow_power_meas_gain5__out;
+    _wind_power_plant__average_1_output_bus_join1__out[12] = _wind_power_plant__average_1_control_grid_follow_power_meas_gain6__out;
+    _wind_power_plant__average_1_output_bus_join1__out[13] = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_s_and_pf__pf;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Limit1
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_limit1__out = MIN(MAX(_wind_power_plant__average_1_control_grid_follow_pi_vt_sum5__out, -4.0), 4.0);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Pref
+    HIL_OutAO(0x2024, (float)_wind_power_plant__average_1_control_grid_follow_signal_switch2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Sum6
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum6__out =  - _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum5__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_limit1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Sum7
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum7__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_limit1__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum6__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Sum6
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum6__out =  - _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum5__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_limit1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Sum3
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum3__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_limit1__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum5__out;
+    // Generated from the component: Wind Power Plant UI.Bus Split1
+    _wind_power_plant_ui_bus_split1__out = _wind_power_plant__average_1_output_bus_join1__out[0];
+    _wind_power_plant_ui_bus_split1__out1 = _wind_power_plant__average_1_output_bus_join1__out[1];
+    _wind_power_plant_ui_bus_split1__out2 = _wind_power_plant__average_1_output_bus_join1__out[2];
+    _wind_power_plant_ui_bus_split1__out3 = _wind_power_plant__average_1_output_bus_join1__out[3];
+    _wind_power_plant_ui_bus_split1__out4 = _wind_power_plant__average_1_output_bus_join1__out[4];
+    _wind_power_plant_ui_bus_split1__out5 = _wind_power_plant__average_1_output_bus_join1__out[5];
+    _wind_power_plant_ui_bus_split1__out6 = _wind_power_plant__average_1_output_bus_join1__out[6];
+    _wind_power_plant_ui_bus_split1__out7 = _wind_power_plant__average_1_output_bus_join1__out[7];
+    _wind_power_plant_ui_bus_split1__out8 = _wind_power_plant__average_1_output_bus_join1__out[8];
+    _wind_power_plant_ui_bus_split1__out9 = _wind_power_plant__average_1_output_bus_join1__out[9];
+    _wind_power_plant_ui_bus_split1__out10 = _wind_power_plant__average_1_output_bus_join1__out[10];
+    _wind_power_plant_ui_bus_split1__out11 = _wind_power_plant__average_1_output_bus_join1__out[11];
+    _wind_power_plant_ui_bus_split1__out12 = _wind_power_plant__average_1_output_bus_join1__out[12];
+    _wind_power_plant_ui_bus_split1__out13 = _wind_power_plant__average_1_output_bus_join1__out[13];
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Sum6
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_sum6__out =  - _wind_power_plant__average_1_control_grid_follow_pi_vt_sum5__out + _wind_power_plant__average_1_control_grid_follow_pi_vt_limit1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Signal switch1
+    _wind_power_plant__average_1_control_grid_follow_signal_switch1__out = (_wind_power_plant__average_1_input_bus_split2__out4 > 0.5f) ? _wind_power_plant__average_1_control_grid_follow_signal_switch3__out : _wind_power_plant__average_1_control_grid_follow_pi_vt_limit1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Kb
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_kb__out = 1.0 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum6__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Product7
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product7__out = (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum7__out) * 1.0 / (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain5__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Kb
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_kb__out = 1.0 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum6__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Product8
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product8__out = (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum3__out) * 1.0 / (_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain5__out);
+    // Generated from the component: Wind Power Plant UI.Connected
+    HIL_OutAO(0x203f, (float)_wind_power_plant_ui_bus_split1__out);
+    // Generated from the component: Wind Power Plant UI.Ia
+    HIL_OutAO(0x2040, (float)_wind_power_plant_ui_bus_split1__out6);
+    // Generated from the component: Wind Power Plant UI.Ib
+    HIL_OutAO(0x2041, (float)_wind_power_plant_ui_bus_split1__out7);
+    // Generated from the component: Wind Power Plant UI.Ic
+    HIL_OutAO(0x2042, (float)_wind_power_plant_ui_bus_split1__out8);
+    // Generated from the component: Wind Power Plant UI.Inv_On
+    HIL_OutAO(0x2043, (float)_wind_power_plant_ui_bus_split1__out1);
+    // Generated from the component: Wind Power Plant UI.P
+    HIL_OutAO(0x2044, (float)_wind_power_plant_ui_bus_split1__out10);
+    // Generated from the component: Wind Power Plant UI.Pa_probe
+    HIL_OutAO(0x2045, (float)_wind_power_plant_ui_bus_split1__out10);
+    // Generated from the component: Wind Power Plant UI.Pa_streaming_probe
+    HIL_OutAO(0x2046, (float)_wind_power_plant_ui_bus_split1__out10);
+    _wind_power_plant_ui_pa_streaming_probe__in = _wind_power_plant_ui_bus_split1__out10;
+    sp_scope_buff_addr_cpu0_er0_dev0 = sp_scope_buff_start_addr_cpu0_er0_dev0 + sp_scope_buff_index_cpu0_er0_dev0;
+    //#ifdef SP_SCOPE_FILE_DEBUG
+    //  fprintf(f_sp_scope_debug, "\nstart = %x, index = %x, addr = %x, value = %f.", sp_scope_buff_start_addr_cpu0_er0_dev0, sp_scope_buff_index_cpuuser_sp_cpu}_cpu0_er0_dev0, sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_pa_streaming_probe__in);
+    //#endif
+    memcpy((X_UnInt8 *)sp_scope_buff_addr_cpu0_er0_dev0, &_wind_power_plant_ui_pa_streaming_probe__in, 4);
+    //printf("\n\sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_pa_streaming_probe__in 0x%x\r\n", sp_scope_buff_addr_cpu0_er0_dev0);
+    //printf("\n\r addr 0x%x, value 0x%x\r\n", sp_scope_buff_addr_cpu0_er0_dev0, *(X_UnInt32*)(sp_scope_buff_addr_cpu0_er0_dev0));
+    //XIo_OutInt32(sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_pa_streaming_probe__in);
+    sp_scope_buff_index_cpu0_er0_dev0 = (sp_scope_buff_index_cpu0_er0_dev0 + 4) % SP_SCOPE_BUFF_SIZE_PER_ER;
+    // Generated from the component: Wind Power Plant UI.Q
+    HIL_OutAO(0x2047, (float)_wind_power_plant_ui_bus_split1__out11);
+    // Generated from the component: Wind Power Plant UI.S
+    HIL_OutAO(0x2048, (float)_wind_power_plant_ui_bus_split1__out12);
+    // Generated from the component: Wind Power Plant UI.Va
+    HIL_OutAO(0x2049, (float)_wind_power_plant_ui_bus_split1__out2);
+    // Generated from the component: Wind Power Plant UI.Va_streaming_probe
+    HIL_OutAO(0x204a, (float)_wind_power_plant_ui_bus_split1__out2);
+    _wind_power_plant_ui_va_streaming_probe__in = _wind_power_plant_ui_bus_split1__out2;
+    sp_scope_buff_addr_cpu0_er0_dev0 = sp_scope_buff_start_addr_cpu0_er0_dev0 + sp_scope_buff_index_cpu0_er0_dev0;
+    //#ifdef SP_SCOPE_FILE_DEBUG
+    //  fprintf(f_sp_scope_debug, "\nstart = %x, index = %x, addr = %x, value = %f.", sp_scope_buff_start_addr_cpu0_er0_dev0, sp_scope_buff_index_cpuuser_sp_cpu}_cpu0_er0_dev0, sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_va_streaming_probe__in);
+    //#endif
+    memcpy((X_UnInt8 *)sp_scope_buff_addr_cpu0_er0_dev0, &_wind_power_plant_ui_va_streaming_probe__in, 4);
+    //printf("\n\sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_va_streaming_probe__in 0x%x\r\n", sp_scope_buff_addr_cpu0_er0_dev0);
+    //printf("\n\r addr 0x%x, value 0x%x\r\n", sp_scope_buff_addr_cpu0_er0_dev0, *(X_UnInt32*)(sp_scope_buff_addr_cpu0_er0_dev0));
+    //XIo_OutInt32(sp_scope_buff_addr_cpu0_er0_dev0, _wind_power_plant_ui_va_streaming_probe__in);
+    sp_scope_buff_index_cpu0_er0_dev0 = (sp_scope_buff_index_cpu0_er0_dev0 + 4) % SP_SCOPE_BUFF_SIZE_PER_ER;
+    // Generated from the component: Wind Power Plant UI.Vb
+    HIL_OutAO(0x204b, (float)_wind_power_plant_ui_bus_split1__out3);
+    // Generated from the component: Wind Power Plant UI.Vc
+    HIL_OutAO(0x204c, (float)_wind_power_plant_ui_bus_split1__out4);
+    // Generated from the component: Wind Power Plant UI.Vt
+    HIL_OutAO(0x204d, (float)_wind_power_plant_ui_bus_split1__out5);
+    // Generated from the component: Wind Power Plant UI.f
+    HIL_OutAO(0x204e, (float)_wind_power_plant_ui_bus_split1__out9);
+    // Generated from the component: Wind Power Plant UI.pf
+    HIL_OutAO(0x204f, (float)_wind_power_plant_ui_bus_split1__out13);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Kb
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_kb__out = 1000.0 * _wind_power_plant__average_1_control_grid_follow_pi_vt_sum6__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.priority_PQlim.PQ limiting with priority
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref = _wind_power_plant__average_1_control_grid_follow_signal_switch2__out;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref = _wind_power_plant__average_1_control_grid_follow_signal_switch1__out;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax = _wind_power_plant__average_1_control_grid_follow_constant3__out;
+    {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Sref = sqrt ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref + _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref ) ;
+        if ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref >= 0 ) _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signQ = 1 ;
+        else _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signQ = - 1 ;
+        if ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref >= 0 ) _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signP = 1 ;
+        else _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signP = - 1 ;
+        if ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Sref <= _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax )     {
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Sref ;
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref ;
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref ;
+        }
+        else     {
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax ;
+            if ( 1.0 == 1 )         {
+                if ( fabs ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref ) > _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax )             {
+                    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signP * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax ;
+                    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q = 0 ;
+                }
+                else             {
+                    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref ;
+                    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signQ * sqrt ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax - _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref ) ;
+                }
+            }
+            else if ( 1.0 == 2 )         {
+                if ( fabs ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref ) > _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax )             {
+                    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signQ * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax ;
+                    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P = 0 ;
+                }
+                else             {
+                    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref ;
+                    _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__signP * sqrt ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax - _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref ) ;
+                }
+            }
+            else         {
+                _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P = ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Pref / _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Sref ) * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax ;
+                _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q = ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Qref / _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Sref ) * _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Smax ;
+            }
+        }
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Qref
+    HIL_OutAO(0x2026, (float)_wind_power_plant__average_1_control_grid_follow_signal_switch1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Sum7
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum7__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_ki__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_kb__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Gain11
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain11__out = 0.3919183588453085 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product7__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Sum7
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum7__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_ki__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_kb__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Gain10
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain10__out = 0.3919183588453085 * _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product8__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Sum7
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_sum7__out = _wind_power_plant__average_1_control_grid_follow_pi_vt_ki__out + _wind_power_plant__average_1_control_grid_follow_pi_vt_kb__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.P rate limit
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__rising_rate_lim[0] = 5.0 * 0.00012;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__falling_rate_lim[0] = -5.0 * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__first_step) {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P;
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P;
+    } else {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P;
+        if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P - _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state > _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__rising_rate_lim[0])
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state + (_wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__rising_rate_lim[0]);
+        if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P - _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state < _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__falling_rate_lim[0])
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state + (_wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__falling_rate_lim[0]);
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.Q rate limit
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__rising_rate_lim[0] = 5.0 * 0.00012;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__falling_rate_lim[0] = -5.0 * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__first_step) {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q;
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q;
+    } else {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q;
+        if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q - _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state > _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__rising_rate_lim[0])
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state + (_wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__rising_rate_lim[0]);
+        if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q - _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state < _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__falling_rate_lim[0])
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state + (_wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__falling_rate_lim[0]);
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.S rate limit
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__rising_rate_lim[0] = 5.0 * 0.00012;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__falling_rate_lim[0] = -5.0 * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__first_step) {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S;
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S;
+    } else {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S;
+        if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S - _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state > _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__rising_rate_lim[0])
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state + (_wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__rising_rate_lim[0]);
+        if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S - _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state < _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__falling_rate_lim[0])
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__out = _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state + (_wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__falling_rate_lim[0]);
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Sum9
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum9__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product6__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain11__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.Sum8
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum8__out = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_gain10__out + _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_product5__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.limS_overPQ.S limiting over PQ
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Pref = _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__out;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Qref = _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__out;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Sref = _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__out;
+    {
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__S_PQref = sqrt ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Pref * _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Pref + _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Qref * _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Qref ) ;
+        if ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__S_PQref > _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Sref )     {
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__P = ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Pref / _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__S_PQref ) * _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Sref ;
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Q = ( _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Qref / _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__S_PQref ) * _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Sref ;
+        }
+        else     {
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__P = _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Pref ;
+            _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Q = _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Qref ;
+        }
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Uq_c
+    HIL_OutAO(0x2029, (float)_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum9__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Limit3
+    _wind_power_plant__average_1_control_duty_cycle_limit3__out = MIN(MAX(_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum9__out, -1.1546), 1.1546);
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Ud_c
+    HIL_OutAO(0x2028, (float)_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum8__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Limit2
+    _wind_power_plant__average_1_control_duty_cycle_limit2__out = MIN(MAX(_wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_sum8__out, -1.1546), 1.1546);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.m_q
+    HIL_OutAO(0x203d, (float)_wind_power_plant__average_1_control_duty_cycle_limit3__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.dq to abc1.dq to alpha beta
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__k1 = cos(_wind_power_plant__average_1_control_pll_pll_unit_delay1__out);
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__k2 = sin(_wind_power_plant__average_1_control_pll_pll_unit_delay1__out);
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__alpha = _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__k2 * _wind_power_plant__average_1_control_duty_cycle_limit2__out + _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__k1 * _wind_power_plant__average_1_control_duty_cycle_limit3__out;
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__beta = _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__k2 * _wind_power_plant__average_1_control_duty_cycle_limit3__out - _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__k1 * _wind_power_plant__average_1_control_duty_cycle_limit2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.m_d
+    HIL_OutAO(0x203c, (float)_wind_power_plant__average_1_control_duty_cycle_limit2__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.dq to abc1.alpha beta to abc
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__A = 1 * _wind_power_plant__average_1_control_duty_cycle_o_ref__out;
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__B = _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__A - 0.5 * _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__alpha;
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__C = _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__B - 0.8660254037844386 * _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__beta;
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__B += 0.8660254037844386 * _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__beta;
+    _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__A += 1 * _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_dq_to_alpha_beta__alpha;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Da
+    HIL_OutAO(0x2035, (float)_wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__A);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Db
+    HIL_OutAO(0x2036, (float)_wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__B);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Dc
+    HIL_OutAO(0x2037, (float)_wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__C);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Min Max1
+    _wind_power_plant__average_1_control_duty_cycle_zsm_min_max1__out = MIN(MIN(_wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__A, _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__B), _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__C);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Min Max2
+    _wind_power_plant__average_1_control_duty_cycle_zsm_min_max2__out = MAX(MAX(_wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__A, _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__B), _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__C);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Product2
+    _wind_power_plant__average_1_control_duty_cycle_zsm_product2__out = (_wind_power_plant__average_1_control_duty_cycle_zsm_sum2__out * _wind_power_plant__average_1_control_duty_cycle_zsm_min_max1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Sum1
+    _wind_power_plant__average_1_control_duty_cycle_zsm_sum1__out =  - _wind_power_plant__average_1_control_duty_cycle_zsm_min_max2__out + _wind_power_plant__average_1_control_duty_cycle_zsm_constant2__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Product1
+    _wind_power_plant__average_1_control_duty_cycle_zsm_product1__out = (_wind_power_plant__average_1_control_duty_cycle_zsm_limit1__out * _wind_power_plant__average_1_control_duty_cycle_zsm_sum1__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Sum3
+    _wind_power_plant__average_1_control_duty_cycle_zsm_sum3__out =  - _wind_power_plant__average_1_control_duty_cycle_zsm_sum8__out - _wind_power_plant__average_1_control_duty_cycle_zsm_product2__out + _wind_power_plant__average_1_control_duty_cycle_zsm_product1__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Sum5
+    _wind_power_plant__average_1_control_duty_cycle_zsm_sum5__out = _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__A + _wind_power_plant__average_1_control_duty_cycle_zsm_sum3__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Sum6
+    _wind_power_plant__average_1_control_duty_cycle_zsm_sum6__out = _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__B + _wind_power_plant__average_1_control_duty_cycle_zsm_sum3__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Sum7
+    _wind_power_plant__average_1_control_duty_cycle_zsm_sum7__out = _wind_power_plant__average_1_control_duty_cycle_dq_to_abc1_alpha_beta_to_abc__C + _wind_power_plant__average_1_control_duty_cycle_zsm_sum3__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.ZSM.Z0
+    HIL_OutAO(0x203b, (float)_wind_power_plant__average_1_control_duty_cycle_zsm_sum3__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Dz_A
+    HIL_OutAO(0x2038, (float)_wind_power_plant__average_1_control_duty_cycle_zsm_sum5__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Product1
+    _wind_power_plant__average_1_control_duty_cycle_product1__out = (_wind_power_plant__average_1_control_duty_cycle_gain1__out * _wind_power_plant__average_1_control_duty_cycle_zsm_sum5__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Dz_B
+    HIL_OutAO(0x2039, (float)_wind_power_plant__average_1_control_duty_cycle_zsm_sum6__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Product2
+    _wind_power_plant__average_1_control_duty_cycle_product2__out = (_wind_power_plant__average_1_control_duty_cycle_gain1__out * _wind_power_plant__average_1_control_duty_cycle_zsm_sum6__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Dz_C
+    HIL_OutAO(0x203a, (float)_wind_power_plant__average_1_control_duty_cycle_zsm_sum7__out);
+    // Generated from the component: Wind Power Plant (Average)1.Control.duty_cycle.Product3
+    _wind_power_plant__average_1_control_duty_cycle_product3__out = (_wind_power_plant__average_1_control_duty_cycle_gain1__out * _wind_power_plant__average_1_control_duty_cycle_zsm_sum7__out);
+    // Generated from the component: Wind Power Plant (Average)1.VspA.Vs1
+    HIL_OutFloat(145489920, (float) _wind_power_plant__average_1_control_duty_cycle_product1__out);
+    // Generated from the component: Wind Power Plant (Average)1.VspB.Vs1
+    HIL_OutFloat(145489921, (float) _wind_power_plant__average_1_control_duty_cycle_product2__out);
+    // Generated from the component: Wind Power Plant (Average)1.VspC.Vs1
+    HIL_OutFloat(145489922, (float) _wind_power_plant__average_1_control_duty_cycle_product3__out);
+//@cmp.out.block.end
+    //////////////////////////////////////////////////////////////////////////
+    // Update block
+    //////////////////////////////////////////////////////////////////////////
+    //@cmp.update.block.start
+    // Generated from the component: NODE 800.Phase Difference1
+    _node_800_phase_difference1__sample_cnt_ref += 1;
+    _node_800_phase_difference1__previous_filtered_ref = _node_800_phase_difference1__filtered_ref;
+    _node_800_phase_difference1__filtered_ref = _node_800_phase_difference1__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference1__sample_cnt_ref >= 4167 ) {
+        _node_800_phase_difference1__zc_flag_ref = 0;
+        _node_800_phase_difference1__sample_cnt_ref = 0;
+        _node_800_phase_difference1__previous_correction_ref = 0;
+        _node_800_phase_difference1__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference1__filtered_ref >= 0) && (_node_800_phase_difference1__previous_filtered_ref < 0) ) {
+        _node_800_phase_difference1__zc_flag_ref = 1;
+    }
+    else {
+        _node_800_phase_difference1__zc_flag_ref = 0;
+    }
+    _node_800_phase_difference1__sample_cnt_in += 1;
+    _node_800_phase_difference1__previous_filtered_in = _node_800_phase_difference1__filtered_in;
+    _node_800_phase_difference1__filtered_in = _node_800_phase_difference1__previous_filtered_in * 0.6889383581487868 + _node_800_va_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference1__sample_cnt_in >= 4167 ) {
+        _node_800_phase_difference1__zc_flag_in = 0;
+        _node_800_phase_difference1__no_zc_flag_in = 1;
+        _node_800_phase_difference1__sample_cnt_in = 0;
+        _node_800_phase_difference1__previous_correction_in = 0;
+        _node_800_phase_difference1__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference1__filtered_in >= 0) && (_node_800_phase_difference1__previous_filtered_in < 0) ) {
+        _node_800_phase_difference1__zc_flag_in = 1;
+        _node_800_phase_difference1__no_zc_flag_in = 0;
+    }
+    else {
+        _node_800_phase_difference1__zc_flag_in = 0;
+    }
+    if( _node_800_phase_difference1__zc_flag_ref ) {
+        _node_800_phase_difference1__correction_ref = - _node_800_phase_difference1__previous_filtered_ref / ( _node_800_phase_difference1__filtered_ref - _node_800_phase_difference1__previous_filtered_ref );
+        _node_800_phase_difference1__sample_cnt_ref += _node_800_phase_difference1__correction_ref - _node_800_phase_difference1__previous_correction_ref;
+        if( (_node_800_phase_difference1__sample_cnt_ref > 1e-6) || (_node_800_phase_difference1__sample_cnt_ref < -1e-6) ) {
+            if( !_node_800_phase_difference1__no_zc_flag_in ) {
+                _node_800_phase_difference1__phase_state = 360.0 * ( _node_800_phase_difference1__sample_cnt_in + _node_800_phase_difference1__correction_ref - _node_800_phase_difference1__previous_correction_in ) / _node_800_phase_difference1__sample_cnt_ref;
+            }
+        }
+        if( (_node_800_phase_difference1__phase_state > 360.0) || (_node_800_phase_difference1__phase_state < -360.0) ) {
+            _node_800_phase_difference1__phase_state = fmod(_node_800_phase_difference1__phase_state, 360.0);
+        }
+        if (_node_800_phase_difference1__phase_state < -180.0) {
+            _node_800_phase_difference1__phase_state += 360.0;
+        }
+        else if (_node_800_phase_difference1__phase_state > 180.0) {
+            _node_800_phase_difference1__phase_state -= 360.0;
+        }
+        _node_800_phase_difference1__sample_cnt_ref = 0;
+        _node_800_phase_difference1__previous_correction_ref = _node_800_phase_difference1__correction_ref;
+    }
+    if( _node_800_phase_difference1__zc_flag_in ) {
+        _node_800_phase_difference1__correction_in = - _node_800_phase_difference1__previous_filtered_in / ( _node_800_phase_difference1__filtered_in - _node_800_phase_difference1__previous_filtered_in );
+        _node_800_phase_difference1__sample_cnt_in = 0;
+        _node_800_phase_difference1__previous_correction_in = _node_800_phase_difference1__correction_in;
+    }
+    // Generated from the component: NODE 800.Phase Difference2
+    _node_800_phase_difference2__sample_cnt_ref += 1;
+    _node_800_phase_difference2__previous_filtered_ref = _node_800_phase_difference2__filtered_ref;
+    _node_800_phase_difference2__filtered_ref = _node_800_phase_difference2__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference2__sample_cnt_ref >= 4167 ) {
+        _node_800_phase_difference2__zc_flag_ref = 0;
+        _node_800_phase_difference2__sample_cnt_ref = 0;
+        _node_800_phase_difference2__previous_correction_ref = 0;
+        _node_800_phase_difference2__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference2__filtered_ref >= 0) && (_node_800_phase_difference2__previous_filtered_ref < 0) ) {
+        _node_800_phase_difference2__zc_flag_ref = 1;
+    }
+    else {
+        _node_800_phase_difference2__zc_flag_ref = 0;
+    }
+    _node_800_phase_difference2__sample_cnt_in += 1;
+    _node_800_phase_difference2__previous_filtered_in = _node_800_phase_difference2__filtered_in;
+    _node_800_phase_difference2__filtered_in = _node_800_phase_difference2__previous_filtered_in * 0.6889383581487868 + _node_800_vb_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference2__sample_cnt_in >= 4167 ) {
+        _node_800_phase_difference2__zc_flag_in = 0;
+        _node_800_phase_difference2__no_zc_flag_in = 1;
+        _node_800_phase_difference2__sample_cnt_in = 0;
+        _node_800_phase_difference2__previous_correction_in = 0;
+        _node_800_phase_difference2__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference2__filtered_in >= 0) && (_node_800_phase_difference2__previous_filtered_in < 0) ) {
+        _node_800_phase_difference2__zc_flag_in = 1;
+        _node_800_phase_difference2__no_zc_flag_in = 0;
+    }
+    else {
+        _node_800_phase_difference2__zc_flag_in = 0;
+    }
+    if( _node_800_phase_difference2__zc_flag_ref ) {
+        _node_800_phase_difference2__correction_ref = - _node_800_phase_difference2__previous_filtered_ref / ( _node_800_phase_difference2__filtered_ref - _node_800_phase_difference2__previous_filtered_ref );
+        _node_800_phase_difference2__sample_cnt_ref += _node_800_phase_difference2__correction_ref - _node_800_phase_difference2__previous_correction_ref;
+        if( (_node_800_phase_difference2__sample_cnt_ref > 1e-6) || (_node_800_phase_difference2__sample_cnt_ref < -1e-6) ) {
+            if( !_node_800_phase_difference2__no_zc_flag_in ) {
+                _node_800_phase_difference2__phase_state = 360.0 * ( _node_800_phase_difference2__sample_cnt_in + _node_800_phase_difference2__correction_ref - _node_800_phase_difference2__previous_correction_in ) / _node_800_phase_difference2__sample_cnt_ref;
+            }
+        }
+        if( (_node_800_phase_difference2__phase_state > 360.0) || (_node_800_phase_difference2__phase_state < -360.0) ) {
+            _node_800_phase_difference2__phase_state = fmod(_node_800_phase_difference2__phase_state, 360.0);
+        }
+        if (_node_800_phase_difference2__phase_state < -180.0) {
+            _node_800_phase_difference2__phase_state += 360.0;
+        }
+        else if (_node_800_phase_difference2__phase_state > 180.0) {
+            _node_800_phase_difference2__phase_state -= 360.0;
+        }
+        _node_800_phase_difference2__sample_cnt_ref = 0;
+        _node_800_phase_difference2__previous_correction_ref = _node_800_phase_difference2__correction_ref;
+    }
+    if( _node_800_phase_difference2__zc_flag_in ) {
+        _node_800_phase_difference2__correction_in = - _node_800_phase_difference2__previous_filtered_in / ( _node_800_phase_difference2__filtered_in - _node_800_phase_difference2__previous_filtered_in );
+        _node_800_phase_difference2__sample_cnt_in = 0;
+        _node_800_phase_difference2__previous_correction_in = _node_800_phase_difference2__correction_in;
+    }
+    // Generated from the component: NODE 800.Phase Difference3
+    _node_800_phase_difference3__sample_cnt_ref += 1;
+    _node_800_phase_difference3__previous_filtered_ref = _node_800_phase_difference3__filtered_ref;
+    _node_800_phase_difference3__filtered_ref = _node_800_phase_difference3__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference3__sample_cnt_ref >= 4167 ) {
+        _node_800_phase_difference3__zc_flag_ref = 0;
+        _node_800_phase_difference3__sample_cnt_ref = 0;
+        _node_800_phase_difference3__previous_correction_ref = 0;
+        _node_800_phase_difference3__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference3__filtered_ref >= 0) && (_node_800_phase_difference3__previous_filtered_ref < 0) ) {
+        _node_800_phase_difference3__zc_flag_ref = 1;
+    }
+    else {
+        _node_800_phase_difference3__zc_flag_ref = 0;
+    }
+    _node_800_phase_difference3__sample_cnt_in += 1;
+    _node_800_phase_difference3__previous_filtered_in = _node_800_phase_difference3__filtered_in;
+    _node_800_phase_difference3__filtered_in = _node_800_phase_difference3__previous_filtered_in * 0.6889383581487868 + _node_800_vc_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference3__sample_cnt_in >= 4167 ) {
+        _node_800_phase_difference3__zc_flag_in = 0;
+        _node_800_phase_difference3__no_zc_flag_in = 1;
+        _node_800_phase_difference3__sample_cnt_in = 0;
+        _node_800_phase_difference3__previous_correction_in = 0;
+        _node_800_phase_difference3__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference3__filtered_in >= 0) && (_node_800_phase_difference3__previous_filtered_in < 0) ) {
+        _node_800_phase_difference3__zc_flag_in = 1;
+        _node_800_phase_difference3__no_zc_flag_in = 0;
+    }
+    else {
+        _node_800_phase_difference3__zc_flag_in = 0;
+    }
+    if( _node_800_phase_difference3__zc_flag_ref ) {
+        _node_800_phase_difference3__correction_ref = - _node_800_phase_difference3__previous_filtered_ref / ( _node_800_phase_difference3__filtered_ref - _node_800_phase_difference3__previous_filtered_ref );
+        _node_800_phase_difference3__sample_cnt_ref += _node_800_phase_difference3__correction_ref - _node_800_phase_difference3__previous_correction_ref;
+        if( (_node_800_phase_difference3__sample_cnt_ref > 1e-6) || (_node_800_phase_difference3__sample_cnt_ref < -1e-6) ) {
+            if( !_node_800_phase_difference3__no_zc_flag_in ) {
+                _node_800_phase_difference3__phase_state = 360.0 * ( _node_800_phase_difference3__sample_cnt_in + _node_800_phase_difference3__correction_ref - _node_800_phase_difference3__previous_correction_in ) / _node_800_phase_difference3__sample_cnt_ref;
+            }
+        }
+        if( (_node_800_phase_difference3__phase_state > 360.0) || (_node_800_phase_difference3__phase_state < -360.0) ) {
+            _node_800_phase_difference3__phase_state = fmod(_node_800_phase_difference3__phase_state, 360.0);
+        }
+        if (_node_800_phase_difference3__phase_state < -180.0) {
+            _node_800_phase_difference3__phase_state += 360.0;
+        }
+        else if (_node_800_phase_difference3__phase_state > 180.0) {
+            _node_800_phase_difference3__phase_state -= 360.0;
+        }
+        _node_800_phase_difference3__sample_cnt_ref = 0;
+        _node_800_phase_difference3__previous_correction_ref = _node_800_phase_difference3__correction_ref;
+    }
+    if( _node_800_phase_difference3__zc_flag_in ) {
+        _node_800_phase_difference3__correction_in = - _node_800_phase_difference3__previous_filtered_in / ( _node_800_phase_difference3__filtered_in - _node_800_phase_difference3__previous_filtered_in );
+        _node_800_phase_difference3__sample_cnt_in = 0;
+        _node_800_phase_difference3__previous_correction_in = _node_800_phase_difference3__correction_in;
+    }
+    // Generated from the component: NODE 800.Phase Difference4
+    _node_800_phase_difference4__sample_cnt_ref += 1;
+    _node_800_phase_difference4__previous_filtered_ref = _node_800_phase_difference4__filtered_ref;
+    _node_800_phase_difference4__filtered_ref = _node_800_phase_difference4__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference4__sample_cnt_ref >= 4167 ) {
+        _node_800_phase_difference4__zc_flag_ref = 0;
+        _node_800_phase_difference4__sample_cnt_ref = 0;
+        _node_800_phase_difference4__previous_correction_ref = 0;
+        _node_800_phase_difference4__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference4__filtered_ref >= 0) && (_node_800_phase_difference4__previous_filtered_ref < 0) ) {
+        _node_800_phase_difference4__zc_flag_ref = 1;
+    }
+    else {
+        _node_800_phase_difference4__zc_flag_ref = 0;
+    }
+    _node_800_phase_difference4__sample_cnt_in += 1;
+    _node_800_phase_difference4__previous_filtered_in = _node_800_phase_difference4__filtered_in;
+    _node_800_phase_difference4__filtered_in = _node_800_phase_difference4__previous_filtered_in * 0.6889383581487868 + _node_800_ia_ia1__out * 0.3110616418512132;
+    if( _node_800_phase_difference4__sample_cnt_in >= 4167 ) {
+        _node_800_phase_difference4__zc_flag_in = 0;
+        _node_800_phase_difference4__no_zc_flag_in = 1;
+        _node_800_phase_difference4__sample_cnt_in = 0;
+        _node_800_phase_difference4__previous_correction_in = 0;
+        _node_800_phase_difference4__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference4__filtered_in >= 0) && (_node_800_phase_difference4__previous_filtered_in < 0) ) {
+        _node_800_phase_difference4__zc_flag_in = 1;
+        _node_800_phase_difference4__no_zc_flag_in = 0;
+    }
+    else {
+        _node_800_phase_difference4__zc_flag_in = 0;
+    }
+    if( _node_800_phase_difference4__zc_flag_ref ) {
+        _node_800_phase_difference4__correction_ref = - _node_800_phase_difference4__previous_filtered_ref / ( _node_800_phase_difference4__filtered_ref - _node_800_phase_difference4__previous_filtered_ref );
+        _node_800_phase_difference4__sample_cnt_ref += _node_800_phase_difference4__correction_ref - _node_800_phase_difference4__previous_correction_ref;
+        if( (_node_800_phase_difference4__sample_cnt_ref > 1e-6) || (_node_800_phase_difference4__sample_cnt_ref < -1e-6) ) {
+            if( !_node_800_phase_difference4__no_zc_flag_in ) {
+                _node_800_phase_difference4__phase_state = 360.0 * ( _node_800_phase_difference4__sample_cnt_in + _node_800_phase_difference4__correction_ref - _node_800_phase_difference4__previous_correction_in ) / _node_800_phase_difference4__sample_cnt_ref;
+            }
+        }
+        if( (_node_800_phase_difference4__phase_state > 360.0) || (_node_800_phase_difference4__phase_state < -360.0) ) {
+            _node_800_phase_difference4__phase_state = fmod(_node_800_phase_difference4__phase_state, 360.0);
+        }
+        if (_node_800_phase_difference4__phase_state < -180.0) {
+            _node_800_phase_difference4__phase_state += 360.0;
+        }
+        else if (_node_800_phase_difference4__phase_state > 180.0) {
+            _node_800_phase_difference4__phase_state -= 360.0;
+        }
+        _node_800_phase_difference4__sample_cnt_ref = 0;
+        _node_800_phase_difference4__previous_correction_ref = _node_800_phase_difference4__correction_ref;
+    }
+    if( _node_800_phase_difference4__zc_flag_in ) {
+        _node_800_phase_difference4__correction_in = - _node_800_phase_difference4__previous_filtered_in / ( _node_800_phase_difference4__filtered_in - _node_800_phase_difference4__previous_filtered_in );
+        _node_800_phase_difference4__sample_cnt_in = 0;
+        _node_800_phase_difference4__previous_correction_in = _node_800_phase_difference4__correction_in;
+    }
+    // Generated from the component: NODE 800.Phase Difference5
+    _node_800_phase_difference5__sample_cnt_ref += 1;
+    _node_800_phase_difference5__previous_filtered_ref = _node_800_phase_difference5__filtered_ref;
+    _node_800_phase_difference5__filtered_ref = _node_800_phase_difference5__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference5__sample_cnt_ref >= 4167 ) {
+        _node_800_phase_difference5__zc_flag_ref = 0;
+        _node_800_phase_difference5__sample_cnt_ref = 0;
+        _node_800_phase_difference5__previous_correction_ref = 0;
+        _node_800_phase_difference5__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference5__filtered_ref >= 0) && (_node_800_phase_difference5__previous_filtered_ref < 0) ) {
+        _node_800_phase_difference5__zc_flag_ref = 1;
+    }
+    else {
+        _node_800_phase_difference5__zc_flag_ref = 0;
+    }
+    _node_800_phase_difference5__sample_cnt_in += 1;
+    _node_800_phase_difference5__previous_filtered_in = _node_800_phase_difference5__filtered_in;
+    _node_800_phase_difference5__filtered_in = _node_800_phase_difference5__previous_filtered_in * 0.6889383581487868 + _node_800_ib_ia1__out * 0.3110616418512132;
+    if( _node_800_phase_difference5__sample_cnt_in >= 4167 ) {
+        _node_800_phase_difference5__zc_flag_in = 0;
+        _node_800_phase_difference5__no_zc_flag_in = 1;
+        _node_800_phase_difference5__sample_cnt_in = 0;
+        _node_800_phase_difference5__previous_correction_in = 0;
+        _node_800_phase_difference5__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference5__filtered_in >= 0) && (_node_800_phase_difference5__previous_filtered_in < 0) ) {
+        _node_800_phase_difference5__zc_flag_in = 1;
+        _node_800_phase_difference5__no_zc_flag_in = 0;
+    }
+    else {
+        _node_800_phase_difference5__zc_flag_in = 0;
+    }
+    if( _node_800_phase_difference5__zc_flag_ref ) {
+        _node_800_phase_difference5__correction_ref = - _node_800_phase_difference5__previous_filtered_ref / ( _node_800_phase_difference5__filtered_ref - _node_800_phase_difference5__previous_filtered_ref );
+        _node_800_phase_difference5__sample_cnt_ref += _node_800_phase_difference5__correction_ref - _node_800_phase_difference5__previous_correction_ref;
+        if( (_node_800_phase_difference5__sample_cnt_ref > 1e-6) || (_node_800_phase_difference5__sample_cnt_ref < -1e-6) ) {
+            if( !_node_800_phase_difference5__no_zc_flag_in ) {
+                _node_800_phase_difference5__phase_state = 360.0 * ( _node_800_phase_difference5__sample_cnt_in + _node_800_phase_difference5__correction_ref - _node_800_phase_difference5__previous_correction_in ) / _node_800_phase_difference5__sample_cnt_ref;
+            }
+        }
+        if( (_node_800_phase_difference5__phase_state > 360.0) || (_node_800_phase_difference5__phase_state < -360.0) ) {
+            _node_800_phase_difference5__phase_state = fmod(_node_800_phase_difference5__phase_state, 360.0);
+        }
+        if (_node_800_phase_difference5__phase_state < -180.0) {
+            _node_800_phase_difference5__phase_state += 360.0;
+        }
+        else if (_node_800_phase_difference5__phase_state > 180.0) {
+            _node_800_phase_difference5__phase_state -= 360.0;
+        }
+        _node_800_phase_difference5__sample_cnt_ref = 0;
+        _node_800_phase_difference5__previous_correction_ref = _node_800_phase_difference5__correction_ref;
+    }
+    if( _node_800_phase_difference5__zc_flag_in ) {
+        _node_800_phase_difference5__correction_in = - _node_800_phase_difference5__previous_filtered_in / ( _node_800_phase_difference5__filtered_in - _node_800_phase_difference5__previous_filtered_in );
+        _node_800_phase_difference5__sample_cnt_in = 0;
+        _node_800_phase_difference5__previous_correction_in = _node_800_phase_difference5__correction_in;
+    }
+    // Generated from the component: NODE 800.Phase Difference6
+    _node_800_phase_difference6__sample_cnt_ref += 1;
+    _node_800_phase_difference6__previous_filtered_ref = _node_800_phase_difference6__filtered_ref;
+    _node_800_phase_difference6__filtered_ref = _node_800_phase_difference6__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_800_phase_difference6__sample_cnt_ref >= 4167 ) {
+        _node_800_phase_difference6__zc_flag_ref = 0;
+        _node_800_phase_difference6__sample_cnt_ref = 0;
+        _node_800_phase_difference6__previous_correction_ref = 0;
+        _node_800_phase_difference6__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference6__filtered_ref >= 0) && (_node_800_phase_difference6__previous_filtered_ref < 0) ) {
+        _node_800_phase_difference6__zc_flag_ref = 1;
+    }
+    else {
+        _node_800_phase_difference6__zc_flag_ref = 0;
+    }
+    _node_800_phase_difference6__sample_cnt_in += 1;
+    _node_800_phase_difference6__previous_filtered_in = _node_800_phase_difference6__filtered_in;
+    _node_800_phase_difference6__filtered_in = _node_800_phase_difference6__previous_filtered_in * 0.6889383581487868 + _node_800_ic_ia1__out * 0.3110616418512132;
+    if( _node_800_phase_difference6__sample_cnt_in >= 4167 ) {
+        _node_800_phase_difference6__zc_flag_in = 0;
+        _node_800_phase_difference6__no_zc_flag_in = 1;
+        _node_800_phase_difference6__sample_cnt_in = 0;
+        _node_800_phase_difference6__previous_correction_in = 0;
+        _node_800_phase_difference6__phase_state = 0;
+    }
+    else if( (_node_800_phase_difference6__filtered_in >= 0) && (_node_800_phase_difference6__previous_filtered_in < 0) ) {
+        _node_800_phase_difference6__zc_flag_in = 1;
+        _node_800_phase_difference6__no_zc_flag_in = 0;
+    }
+    else {
+        _node_800_phase_difference6__zc_flag_in = 0;
+    }
+    if( _node_800_phase_difference6__zc_flag_ref ) {
+        _node_800_phase_difference6__correction_ref = - _node_800_phase_difference6__previous_filtered_ref / ( _node_800_phase_difference6__filtered_ref - _node_800_phase_difference6__previous_filtered_ref );
+        _node_800_phase_difference6__sample_cnt_ref += _node_800_phase_difference6__correction_ref - _node_800_phase_difference6__previous_correction_ref;
+        if( (_node_800_phase_difference6__sample_cnt_ref > 1e-6) || (_node_800_phase_difference6__sample_cnt_ref < -1e-6) ) {
+            if( !_node_800_phase_difference6__no_zc_flag_in ) {
+                _node_800_phase_difference6__phase_state = 360.0 * ( _node_800_phase_difference6__sample_cnt_in + _node_800_phase_difference6__correction_ref - _node_800_phase_difference6__previous_correction_in ) / _node_800_phase_difference6__sample_cnt_ref;
+            }
+        }
+        if( (_node_800_phase_difference6__phase_state > 360.0) || (_node_800_phase_difference6__phase_state < -360.0) ) {
+            _node_800_phase_difference6__phase_state = fmod(_node_800_phase_difference6__phase_state, 360.0);
+        }
+        if (_node_800_phase_difference6__phase_state < -180.0) {
+            _node_800_phase_difference6__phase_state += 360.0;
+        }
+        else if (_node_800_phase_difference6__phase_state > 180.0) {
+            _node_800_phase_difference6__phase_state -= 360.0;
+        }
+        _node_800_phase_difference6__sample_cnt_ref = 0;
+        _node_800_phase_difference6__previous_correction_ref = _node_800_phase_difference6__correction_ref;
+    }
+    if( _node_800_phase_difference6__zc_flag_in ) {
+        _node_800_phase_difference6__correction_in = - _node_800_phase_difference6__previous_filtered_in / ( _node_800_phase_difference6__filtered_in - _node_800_phase_difference6__previous_filtered_in );
+        _node_800_phase_difference6__sample_cnt_in = 0;
+        _node_800_phase_difference6__previous_correction_in = _node_800_phase_difference6__correction_in;
+    }
+    // Generated from the component: NODE DG.Phase Difference1
+    _node_dg_phase_difference1__sample_cnt_ref += 1;
+    _node_dg_phase_difference1__previous_filtered_ref = _node_dg_phase_difference1__filtered_ref;
+    _node_dg_phase_difference1__filtered_ref = _node_dg_phase_difference1__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference1__sample_cnt_ref >= 4167 ) {
+        _node_dg_phase_difference1__zc_flag_ref = 0;
+        _node_dg_phase_difference1__sample_cnt_ref = 0;
+        _node_dg_phase_difference1__previous_correction_ref = 0;
+        _node_dg_phase_difference1__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference1__filtered_ref >= 0) && (_node_dg_phase_difference1__previous_filtered_ref < 0) ) {
+        _node_dg_phase_difference1__zc_flag_ref = 1;
+    }
+    else {
+        _node_dg_phase_difference1__zc_flag_ref = 0;
+    }
+    _node_dg_phase_difference1__sample_cnt_in += 1;
+    _node_dg_phase_difference1__previous_filtered_in = _node_dg_phase_difference1__filtered_in;
+    _node_dg_phase_difference1__filtered_in = _node_dg_phase_difference1__previous_filtered_in * 0.6889383581487868 + _node_dg_va_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference1__sample_cnt_in >= 4167 ) {
+        _node_dg_phase_difference1__zc_flag_in = 0;
+        _node_dg_phase_difference1__no_zc_flag_in = 1;
+        _node_dg_phase_difference1__sample_cnt_in = 0;
+        _node_dg_phase_difference1__previous_correction_in = 0;
+        _node_dg_phase_difference1__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference1__filtered_in >= 0) && (_node_dg_phase_difference1__previous_filtered_in < 0) ) {
+        _node_dg_phase_difference1__zc_flag_in = 1;
+        _node_dg_phase_difference1__no_zc_flag_in = 0;
+    }
+    else {
+        _node_dg_phase_difference1__zc_flag_in = 0;
+    }
+    if( _node_dg_phase_difference1__zc_flag_ref ) {
+        _node_dg_phase_difference1__correction_ref = - _node_dg_phase_difference1__previous_filtered_ref / ( _node_dg_phase_difference1__filtered_ref - _node_dg_phase_difference1__previous_filtered_ref );
+        _node_dg_phase_difference1__sample_cnt_ref += _node_dg_phase_difference1__correction_ref - _node_dg_phase_difference1__previous_correction_ref;
+        if( (_node_dg_phase_difference1__sample_cnt_ref > 1e-6) || (_node_dg_phase_difference1__sample_cnt_ref < -1e-6) ) {
+            if( !_node_dg_phase_difference1__no_zc_flag_in ) {
+                _node_dg_phase_difference1__phase_state = 360.0 * ( _node_dg_phase_difference1__sample_cnt_in + _node_dg_phase_difference1__correction_ref - _node_dg_phase_difference1__previous_correction_in ) / _node_dg_phase_difference1__sample_cnt_ref;
+            }
+        }
+        if( (_node_dg_phase_difference1__phase_state > 360.0) || (_node_dg_phase_difference1__phase_state < -360.0) ) {
+            _node_dg_phase_difference1__phase_state = fmod(_node_dg_phase_difference1__phase_state, 360.0);
+        }
+        if (_node_dg_phase_difference1__phase_state < -180.0) {
+            _node_dg_phase_difference1__phase_state += 360.0;
+        }
+        else if (_node_dg_phase_difference1__phase_state > 180.0) {
+            _node_dg_phase_difference1__phase_state -= 360.0;
+        }
+        _node_dg_phase_difference1__sample_cnt_ref = 0;
+        _node_dg_phase_difference1__previous_correction_ref = _node_dg_phase_difference1__correction_ref;
+    }
+    if( _node_dg_phase_difference1__zc_flag_in ) {
+        _node_dg_phase_difference1__correction_in = - _node_dg_phase_difference1__previous_filtered_in / ( _node_dg_phase_difference1__filtered_in - _node_dg_phase_difference1__previous_filtered_in );
+        _node_dg_phase_difference1__sample_cnt_in = 0;
+        _node_dg_phase_difference1__previous_correction_in = _node_dg_phase_difference1__correction_in;
+    }
+    // Generated from the component: NODE DG.Phase Difference2
+    _node_dg_phase_difference2__sample_cnt_ref += 1;
+    _node_dg_phase_difference2__previous_filtered_ref = _node_dg_phase_difference2__filtered_ref;
+    _node_dg_phase_difference2__filtered_ref = _node_dg_phase_difference2__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference2__sample_cnt_ref >= 4167 ) {
+        _node_dg_phase_difference2__zc_flag_ref = 0;
+        _node_dg_phase_difference2__sample_cnt_ref = 0;
+        _node_dg_phase_difference2__previous_correction_ref = 0;
+        _node_dg_phase_difference2__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference2__filtered_ref >= 0) && (_node_dg_phase_difference2__previous_filtered_ref < 0) ) {
+        _node_dg_phase_difference2__zc_flag_ref = 1;
+    }
+    else {
+        _node_dg_phase_difference2__zc_flag_ref = 0;
+    }
+    _node_dg_phase_difference2__sample_cnt_in += 1;
+    _node_dg_phase_difference2__previous_filtered_in = _node_dg_phase_difference2__filtered_in;
+    _node_dg_phase_difference2__filtered_in = _node_dg_phase_difference2__previous_filtered_in * 0.6889383581487868 + _node_dg_vb_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference2__sample_cnt_in >= 4167 ) {
+        _node_dg_phase_difference2__zc_flag_in = 0;
+        _node_dg_phase_difference2__no_zc_flag_in = 1;
+        _node_dg_phase_difference2__sample_cnt_in = 0;
+        _node_dg_phase_difference2__previous_correction_in = 0;
+        _node_dg_phase_difference2__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference2__filtered_in >= 0) && (_node_dg_phase_difference2__previous_filtered_in < 0) ) {
+        _node_dg_phase_difference2__zc_flag_in = 1;
+        _node_dg_phase_difference2__no_zc_flag_in = 0;
+    }
+    else {
+        _node_dg_phase_difference2__zc_flag_in = 0;
+    }
+    if( _node_dg_phase_difference2__zc_flag_ref ) {
+        _node_dg_phase_difference2__correction_ref = - _node_dg_phase_difference2__previous_filtered_ref / ( _node_dg_phase_difference2__filtered_ref - _node_dg_phase_difference2__previous_filtered_ref );
+        _node_dg_phase_difference2__sample_cnt_ref += _node_dg_phase_difference2__correction_ref - _node_dg_phase_difference2__previous_correction_ref;
+        if( (_node_dg_phase_difference2__sample_cnt_ref > 1e-6) || (_node_dg_phase_difference2__sample_cnt_ref < -1e-6) ) {
+            if( !_node_dg_phase_difference2__no_zc_flag_in ) {
+                _node_dg_phase_difference2__phase_state = 360.0 * ( _node_dg_phase_difference2__sample_cnt_in + _node_dg_phase_difference2__correction_ref - _node_dg_phase_difference2__previous_correction_in ) / _node_dg_phase_difference2__sample_cnt_ref;
+            }
+        }
+        if( (_node_dg_phase_difference2__phase_state > 360.0) || (_node_dg_phase_difference2__phase_state < -360.0) ) {
+            _node_dg_phase_difference2__phase_state = fmod(_node_dg_phase_difference2__phase_state, 360.0);
+        }
+        if (_node_dg_phase_difference2__phase_state < -180.0) {
+            _node_dg_phase_difference2__phase_state += 360.0;
+        }
+        else if (_node_dg_phase_difference2__phase_state > 180.0) {
+            _node_dg_phase_difference2__phase_state -= 360.0;
+        }
+        _node_dg_phase_difference2__sample_cnt_ref = 0;
+        _node_dg_phase_difference2__previous_correction_ref = _node_dg_phase_difference2__correction_ref;
+    }
+    if( _node_dg_phase_difference2__zc_flag_in ) {
+        _node_dg_phase_difference2__correction_in = - _node_dg_phase_difference2__previous_filtered_in / ( _node_dg_phase_difference2__filtered_in - _node_dg_phase_difference2__previous_filtered_in );
+        _node_dg_phase_difference2__sample_cnt_in = 0;
+        _node_dg_phase_difference2__previous_correction_in = _node_dg_phase_difference2__correction_in;
+    }
+    // Generated from the component: NODE DG.Phase Difference3
+    _node_dg_phase_difference3__sample_cnt_ref += 1;
+    _node_dg_phase_difference3__previous_filtered_ref = _node_dg_phase_difference3__filtered_ref;
+    _node_dg_phase_difference3__filtered_ref = _node_dg_phase_difference3__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference3__sample_cnt_ref >= 4167 ) {
+        _node_dg_phase_difference3__zc_flag_ref = 0;
+        _node_dg_phase_difference3__sample_cnt_ref = 0;
+        _node_dg_phase_difference3__previous_correction_ref = 0;
+        _node_dg_phase_difference3__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference3__filtered_ref >= 0) && (_node_dg_phase_difference3__previous_filtered_ref < 0) ) {
+        _node_dg_phase_difference3__zc_flag_ref = 1;
+    }
+    else {
+        _node_dg_phase_difference3__zc_flag_ref = 0;
+    }
+    _node_dg_phase_difference3__sample_cnt_in += 1;
+    _node_dg_phase_difference3__previous_filtered_in = _node_dg_phase_difference3__filtered_in;
+    _node_dg_phase_difference3__filtered_in = _node_dg_phase_difference3__previous_filtered_in * 0.6889383581487868 + _node_dg_vc_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference3__sample_cnt_in >= 4167 ) {
+        _node_dg_phase_difference3__zc_flag_in = 0;
+        _node_dg_phase_difference3__no_zc_flag_in = 1;
+        _node_dg_phase_difference3__sample_cnt_in = 0;
+        _node_dg_phase_difference3__previous_correction_in = 0;
+        _node_dg_phase_difference3__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference3__filtered_in >= 0) && (_node_dg_phase_difference3__previous_filtered_in < 0) ) {
+        _node_dg_phase_difference3__zc_flag_in = 1;
+        _node_dg_phase_difference3__no_zc_flag_in = 0;
+    }
+    else {
+        _node_dg_phase_difference3__zc_flag_in = 0;
+    }
+    if( _node_dg_phase_difference3__zc_flag_ref ) {
+        _node_dg_phase_difference3__correction_ref = - _node_dg_phase_difference3__previous_filtered_ref / ( _node_dg_phase_difference3__filtered_ref - _node_dg_phase_difference3__previous_filtered_ref );
+        _node_dg_phase_difference3__sample_cnt_ref += _node_dg_phase_difference3__correction_ref - _node_dg_phase_difference3__previous_correction_ref;
+        if( (_node_dg_phase_difference3__sample_cnt_ref > 1e-6) || (_node_dg_phase_difference3__sample_cnt_ref < -1e-6) ) {
+            if( !_node_dg_phase_difference3__no_zc_flag_in ) {
+                _node_dg_phase_difference3__phase_state = 360.0 * ( _node_dg_phase_difference3__sample_cnt_in + _node_dg_phase_difference3__correction_ref - _node_dg_phase_difference3__previous_correction_in ) / _node_dg_phase_difference3__sample_cnt_ref;
+            }
+        }
+        if( (_node_dg_phase_difference3__phase_state > 360.0) || (_node_dg_phase_difference3__phase_state < -360.0) ) {
+            _node_dg_phase_difference3__phase_state = fmod(_node_dg_phase_difference3__phase_state, 360.0);
+        }
+        if (_node_dg_phase_difference3__phase_state < -180.0) {
+            _node_dg_phase_difference3__phase_state += 360.0;
+        }
+        else if (_node_dg_phase_difference3__phase_state > 180.0) {
+            _node_dg_phase_difference3__phase_state -= 360.0;
+        }
+        _node_dg_phase_difference3__sample_cnt_ref = 0;
+        _node_dg_phase_difference3__previous_correction_ref = _node_dg_phase_difference3__correction_ref;
+    }
+    if( _node_dg_phase_difference3__zc_flag_in ) {
+        _node_dg_phase_difference3__correction_in = - _node_dg_phase_difference3__previous_filtered_in / ( _node_dg_phase_difference3__filtered_in - _node_dg_phase_difference3__previous_filtered_in );
+        _node_dg_phase_difference3__sample_cnt_in = 0;
+        _node_dg_phase_difference3__previous_correction_in = _node_dg_phase_difference3__correction_in;
+    }
+    // Generated from the component: NODE DG.Phase Difference4
+    _node_dg_phase_difference4__sample_cnt_ref += 1;
+    _node_dg_phase_difference4__previous_filtered_ref = _node_dg_phase_difference4__filtered_ref;
+    _node_dg_phase_difference4__filtered_ref = _node_dg_phase_difference4__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference4__sample_cnt_ref >= 4167 ) {
+        _node_dg_phase_difference4__zc_flag_ref = 0;
+        _node_dg_phase_difference4__sample_cnt_ref = 0;
+        _node_dg_phase_difference4__previous_correction_ref = 0;
+        _node_dg_phase_difference4__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference4__filtered_ref >= 0) && (_node_dg_phase_difference4__previous_filtered_ref < 0) ) {
+        _node_dg_phase_difference4__zc_flag_ref = 1;
+    }
+    else {
+        _node_dg_phase_difference4__zc_flag_ref = 0;
+    }
+    _node_dg_phase_difference4__sample_cnt_in += 1;
+    _node_dg_phase_difference4__previous_filtered_in = _node_dg_phase_difference4__filtered_in;
+    _node_dg_phase_difference4__filtered_in = _node_dg_phase_difference4__previous_filtered_in * 0.6889383581487868 + _node_dg_ia_ia1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference4__sample_cnt_in >= 4167 ) {
+        _node_dg_phase_difference4__zc_flag_in = 0;
+        _node_dg_phase_difference4__no_zc_flag_in = 1;
+        _node_dg_phase_difference4__sample_cnt_in = 0;
+        _node_dg_phase_difference4__previous_correction_in = 0;
+        _node_dg_phase_difference4__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference4__filtered_in >= 0) && (_node_dg_phase_difference4__previous_filtered_in < 0) ) {
+        _node_dg_phase_difference4__zc_flag_in = 1;
+        _node_dg_phase_difference4__no_zc_flag_in = 0;
+    }
+    else {
+        _node_dg_phase_difference4__zc_flag_in = 0;
+    }
+    if( _node_dg_phase_difference4__zc_flag_ref ) {
+        _node_dg_phase_difference4__correction_ref = - _node_dg_phase_difference4__previous_filtered_ref / ( _node_dg_phase_difference4__filtered_ref - _node_dg_phase_difference4__previous_filtered_ref );
+        _node_dg_phase_difference4__sample_cnt_ref += _node_dg_phase_difference4__correction_ref - _node_dg_phase_difference4__previous_correction_ref;
+        if( (_node_dg_phase_difference4__sample_cnt_ref > 1e-6) || (_node_dg_phase_difference4__sample_cnt_ref < -1e-6) ) {
+            if( !_node_dg_phase_difference4__no_zc_flag_in ) {
+                _node_dg_phase_difference4__phase_state = 360.0 * ( _node_dg_phase_difference4__sample_cnt_in + _node_dg_phase_difference4__correction_ref - _node_dg_phase_difference4__previous_correction_in ) / _node_dg_phase_difference4__sample_cnt_ref;
+            }
+        }
+        if( (_node_dg_phase_difference4__phase_state > 360.0) || (_node_dg_phase_difference4__phase_state < -360.0) ) {
+            _node_dg_phase_difference4__phase_state = fmod(_node_dg_phase_difference4__phase_state, 360.0);
+        }
+        if (_node_dg_phase_difference4__phase_state < -180.0) {
+            _node_dg_phase_difference4__phase_state += 360.0;
+        }
+        else if (_node_dg_phase_difference4__phase_state > 180.0) {
+            _node_dg_phase_difference4__phase_state -= 360.0;
+        }
+        _node_dg_phase_difference4__sample_cnt_ref = 0;
+        _node_dg_phase_difference4__previous_correction_ref = _node_dg_phase_difference4__correction_ref;
+    }
+    if( _node_dg_phase_difference4__zc_flag_in ) {
+        _node_dg_phase_difference4__correction_in = - _node_dg_phase_difference4__previous_filtered_in / ( _node_dg_phase_difference4__filtered_in - _node_dg_phase_difference4__previous_filtered_in );
+        _node_dg_phase_difference4__sample_cnt_in = 0;
+        _node_dg_phase_difference4__previous_correction_in = _node_dg_phase_difference4__correction_in;
+    }
+    // Generated from the component: NODE DG.Phase Difference5
+    _node_dg_phase_difference5__sample_cnt_ref += 1;
+    _node_dg_phase_difference5__previous_filtered_ref = _node_dg_phase_difference5__filtered_ref;
+    _node_dg_phase_difference5__filtered_ref = _node_dg_phase_difference5__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference5__sample_cnt_ref >= 4167 ) {
+        _node_dg_phase_difference5__zc_flag_ref = 0;
+        _node_dg_phase_difference5__sample_cnt_ref = 0;
+        _node_dg_phase_difference5__previous_correction_ref = 0;
+        _node_dg_phase_difference5__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference5__filtered_ref >= 0) && (_node_dg_phase_difference5__previous_filtered_ref < 0) ) {
+        _node_dg_phase_difference5__zc_flag_ref = 1;
+    }
+    else {
+        _node_dg_phase_difference5__zc_flag_ref = 0;
+    }
+    _node_dg_phase_difference5__sample_cnt_in += 1;
+    _node_dg_phase_difference5__previous_filtered_in = _node_dg_phase_difference5__filtered_in;
+    _node_dg_phase_difference5__filtered_in = _node_dg_phase_difference5__previous_filtered_in * 0.6889383581487868 + _node_dg_ib_ia1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference5__sample_cnt_in >= 4167 ) {
+        _node_dg_phase_difference5__zc_flag_in = 0;
+        _node_dg_phase_difference5__no_zc_flag_in = 1;
+        _node_dg_phase_difference5__sample_cnt_in = 0;
+        _node_dg_phase_difference5__previous_correction_in = 0;
+        _node_dg_phase_difference5__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference5__filtered_in >= 0) && (_node_dg_phase_difference5__previous_filtered_in < 0) ) {
+        _node_dg_phase_difference5__zc_flag_in = 1;
+        _node_dg_phase_difference5__no_zc_flag_in = 0;
+    }
+    else {
+        _node_dg_phase_difference5__zc_flag_in = 0;
+    }
+    if( _node_dg_phase_difference5__zc_flag_ref ) {
+        _node_dg_phase_difference5__correction_ref = - _node_dg_phase_difference5__previous_filtered_ref / ( _node_dg_phase_difference5__filtered_ref - _node_dg_phase_difference5__previous_filtered_ref );
+        _node_dg_phase_difference5__sample_cnt_ref += _node_dg_phase_difference5__correction_ref - _node_dg_phase_difference5__previous_correction_ref;
+        if( (_node_dg_phase_difference5__sample_cnt_ref > 1e-6) || (_node_dg_phase_difference5__sample_cnt_ref < -1e-6) ) {
+            if( !_node_dg_phase_difference5__no_zc_flag_in ) {
+                _node_dg_phase_difference5__phase_state = 360.0 * ( _node_dg_phase_difference5__sample_cnt_in + _node_dg_phase_difference5__correction_ref - _node_dg_phase_difference5__previous_correction_in ) / _node_dg_phase_difference5__sample_cnt_ref;
+            }
+        }
+        if( (_node_dg_phase_difference5__phase_state > 360.0) || (_node_dg_phase_difference5__phase_state < -360.0) ) {
+            _node_dg_phase_difference5__phase_state = fmod(_node_dg_phase_difference5__phase_state, 360.0);
+        }
+        if (_node_dg_phase_difference5__phase_state < -180.0) {
+            _node_dg_phase_difference5__phase_state += 360.0;
+        }
+        else if (_node_dg_phase_difference5__phase_state > 180.0) {
+            _node_dg_phase_difference5__phase_state -= 360.0;
+        }
+        _node_dg_phase_difference5__sample_cnt_ref = 0;
+        _node_dg_phase_difference5__previous_correction_ref = _node_dg_phase_difference5__correction_ref;
+    }
+    if( _node_dg_phase_difference5__zc_flag_in ) {
+        _node_dg_phase_difference5__correction_in = - _node_dg_phase_difference5__previous_filtered_in / ( _node_dg_phase_difference5__filtered_in - _node_dg_phase_difference5__previous_filtered_in );
+        _node_dg_phase_difference5__sample_cnt_in = 0;
+        _node_dg_phase_difference5__previous_correction_in = _node_dg_phase_difference5__correction_in;
+    }
+    // Generated from the component: NODE DG.Phase Difference6
+    _node_dg_phase_difference6__sample_cnt_ref += 1;
+    _node_dg_phase_difference6__previous_filtered_ref = _node_dg_phase_difference6__filtered_ref;
+    _node_dg_phase_difference6__filtered_ref = _node_dg_phase_difference6__previous_filtered_ref * 0.6889383581487868 + _reference_vref_va1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference6__sample_cnt_ref >= 4167 ) {
+        _node_dg_phase_difference6__zc_flag_ref = 0;
+        _node_dg_phase_difference6__sample_cnt_ref = 0;
+        _node_dg_phase_difference6__previous_correction_ref = 0;
+        _node_dg_phase_difference6__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference6__filtered_ref >= 0) && (_node_dg_phase_difference6__previous_filtered_ref < 0) ) {
+        _node_dg_phase_difference6__zc_flag_ref = 1;
+    }
+    else {
+        _node_dg_phase_difference6__zc_flag_ref = 0;
+    }
+    _node_dg_phase_difference6__sample_cnt_in += 1;
+    _node_dg_phase_difference6__previous_filtered_in = _node_dg_phase_difference6__filtered_in;
+    _node_dg_phase_difference6__filtered_in = _node_dg_phase_difference6__previous_filtered_in * 0.6889383581487868 + _node_dg_ic_ia1__out * 0.3110616418512132;
+    if( _node_dg_phase_difference6__sample_cnt_in >= 4167 ) {
+        _node_dg_phase_difference6__zc_flag_in = 0;
+        _node_dg_phase_difference6__no_zc_flag_in = 1;
+        _node_dg_phase_difference6__sample_cnt_in = 0;
+        _node_dg_phase_difference6__previous_correction_in = 0;
+        _node_dg_phase_difference6__phase_state = 0;
+    }
+    else if( (_node_dg_phase_difference6__filtered_in >= 0) && (_node_dg_phase_difference6__previous_filtered_in < 0) ) {
+        _node_dg_phase_difference6__zc_flag_in = 1;
+        _node_dg_phase_difference6__no_zc_flag_in = 0;
+    }
+    else {
+        _node_dg_phase_difference6__zc_flag_in = 0;
+    }
+    if( _node_dg_phase_difference6__zc_flag_ref ) {
+        _node_dg_phase_difference6__correction_ref = - _node_dg_phase_difference6__previous_filtered_ref / ( _node_dg_phase_difference6__filtered_ref - _node_dg_phase_difference6__previous_filtered_ref );
+        _node_dg_phase_difference6__sample_cnt_ref += _node_dg_phase_difference6__correction_ref - _node_dg_phase_difference6__previous_correction_ref;
+        if( (_node_dg_phase_difference6__sample_cnt_ref > 1e-6) || (_node_dg_phase_difference6__sample_cnt_ref < -1e-6) ) {
+            if( !_node_dg_phase_difference6__no_zc_flag_in ) {
+                _node_dg_phase_difference6__phase_state = 360.0 * ( _node_dg_phase_difference6__sample_cnt_in + _node_dg_phase_difference6__correction_ref - _node_dg_phase_difference6__previous_correction_in ) / _node_dg_phase_difference6__sample_cnt_ref;
+            }
+        }
+        if( (_node_dg_phase_difference6__phase_state > 360.0) || (_node_dg_phase_difference6__phase_state < -360.0) ) {
+            _node_dg_phase_difference6__phase_state = fmod(_node_dg_phase_difference6__phase_state, 360.0);
+        }
+        if (_node_dg_phase_difference6__phase_state < -180.0) {
+            _node_dg_phase_difference6__phase_state += 360.0;
+        }
+        else if (_node_dg_phase_difference6__phase_state > 180.0) {
+            _node_dg_phase_difference6__phase_state -= 360.0;
+        }
+        _node_dg_phase_difference6__sample_cnt_ref = 0;
+        _node_dg_phase_difference6__previous_correction_ref = _node_dg_phase_difference6__correction_ref;
+    }
+    if( _node_dg_phase_difference6__zc_flag_in ) {
+        _node_dg_phase_difference6__correction_in = - _node_dg_phase_difference6__previous_filtered_in / ( _node_dg_phase_difference6__filtered_in - _node_dg_phase_difference6__previous_filtered_in );
+        _node_dg_phase_difference6__sample_cnt_in = 0;
+        _node_dg_phase_difference6__previous_correction_in = _node_dg_phase_difference6__correction_in;
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Edge Detection1.Unit Delay1
+    _wind_power_plant__average_1_control_grid_follow_edge_detection1_unit_delay1__state = _wind_power_plant__average_1_input_bus_split2__out1;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.Unit Delay1
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay1__state = _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__P;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.Unit Delay2
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_unit_delay2__state = _wind_power_plant__average_1_control_grid_follow_limit_pqref_lims_overpq_s_limiting_over_pq__Q;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.LPF.LPF
+    for (_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i = 1; _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i > 0; _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i--) {
+        _wind_power_plant__average_1_control_pll_pll_lpf_lpf__a_sum += _wind_power_plant__average_1_control_pll_pll_lpf_lpf__a_coeff[_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i + 1] * _wind_power_plant__average_1_control_pll_pll_lpf_lpf__states[_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i];
+    }
+    _wind_power_plant__average_1_control_pll_pll_lpf_lpf__a_sum += _wind_power_plant__average_1_control_pll_pll_lpf_lpf__states[0] * _wind_power_plant__average_1_control_pll_pll_lpf_lpf__a_coeff[1];
+    _wind_power_plant__average_1_control_pll_pll_lpf_lpf__delay_line_in = _wind_power_plant__average_1_control_pll_pll_rate_limiter1__out - _wind_power_plant__average_1_control_pll_pll_lpf_lpf__a_sum;
+    for (_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i = 1; _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i > 0; _wind_power_plant__average_1_control_pll_pll_lpf_lpf__i--) {
+        _wind_power_plant__average_1_control_pll_pll_lpf_lpf__states[_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i] = _wind_power_plant__average_1_control_pll_pll_lpf_lpf__states[_wind_power_plant__average_1_control_pll_pll_lpf_lpf__i - 1];
+    }
+    _wind_power_plant__average_1_control_pll_pll_lpf_lpf__states[0] = _wind_power_plant__average_1_control_pll_pll_lpf_lpf__delay_line_in;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Integrator1
+    _wind_power_plant__average_1_control_pll_pll_pid_integrator1__state += _wind_power_plant__average_1_control_pll_pll_pid_sum7__out * 0.00012;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.PID.Integrator2
+    _wind_power_plant__average_1_control_pll_pll_pid_integrator2__state += _wind_power_plant__average_1_control_pll_pll_pid_gain1__out * 0.00012;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.Unit Delay1
+    _wind_power_plant__average_1_control_pll_pll_unit_delay1__state = _wind_power_plant__average_1_control_pll_pll_integrator__out;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.abc to dq.LPF_d
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_d__previous_in = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__d;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.abc to dq.LPF_q
+    _wind_power_plant__average_1_control_pll_pll_abc_to_dq_lpf_q__previous_in = _wind_power_plant__average_1_control_pll_pll_abc_to_dq_alpha_beta_to_dq__q;
+    // Generated from the component: NODE 800.RMS value4
+    if( _node_800_rms_value4__zc ) {
+        if (_node_800_ia_ia1__out != _node_800_rms_value4__previous_value)
+            _node_800_rms_value4__correction = - _node_800_rms_value4__previous_value / (_node_800_ia_ia1__out - _node_800_rms_value4__previous_value);
+        if (_node_800_rms_value4__correction < 0)
+            _node_800_rms_value4__correction = 0;
+        else
+            _node_800_rms_value4__correction = 0;
+        _node_800_rms_value4__sample_cnt += _node_800_rms_value4__correction - _node_800_rms_value4__previous_correction;
+        _node_800_rms_value4__out_state = sqrt(_node_800_rms_value4__square_sum / _node_800_rms_value4__sample_cnt);
+        _node_800_rms_value4__sample_cnt = 0;
+        _node_800_rms_value4__previous_correction = _node_800_rms_value4__correction;
+        _node_800_rms_value4__square_sum = 0;
+    } else if ( _node_800_rms_value4__sample_cnt >= 4167 ) {
+        _node_800_rms_value4__out_state = sqrt(_node_800_rms_value4__square_sum / _node_800_rms_value4__sample_cnt);
+        _node_800_rms_value4__sample_cnt = 0;
+        _node_800_rms_value4__square_sum = 0;
+    }
+    _node_800_rms_value4__previous_value = _node_800_ia_ia1__out;
+    _node_800_rms_value4__square_sum += _node_800_ia_ia1__out * _node_800_ia_ia1__out;
+    _node_800_rms_value4__sample_cnt ++;
+    // Generated from the component: NODE 800.RMS value5
+    if( _node_800_rms_value5__zc ) {
+        if (_node_800_ib_ia1__out != _node_800_rms_value5__previous_value)
+            _node_800_rms_value5__correction = - _node_800_rms_value5__previous_value / (_node_800_ib_ia1__out - _node_800_rms_value5__previous_value);
+        if (_node_800_rms_value5__correction < 0)
+            _node_800_rms_value5__correction = 0;
+        else
+            _node_800_rms_value5__correction = 0;
+        _node_800_rms_value5__sample_cnt += _node_800_rms_value5__correction - _node_800_rms_value5__previous_correction;
+        _node_800_rms_value5__out_state = sqrt(_node_800_rms_value5__square_sum / _node_800_rms_value5__sample_cnt);
+        _node_800_rms_value5__sample_cnt = 0;
+        _node_800_rms_value5__previous_correction = _node_800_rms_value5__correction;
+        _node_800_rms_value5__square_sum = 0;
+    } else if ( _node_800_rms_value5__sample_cnt >= 4167 ) {
+        _node_800_rms_value5__out_state = sqrt(_node_800_rms_value5__square_sum / _node_800_rms_value5__sample_cnt);
+        _node_800_rms_value5__sample_cnt = 0;
+        _node_800_rms_value5__square_sum = 0;
+    }
+    _node_800_rms_value5__previous_value = _node_800_ib_ia1__out;
+    _node_800_rms_value5__square_sum += _node_800_ib_ia1__out * _node_800_ib_ia1__out;
+    _node_800_rms_value5__sample_cnt ++;
+    // Generated from the component: NODE 800.RMS value6
+    if( _node_800_rms_value6__zc ) {
+        if (_node_800_ic_ia1__out != _node_800_rms_value6__previous_value)
+            _node_800_rms_value6__correction = - _node_800_rms_value6__previous_value / (_node_800_ic_ia1__out - _node_800_rms_value6__previous_value);
+        if (_node_800_rms_value6__correction < 0)
+            _node_800_rms_value6__correction = 0;
+        else
+            _node_800_rms_value6__correction = 0;
+        _node_800_rms_value6__sample_cnt += _node_800_rms_value6__correction - _node_800_rms_value6__previous_correction;
+        _node_800_rms_value6__out_state = sqrt(_node_800_rms_value6__square_sum / _node_800_rms_value6__sample_cnt);
+        _node_800_rms_value6__sample_cnt = 0;
+        _node_800_rms_value6__previous_correction = _node_800_rms_value6__correction;
+        _node_800_rms_value6__square_sum = 0;
+    } else if ( _node_800_rms_value6__sample_cnt >= 4167 ) {
+        _node_800_rms_value6__out_state = sqrt(_node_800_rms_value6__square_sum / _node_800_rms_value6__sample_cnt);
+        _node_800_rms_value6__sample_cnt = 0;
+        _node_800_rms_value6__square_sum = 0;
+    }
+    _node_800_rms_value6__previous_value = _node_800_ic_ia1__out;
+    _node_800_rms_value6__square_sum += _node_800_ic_ia1__out * _node_800_ic_ia1__out;
+    _node_800_rms_value6__sample_cnt ++;
+    // Generated from the component: NODE 800.RMS value1
+    if( _node_800_rms_value1__zc ) {
+        if (_node_800_va_va1__out != _node_800_rms_value1__previous_value)
+            _node_800_rms_value1__correction = - _node_800_rms_value1__previous_value / (_node_800_va_va1__out - _node_800_rms_value1__previous_value);
+        if (_node_800_rms_value1__correction < 0)
+            _node_800_rms_value1__correction = 0;
+        else
+            _node_800_rms_value1__correction = 0;
+        _node_800_rms_value1__sample_cnt += _node_800_rms_value1__correction - _node_800_rms_value1__previous_correction;
+        _node_800_rms_value1__out_state = sqrt(_node_800_rms_value1__square_sum / _node_800_rms_value1__sample_cnt);
+        _node_800_rms_value1__sample_cnt = 0;
+        _node_800_rms_value1__previous_correction = _node_800_rms_value1__correction;
+        _node_800_rms_value1__square_sum = 0;
+    } else if ( _node_800_rms_value1__sample_cnt >= 4167 ) {
+        _node_800_rms_value1__out_state = sqrt(_node_800_rms_value1__square_sum / _node_800_rms_value1__sample_cnt);
+        _node_800_rms_value1__sample_cnt = 0;
+        _node_800_rms_value1__square_sum = 0;
+    }
+    _node_800_rms_value1__previous_value = _node_800_va_va1__out;
+    _node_800_rms_value1__square_sum += _node_800_va_va1__out * _node_800_va_va1__out;
+    _node_800_rms_value1__sample_cnt ++;
+    // Generated from the component: NODE 800.RMS value2
+    if( _node_800_rms_value2__zc ) {
+        if (_node_800_vb_va1__out != _node_800_rms_value2__previous_value)
+            _node_800_rms_value2__correction = - _node_800_rms_value2__previous_value / (_node_800_vb_va1__out - _node_800_rms_value2__previous_value);
+        if (_node_800_rms_value2__correction < 0)
+            _node_800_rms_value2__correction = 0;
+        else
+            _node_800_rms_value2__correction = 0;
+        _node_800_rms_value2__sample_cnt += _node_800_rms_value2__correction - _node_800_rms_value2__previous_correction;
+        _node_800_rms_value2__out_state = sqrt(_node_800_rms_value2__square_sum / _node_800_rms_value2__sample_cnt);
+        _node_800_rms_value2__sample_cnt = 0;
+        _node_800_rms_value2__previous_correction = _node_800_rms_value2__correction;
+        _node_800_rms_value2__square_sum = 0;
+    } else if ( _node_800_rms_value2__sample_cnt >= 4167 ) {
+        _node_800_rms_value2__out_state = sqrt(_node_800_rms_value2__square_sum / _node_800_rms_value2__sample_cnt);
+        _node_800_rms_value2__sample_cnt = 0;
+        _node_800_rms_value2__square_sum = 0;
+    }
+    _node_800_rms_value2__previous_value = _node_800_vb_va1__out;
+    _node_800_rms_value2__square_sum += _node_800_vb_va1__out * _node_800_vb_va1__out;
+    _node_800_rms_value2__sample_cnt ++;
+    // Generated from the component: NODE 800.RMS value3
+    if( _node_800_rms_value3__zc ) {
+        if (_node_800_vc_va1__out != _node_800_rms_value3__previous_value)
+            _node_800_rms_value3__correction = - _node_800_rms_value3__previous_value / (_node_800_vc_va1__out - _node_800_rms_value3__previous_value);
+        if (_node_800_rms_value3__correction < 0)
+            _node_800_rms_value3__correction = 0;
+        else
+            _node_800_rms_value3__correction = 0;
+        _node_800_rms_value3__sample_cnt += _node_800_rms_value3__correction - _node_800_rms_value3__previous_correction;
+        _node_800_rms_value3__out_state = sqrt(_node_800_rms_value3__square_sum / _node_800_rms_value3__sample_cnt);
+        _node_800_rms_value3__sample_cnt = 0;
+        _node_800_rms_value3__previous_correction = _node_800_rms_value3__correction;
+        _node_800_rms_value3__square_sum = 0;
+    } else if ( _node_800_rms_value3__sample_cnt >= 4167 ) {
+        _node_800_rms_value3__out_state = sqrt(_node_800_rms_value3__square_sum / _node_800_rms_value3__sample_cnt);
+        _node_800_rms_value3__sample_cnt = 0;
+        _node_800_rms_value3__square_sum = 0;
+    }
+    _node_800_rms_value3__previous_value = _node_800_vc_va1__out;
+    _node_800_rms_value3__square_sum += _node_800_vc_va1__out * _node_800_vc_va1__out;
+    _node_800_rms_value3__sample_cnt ++;
+    // Generated from the component: NODE DG.RMS value4
+    if( _node_dg_rms_value4__zc ) {
+        if (_node_dg_ia_ia1__out != _node_dg_rms_value4__previous_value)
+            _node_dg_rms_value4__correction = - _node_dg_rms_value4__previous_value / (_node_dg_ia_ia1__out - _node_dg_rms_value4__previous_value);
+        if (_node_dg_rms_value4__correction < 0)
+            _node_dg_rms_value4__correction = 0;
+        else
+            _node_dg_rms_value4__correction = 0;
+        _node_dg_rms_value4__sample_cnt += _node_dg_rms_value4__correction - _node_dg_rms_value4__previous_correction;
+        _node_dg_rms_value4__out_state = sqrt(_node_dg_rms_value4__square_sum / _node_dg_rms_value4__sample_cnt);
+        _node_dg_rms_value4__sample_cnt = 0;
+        _node_dg_rms_value4__previous_correction = _node_dg_rms_value4__correction;
+        _node_dg_rms_value4__square_sum = 0;
+    } else if ( _node_dg_rms_value4__sample_cnt >= 4167 ) {
+        _node_dg_rms_value4__out_state = sqrt(_node_dg_rms_value4__square_sum / _node_dg_rms_value4__sample_cnt);
+        _node_dg_rms_value4__sample_cnt = 0;
+        _node_dg_rms_value4__square_sum = 0;
+    }
+    _node_dg_rms_value4__previous_value = _node_dg_ia_ia1__out;
+    _node_dg_rms_value4__square_sum += _node_dg_ia_ia1__out * _node_dg_ia_ia1__out;
+    _node_dg_rms_value4__sample_cnt ++;
+    // Generated from the component: NODE DG.RMS value5
+    if( _node_dg_rms_value5__zc ) {
+        if (_node_dg_ib_ia1__out != _node_dg_rms_value5__previous_value)
+            _node_dg_rms_value5__correction = - _node_dg_rms_value5__previous_value / (_node_dg_ib_ia1__out - _node_dg_rms_value5__previous_value);
+        if (_node_dg_rms_value5__correction < 0)
+            _node_dg_rms_value5__correction = 0;
+        else
+            _node_dg_rms_value5__correction = 0;
+        _node_dg_rms_value5__sample_cnt += _node_dg_rms_value5__correction - _node_dg_rms_value5__previous_correction;
+        _node_dg_rms_value5__out_state = sqrt(_node_dg_rms_value5__square_sum / _node_dg_rms_value5__sample_cnt);
+        _node_dg_rms_value5__sample_cnt = 0;
+        _node_dg_rms_value5__previous_correction = _node_dg_rms_value5__correction;
+        _node_dg_rms_value5__square_sum = 0;
+    } else if ( _node_dg_rms_value5__sample_cnt >= 4167 ) {
+        _node_dg_rms_value5__out_state = sqrt(_node_dg_rms_value5__square_sum / _node_dg_rms_value5__sample_cnt);
+        _node_dg_rms_value5__sample_cnt = 0;
+        _node_dg_rms_value5__square_sum = 0;
+    }
+    _node_dg_rms_value5__previous_value = _node_dg_ib_ia1__out;
+    _node_dg_rms_value5__square_sum += _node_dg_ib_ia1__out * _node_dg_ib_ia1__out;
+    _node_dg_rms_value5__sample_cnt ++;
+    // Generated from the component: NODE DG.RMS value6
+    if( _node_dg_rms_value6__zc ) {
+        if (_node_dg_ic_ia1__out != _node_dg_rms_value6__previous_value)
+            _node_dg_rms_value6__correction = - _node_dg_rms_value6__previous_value / (_node_dg_ic_ia1__out - _node_dg_rms_value6__previous_value);
+        if (_node_dg_rms_value6__correction < 0)
+            _node_dg_rms_value6__correction = 0;
+        else
+            _node_dg_rms_value6__correction = 0;
+        _node_dg_rms_value6__sample_cnt += _node_dg_rms_value6__correction - _node_dg_rms_value6__previous_correction;
+        _node_dg_rms_value6__out_state = sqrt(_node_dg_rms_value6__square_sum / _node_dg_rms_value6__sample_cnt);
+        _node_dg_rms_value6__sample_cnt = 0;
+        _node_dg_rms_value6__previous_correction = _node_dg_rms_value6__correction;
+        _node_dg_rms_value6__square_sum = 0;
+    } else if ( _node_dg_rms_value6__sample_cnt >= 4167 ) {
+        _node_dg_rms_value6__out_state = sqrt(_node_dg_rms_value6__square_sum / _node_dg_rms_value6__sample_cnt);
+        _node_dg_rms_value6__sample_cnt = 0;
+        _node_dg_rms_value6__square_sum = 0;
+    }
+    _node_dg_rms_value6__previous_value = _node_dg_ic_ia1__out;
+    _node_dg_rms_value6__square_sum += _node_dg_ic_ia1__out * _node_dg_ic_ia1__out;
+    _node_dg_rms_value6__sample_cnt ++;
+    // Generated from the component: NODE DG.RMS value1
+    if( _node_dg_rms_value1__zc ) {
+        if (_node_dg_va_va1__out != _node_dg_rms_value1__previous_value)
+            _node_dg_rms_value1__correction = - _node_dg_rms_value1__previous_value / (_node_dg_va_va1__out - _node_dg_rms_value1__previous_value);
+        if (_node_dg_rms_value1__correction < 0)
+            _node_dg_rms_value1__correction = 0;
+        else
+            _node_dg_rms_value1__correction = 0;
+        _node_dg_rms_value1__sample_cnt += _node_dg_rms_value1__correction - _node_dg_rms_value1__previous_correction;
+        _node_dg_rms_value1__out_state = sqrt(_node_dg_rms_value1__square_sum / _node_dg_rms_value1__sample_cnt);
+        _node_dg_rms_value1__sample_cnt = 0;
+        _node_dg_rms_value1__previous_correction = _node_dg_rms_value1__correction;
+        _node_dg_rms_value1__square_sum = 0;
+    } else if ( _node_dg_rms_value1__sample_cnt >= 4167 ) {
+        _node_dg_rms_value1__out_state = sqrt(_node_dg_rms_value1__square_sum / _node_dg_rms_value1__sample_cnt);
+        _node_dg_rms_value1__sample_cnt = 0;
+        _node_dg_rms_value1__square_sum = 0;
+    }
+    _node_dg_rms_value1__previous_value = _node_dg_va_va1__out;
+    _node_dg_rms_value1__square_sum += _node_dg_va_va1__out * _node_dg_va_va1__out;
+    _node_dg_rms_value1__sample_cnt ++;
+    // Generated from the component: NODE DG.RMS value2
+    if( _node_dg_rms_value2__zc ) {
+        if (_node_dg_vb_va1__out != _node_dg_rms_value2__previous_value)
+            _node_dg_rms_value2__correction = - _node_dg_rms_value2__previous_value / (_node_dg_vb_va1__out - _node_dg_rms_value2__previous_value);
+        if (_node_dg_rms_value2__correction < 0)
+            _node_dg_rms_value2__correction = 0;
+        else
+            _node_dg_rms_value2__correction = 0;
+        _node_dg_rms_value2__sample_cnt += _node_dg_rms_value2__correction - _node_dg_rms_value2__previous_correction;
+        _node_dg_rms_value2__out_state = sqrt(_node_dg_rms_value2__square_sum / _node_dg_rms_value2__sample_cnt);
+        _node_dg_rms_value2__sample_cnt = 0;
+        _node_dg_rms_value2__previous_correction = _node_dg_rms_value2__correction;
+        _node_dg_rms_value2__square_sum = 0;
+    } else if ( _node_dg_rms_value2__sample_cnt >= 4167 ) {
+        _node_dg_rms_value2__out_state = sqrt(_node_dg_rms_value2__square_sum / _node_dg_rms_value2__sample_cnt);
+        _node_dg_rms_value2__sample_cnt = 0;
+        _node_dg_rms_value2__square_sum = 0;
+    }
+    _node_dg_rms_value2__previous_value = _node_dg_vb_va1__out;
+    _node_dg_rms_value2__square_sum += _node_dg_vb_va1__out * _node_dg_vb_va1__out;
+    _node_dg_rms_value2__sample_cnt ++;
+    // Generated from the component: NODE DG.RMS value3
+    if( _node_dg_rms_value3__zc ) {
+        if (_node_dg_vc_va1__out != _node_dg_rms_value3__previous_value)
+            _node_dg_rms_value3__correction = - _node_dg_rms_value3__previous_value / (_node_dg_vc_va1__out - _node_dg_rms_value3__previous_value);
+        if (_node_dg_rms_value3__correction < 0)
+            _node_dg_rms_value3__correction = 0;
+        else
+            _node_dg_rms_value3__correction = 0;
+        _node_dg_rms_value3__sample_cnt += _node_dg_rms_value3__correction - _node_dg_rms_value3__previous_correction;
+        _node_dg_rms_value3__out_state = sqrt(_node_dg_rms_value3__square_sum / _node_dg_rms_value3__sample_cnt);
+        _node_dg_rms_value3__sample_cnt = 0;
+        _node_dg_rms_value3__previous_correction = _node_dg_rms_value3__correction;
+        _node_dg_rms_value3__square_sum = 0;
+    } else if ( _node_dg_rms_value3__sample_cnt >= 4167 ) {
+        _node_dg_rms_value3__out_state = sqrt(_node_dg_rms_value3__square_sum / _node_dg_rms_value3__sample_cnt);
+        _node_dg_rms_value3__sample_cnt = 0;
+        _node_dg_rms_value3__square_sum = 0;
+    }
+    _node_dg_rms_value3__previous_value = _node_dg_vc_va1__out;
+    _node_dg_rms_value3__square_sum += _node_dg_vc_va1__out * _node_dg_vc_va1__out;
+    _node_dg_rms_value3__sample_cnt ++;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.normalize
+    {
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.LPF_dc
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__states[0] = _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_lpf_dc__delay_line_in;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.delay
+    {
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_d.Integrator1
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__state += _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_sum7__out * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out > 0)
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__reset_state = 1;
+    else if (_wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out < 0)
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__reset_state = -1;
+    else
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_d_integrator1__reset_state = 0;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.ControlSignal_Calculation.PI_q.Integrator1
+    _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__state += _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_sum7__out * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out > 0)
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__reset_state = 1;
+    else if (_wind_power_plant__average_1_control_grid_follow_edge_detection1_relational_operator1__out < 0)
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__reset_state = -1;
+    else
+        _wind_power_plant__average_1_control_grid_follow_controlsignal_calculation_pi_q_integrator1__reset_state = 0;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.PI_Vt.Integrator1
+    _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__state += _wind_power_plant__average_1_control_grid_follow_pi_vt_sum7__out * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_logical_operator1__out > 0)
+        _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__reset_state = 1;
+    else if (_wind_power_plant__average_1_control_grid_follow_logical_operator1__out < 0)
+        _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__reset_state = -1;
+    else
+        _wind_power_plant__average_1_control_grid_follow_pi_vt_integrator1__reset_state = 0;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.LPF_P
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__states[0] = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_p__delay_line_in;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.LPF_Q
+    _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__states[0] = _wind_power_plant__average_1_control_grid_follow_power_meas_power_meas_dqpu_lpf_q__delay_line_in;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.Rate Limiter1
+    _wind_power_plant__average_1_control_pll_pll_rate_limiter1__rising_rate_lim[0] = 1884.9555921538758 * 0.00012;
+    _wind_power_plant__average_1_control_pll_pll_rate_limiter1__falling_rate_lim[0] = -1884.9555921538758 * 0.00012;
+    if (_wind_power_plant__average_1_control_pll_pll_pid_limit1__out - _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state > _wind_power_plant__average_1_control_pll_pll_rate_limiter1__rising_rate_lim[0])
+        _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state += _wind_power_plant__average_1_control_pll_pll_rate_limiter1__rising_rate_lim[0];
+    else  if (_wind_power_plant__average_1_control_pll_pll_pid_limit1__out - _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state < _wind_power_plant__average_1_control_pll_pll_rate_limiter1__falling_rate_lim[0])
+        _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state += (_wind_power_plant__average_1_control_pll_pll_rate_limiter1__falling_rate_lim[0]);
+    else
+        _wind_power_plant__average_1_control_pll_pll_rate_limiter1__state = _wind_power_plant__average_1_control_pll_pll_pid_limit1__out;
+    _wind_power_plant__average_1_control_pll_pll_rate_limiter1__first_step = 0;
+    // Generated from the component: Wind Power Plant (Average)1.Control.PLL.PLL.integrator
+    {
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Power_Meas.Power_Meas_DQpu.S_and_pf
+    {
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.priority_PQlim.PQ limiting with priority
+    {
+    }
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.P rate limit
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__rising_rate_lim[0] = 5.0 * 0.00012;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__falling_rate_lim[0] = -5.0 * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P - _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state > _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__rising_rate_lim[0])
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state += _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__rising_rate_lim[0];
+    else  if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P - _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state < _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__falling_rate_lim[0])
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state += (_wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__falling_rate_lim[0]);
+    else
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__state = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__P;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_p_rate_limit__first_step = 0;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.Q rate limit
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__rising_rate_lim[0] = 5.0 * 0.00012;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__falling_rate_lim[0] = -5.0 * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q - _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state > _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__rising_rate_lim[0])
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state += _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__rising_rate_lim[0];
+    else  if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q - _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state < _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__falling_rate_lim[0])
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state += (_wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__falling_rate_lim[0]);
+    else
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__state = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__Q;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_q_rate_limit__first_step = 0;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.S rate limit
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__rising_rate_lim[0] = 5.0 * 0.00012;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__falling_rate_lim[0] = -5.0 * 0.00012;
+    if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S - _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state > _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__rising_rate_lim[0])
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state += _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__rising_rate_lim[0];
+    else  if (_wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S - _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state < _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__falling_rate_lim[0])
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state += (_wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__falling_rate_lim[0]);
+    else
+        _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__state = _wind_power_plant__average_1_control_grid_follow_limit_pqref_priority_pqlim_pq_limiting_with_priority__S;
+    _wind_power_plant__average_1_control_grid_follow_limit_pqref_s_rate_limit__first_step = 0;
+    // Generated from the component: Wind Power Plant (Average)1.Control.Grid_follow.Limit_PQref.limS_overPQ.S limiting over PQ
+    {
+    }
+    //@cmp.update.block.end
+}
+// ----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------

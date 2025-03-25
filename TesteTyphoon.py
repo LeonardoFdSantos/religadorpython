@@ -1,1 +1,1 @@
-typhoon-python -m pip install -r requirements.txt
+pip install scikit-learn

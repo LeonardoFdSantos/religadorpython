@@ -1,5 +1,5 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%%%% Classe LaTex - MDT-UFSM-2021 - ver. 1.0.1 				 %%%%
+%%%% Classe LaTex - MDT-UFSM-2021 - ver. 1.1.1 				 %%%%
 
 %%%% Por Eugênio Piveta Pozzobon 							 %%%%
 %%%% adaptado da versao de Franciano Scremin Puhales, 		 %%%%
@@ -18,7 +18,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{setspace}
 \RequirePackage[dvipsnames,pdf]{pstricks}
-\RequirePackage{auto-pst-pdf}
+% \RequirePackage{auto-pst-pdf}
 \RequirePackage{rotating} 
 \RequirePackage{pstricks-add}
 \RequirePackage{epstopdf}
@@ -32,7 +32,7 @@
 \usepackage[]{hyperref}
 \hypersetup{hidelinks}
 
-\usepackage[alf,recuo=0.0cm,abnt-etal-cite=3,abnt-etal-list=3,abnt-emphasize=bf,abnt-repeated-author-omit=yes,abnt-thesis-year=both,abnt-etal-text=default,abnt-and-type=e,abnt-full-initials=no, abnt-doi=link, abnt-url-package=hyperref]{abntex2cite}
+\usepackage[alf,recuo=0.0cm,abnt-etal-cite=3,abnt-etal-list=3,abnt-emphasize=bf,abnt-repeated-author-omit=yes,abnt-thesis-year=both,abnt-etal-text=default,abnt-and-type=e,abnt-full-initials=no, abnt-doi=link, abnt-url-package=url]{abntex2cite}
 \usepackage[brazil]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{indentfirst}
@@ -70,14 +70,14 @@
 \usepackage{tocloft}
 \usepackage[tocflat]{tocstyle}
 \usetocstyle{standard}
-	\settocstylefeature[-1]{entryhook}{\large\bfseries\uppercase}
-	\settocstylefeature[0]{entryhook}{\bfseries\uppercase}
-	\settocstylefeature[0]{leaders}{\dotfill}%
-	\settocstylefeature[0]{entryvskip}{0pt}%
-	\settocstylefeature[1]{entryhook}{\uppercase}
-	\settocstylefeature[2]{entryhook}{\bfseries}
-	\settocstylefeature[3]{entryhook}{}
-	\settocstylefeature[4]{entryhook}{\it}
+\settocstylefeature[-1]{entryhook}{\large\bfseries\uppercase}
+\settocstylefeature[0]{entryhook}{\bfseries\uppercase}
+\settocstylefeature[0]{leaders}{\dotfill}%
+\settocstylefeature[0]{entryvskip}{0pt}%
+\settocstylefeature[1]{entryhook}{\uppercase}
+\settocstylefeature[2]{entryhook}{\bfseries}
+\settocstylefeature[3]{entryhook}{}
+\settocstylefeature[4]{entryhook}{\it}
 
 \makeatletter
 \@ifpackageloaded{url}{%
@@ -737,12 +737,12 @@ Defesa realizada por videoconferência.
 \renewcommand{\chapter}{\@startsection{chapter}{1}{\z@}%
 {-3.5ex \@plus -1ex \@minus -.2ex}%
 {2\baselineskip}%
-{\cleardoublepage\phantomsection\thispagestyle{empty}\reset@font\bfseries\MakeUppercase}}
+{\cleardoublepage\phantomsection\thispagestyle{UFSMhead}\reset@font\bfseries\MakeUppercase}}
 \else
 \renewcommand{\chapter}{\@startsection{chapter}{1}{\z@}%
 {-3.5ex \@plus -1ex \@minus -.2ex}%
 {2\baselineskip}%
-{\clearpage\phantomsection\thispagestyle{empty}\reset@font\bfseries\MakeUppercase}}
+{\clearpage\phantomsection\thispagestyle{UFSMhead}\reset@font\bfseries\MakeUppercase}}
 \fi
 
 \newif\if@centralizado
@@ -1140,11 +1140,11 @@ Defesa realizada por videoconferência.
      \end{flushright}
      \begin{center}
         \singlespacing
-        {{{\UFSM@sexoorientador~~\UFSM@sexoorientadorprof~~\@orientadornome}}}  
+        {{{\UFSM@sexoorientador~~\UFSM@sexoorientadorprof~~\@orientadortit.~\@orientadornome}}}  
 
         \if@coorientador
 	\vspace{1\baselineskip}
-	{{{\UFSM@sexocoorientador~~\UFSM@sexocoorientadorprof~~\@coorientadornome}}}  
+	{{{\UFSM@sexocoorientador~~\UFSM@sexocoorientadorprof~~\@coorientadortit.~\@coorientadornome}}}  
 	\fi
 	
         \if@supervisor
@@ -1741,3 +1741,5 @@ Defesa realizada por videoconferência.
  \pagestyle{UFSMhead}
 
 }
+
+

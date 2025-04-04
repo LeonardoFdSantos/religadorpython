@@ -371,6 +371,113 @@ SIGLAMAX &	Nome Completo da Sigla MAX \\
 \par O capítulo 4
 \par No capítulo 5 é apresentada a conclusão da pesquisa e as propostas para trabalhos futuros.
 
+\chapter{Revisão Bibliográfica}
+
+\section{Considerações Inciais}
+
+\par A jornada da energia elétrica nas áreas rurais do Brasil começou aqui mesmo no Rio Grande do Sul. O primeiro passo foi dado em 1941, numa localidade que hoje pertence ao município de Erechim (na época, era o Oitavo Distrito de José Bonifácio). Uma Cooperativa instalou a rede para fornecer energia à sede de uma associação de colonização judaica (Jewish Colonization and Association) que já estava estabelecida na região desde 1911, conforme registros históricos \cite{fecoergs_historia_2016}.
+
+\par Muita coisa mudou e evoluiu nos sistemas de distribuição de energia desde aquele tempo, não só no Brasil mas no mundo todo. No entanto, quando olhamos para o campo brasileiro, a forma mais comum de levar eletricidade às propriedades ainda é através das redes monofásicas. Mesmo com toda a tecnologia disponível, fatores técnicos e principalmente os custos envolvidos ainda fazem com que essa seja a solução mais utilizada para as características do meio rural.
+
+\par Entendendo esse contexto, desde o início histórico até a predominância atual das redes monofásicas, este capítulo vai agora detalhar as diferentes configurações de redes elétricas que existem. O foco será apresentar como essas diferentes formas são usadas para atender às necessidades de energia dos consumidores localizados nas áreas rurais.
+
+\section{Redes Monofásicas com Retorno por Terra (MRT)}
+
+\par Há mais de 70 anos, uma solução inteligente chamada MRT (Monofásico com Retorno pela Terra) tem sido usada para levar energia elétrica a áreas rurais em muitos países. A ideia surgiu graças a Mandeno (\citeyear{mandeno_rural_1947}), na Nova Zelândia, com o objetivo claro de tornar mais barata a expansão das redes elétricas para o campo. Os estudos iniciais de Mandeno (\citeyear{mandeno_rural_1947}) foram tão importantes que fizeram do MRT uma referência mundial para atender consumidores rurais. Internacionalmente, esse sistema também é conhecido como \textit{SWER} (\textit{Single Wire Earth Return}).
+
+\par O sistema MRT usa basicamente um único fio condutor que pode se estender por dezenas ou até centenas de quilômetros. Ao longo desse condutor, vários transformadores são instalados para levar a energia às propriedades. A "mágica" acontece porque, em vez de um segundo condutor para o retorno da corrente elétrica, o sistema utiliza a própria terra. A corrente sai do condutor, passa pelo transformador, entra na terra através de uma conexão com o aterramento e viaja de volta pelo solo até o ponto inicial da rede, fechando o circuito.
+
+\par Mandeno (\citeyear{mandeno_rural_1947}) desenvolveu os cálculos que provaram que usar a terra como condutor era viável. O sistema SWER/MRT foi criado para facilitar o acesso à eletricidade no campo. Sua grande vantagem, especialmente para as companhias de energia, é a construção muito mais simples e barata, afinal é apenas um úncio condutor. Isso tornou economicamente mais interessante levar energia a pequenos consumidores rurais que, de outra forma, talvez não fossem atendidos.
+
+\par O MRT foi fundamental para melhorar a qualidade de vida em muitas áreas rurais isoladas. Até hoje, é uma técnica bastante usada no mundo. No entanto, com o avanço da tecnologia e da produção agrícola, a demanda por energia no campo aumentou. Muitos consumidores rurais agora precisam de mais potência do que o sistema MRT consegue fornecer facilmente. O problema é que atualizar essas redes para sistemas trifásicos convencionais ainda é muito caro, devido a necessidade básica de re-instalar os postes ao longo da rede qual se vai aplicar o Trifásico.
+
+\par Aqui no Brasil, esse sistema ficou conhecido como MRT. Sua implementação foi incentivada pela Eletrobras, e normas técnicas nacionais surgiram por volta dos anos 80. Vale notar que algumas concessionárias, como a COPEL do estado do Paraná, já tinham suas próprias normas para o MRT desde a década de 70.
+
+\par Geralmente, um sistema MRT não é totalmente independente. Ele é fazer derivação da rede, ou seja, pega-se de uma única fase de uma rede trifásica, qual já é existente, normalmente a que passa mais perto do ponto a ser atendido. Naturalmente esse sistema é limitado pelo seu aterramento, capacidade de corrente do fio condutor e dos transformadores instalados como pode ser visto na Figura \ref{fig:RedeMonofasicaComRetornoPorTerraAdptadoFandi2013}.
+
+\begin{figure}[H]
+	\centering
+	\caption{Rede Monofásica com Retorno por Terra (MRT).}
+	\includegraphics[width=0.8\textwidth]{figuras/Imagem1Fandi2013.png}
+	\caption*{Fonte: Adaptado de \cite{fandi_sistema_2013}}
+	\label{fig:RedeMonofasicaComRetornoPorTerraAdptadoFandi2013}
+\end{figure}
+
+\subsection{Redes Monofásicas com Retorno por Terra (MRT) Não Isoladas ou Neutro Parcial}
+
+\par As redes Monofásicas com Retorno pela Terra (MRT) são sistemas eletricamente não isolados, caracterizados por sua derivação direta de uma única fase de um alimentador trifásico. A funcionalidade do circuito de retorno via solo é dependente da configuração da subestação de origem, a qual deve possuir uma conexão em estrela com neutro solidamente aterrado. Nos transformadores de distribuição instalados ao longo da linha MRT, o enrolamento primário estabelece a conexão entre o condutor de fase e o sistema de aterramento local.
+
+\par Embora esta topologia apresente vantagens significativas devido à sua simplicidade construtiva e operacional, sua aplicação exige uma análise criteriosa do balanceamento de fases na rede trifásica de suprimento. Tal avaliação é fundamental para prevenir a introdução de desequilíbrios de carga excessivos na rede originária. Como medida para assegurar a operação adequada e mitigar potenciais desequilíbrios, a potência instalada em ramais MRT é comumente limitada – um valor referencial frequentemente adotado é de 25 kVA. Adicionalmente, a performance e a segurança da topologia podem ser otimizadas através da implementação de múltiplos pontos de aterramento distribuídos ao longo do circuito conforme visto na Figura \ref{fig:RedeMonofasicaComRetornoPorTerraNeutroParcialAdptadoFandi2013}.
+
+\begin{figure}[H]
+	\centering
+	\caption{Rede Monofilar com Retorno por Terra (MRT) com Neutro Parcial.}
+	\includegraphics[width=0.8\textwidth]{figuras/Imagem2Fandi2013.png}
+	\caption*{Fonte: Adaptado de \cite{fandi_sistema_2013}}
+	\label{fig:RedeMonofasicaComRetornoPorTerraNeutroParcialAdptadoFandi2013}
+\end{figure}
+
+\subsection{Redes Monofásicas com Retorno por Terra (MRT) com Transformador Isolador}
+
+\par Uma variante das redes Monofásicas com Retorno pela Terra (MRT) emprega um transformador isolador. Diferentemente da derivação direta de uma única fase, esta configuração é alimentada por duas fases da rede trifásica de suprimento. O transformador isolador, frequentemente com relação de espiras de 1:1, tem seu enrolamento primário conectado entre essas duas fases. O enrolamento secundário fornece uma única fase de saída e possui um terminal conectado a um sistema de aterramento local dedicado. Uma vantagem primordial desta topologia é a redução significativa do percurso da corrente de retorno pelo solo, confinando-a essencialmente ao circuito secundário do transformador isolador, o que contribui para a segurança operacional.
+
+\par Adicionalmente, o uso do transformador isolador apresenta benefícios técnicos relevantes. Ele previne a dessensibilização dos dispositivos de proteção de neutro da rede trifásica principal (localizados a montante), garantindo que estes atuem corretamente para faltas fase-terra que ocorram fora do ramal MRT. Outra vantagem reside na possibilidade de um melhor controle de tensão no circuito monofásico, incluindo o ajuste fino através dos taps do próprio transformador isolador.
+
+\par Entretanto, a implementação desta configuração acarreta desvantagens. Primeiramente, há um custo adicional associado tanto ao transformador isolador quanto ao seu sistema de aterramento específico. Do ponto de vista da proteção elétrica, o trecho MRT após o isolador torna-se uma "zona cega" (fora do alcance) para relés sensíveis a faltas para terra situados a montante do transformador. Consequentemente, a proteção para faltas internas nesse trecho depende primariamente de dispositivos de sobrecorrente de fase, também localizados a montante. Por fim, a complexidade do sistema é incrementada, especialmente no que concerne ao projeto e execução do aterramento do transformador isolador, o qual, dependendo de suas características, pode impor limitações à potência máxima transferível ao ramal monofásico.
+
+\subsection{Para Raio Energizado (PRE)}
+
+\par O sistema Monofásico com Retorno pela Terra (MRT), concebido por Mandeno ()\citeyear{mandeno_rural_1947}), não apenas solucionou desafios da época, mas também estimulou a pesquisa em novas tecnologias para transmissão e distribuição de energia elétrica. Inspirados por essa premissa, Iliceto et al. (\citeyear{iliceto_new_1989}) desenvolveram um sistema inovador denominado Para-Raios Energizado (PRE). A concepção original baseou-se na isolação e energização dos cabos para-raios (originalmente destinados apenas à proteção contra descargas atmosféricas) de uma linha de transmissão de 161 kV em Gana. O sistema PRE demonstrou flexibilidade, podendo operar em quatro configurações distintas.
+
+\par As configurações descritas por Iliceto et al. (\citeyear{iliceto_new_1989}) são:
+\begin{itemize}
+	\item \textbf{Monofásica com Retorno pelo Solo}: Apenas um cabo para-raios é energizado, utilizando o solo como caminho de retorno, similar ao MRT.
+	\item \textbf{Monofásica com Retorno Metálico}: Ambos os cabos para-raios são energizados, um servindo como condutor de fase e o outro como retorno.
+	\item \textbf{Trifásica em Delta Aberto}: Ambos os cabos são energizados, alimentando transformadores em conexão V (delta aberto) para cargas trifásicas, porém com limitações (tipicamente restrito a cargas fase-neutro).
+	\item \textbf{Trifásica com Retorno pelo Solo}: Os dois cabos para-raios atuam como duas fases, e o solo é utilizado como terceiro condutor de fase. Esta configuração, apesar de apresentar complexidades relacionadas à impedância do solo e acoplamentos capacitivos entre condutores e solo, é considerada a mais adequada para o suprimento de cargas trifásicas.
+\end{itemize}
+
+\par O sistema PRE de Iliceto et al. (\citeyear{iliceto_new_1989}), derivado conceitualmente do MRT de Mandeno (\citeyear{mandeno_rural_1947}), representa um avanço tecnológico significativo para atender à crescente demanda energética em áreas rurais próximas a linhas de transmissão existentes.
+
+\par No Brasil, a quarta configuração do PRE (trifásica com retorno pelo solo) foi implementada no estado de Rondônia, através de um projeto colaborativo entre a Eletronorte e as Centrais Elétricas de Rondônia (Ceron). A análise dos dados operacionais deste sistema, realizada por Rose (\citeyear{rose_alimentacao_1997}), demonstrou sua viabilidade técnica e econômica como alternativa para a universalização do acesso à energia. O estudo concluiu que o PRE possibilita o fornecimento a pequenas comunidades ou cargas isoladas adjacentes às linhas de transmissão, onde a extensão de redes convencionais seria economicamente proibitiva.
+
+\par Os resultados encorajadores do PRE Rondônia estimularam pesquisas complementares. Ramos (\citeyear{ramos_universalizacao_2010}) conduziu um estudo detalhado sobre as interrupções do sistema, avaliando seu desempenho frente a descargas atmosféricas e estabelecendo índices operacionais específicos. Além disso, analisou o fenômeno da tensão induzida por acoplamento capacitivo e documentou a implementação de um regulador de tensão baseado em sintonização de ressonância para mitigar esse efeito. Em conjunto, os estudos de Rose (\citeyear{rose_alimentacao_1997}) e Ramos (\citeyear{ramos_universalizacao_2010}) indicam que a tecnologia PRE, quando implementada segundo seus conceitos fundamentais, atende aos requisitos essenciais de qualidade e segurança para o fornecimento de energia elétrica.
+
+\pagebreak
+
+\subsection{Sistema Trifásico a Dois Fios (T2F)}
+
+\par O sistema Monofásico com Retorno pela Terra (MRT) fundamenta-se na utilização de um único condutor aéreo para a fase, enquanto o retorno da corrente se efetua através de sistemas de aterramento localizados em cada ponto de transformação (transformador de distribuição). Esta configuração intrinsecamente simplifica a construção da rede, tornando-a mais rápida e economicamente vantajosa (Kräulich et al., 2023). As principais vantagens derivam dessa simplicidade: estações transformadoras menos complexas e de menor custo, transformadores com apenas uma bucha de alta tensão, e, consequentemente, a exigência de somente um para-raios e uma chave fusível monofásica por unidade transformadora.
+
+\par Contudo, o cenário de aumento de carga nas propriedades rurais frequentemente impõe a necessidade de migração de sistemas monofásicos para trifásicos. A conversão de uma rede MRT existente para uma trifásica convencional representa um desafio considerável para as concessionárias. O custo elevado da construção de uma nova infraestrutura trifásica é um fator primordial, especialmente porque nem sempre é estruturalmente viável simplesmente adicionar dois condutores aéreos à estrutura de postes originalmente projetada para o sistema MRT.
+
+\par Nesse contexto, o sistema Trifásico a Dois Fios (T2F) apresenta-se como uma alternativa tecnológica para a repotencialização de redes MRT. Uma característica chave do T2F é o aproveitamento da infraestrutura existente: ele utiliza um dos aterramentos já presentes na rede MRT e permite, em muitos casos, a manutenção da estrutura de postes. A adaptação envolve a instalação de um transformador isolador trifásico específico, que possui uma das fases secundárias aterrada e as outras duas conectadas aos condutores aéreos (o original e um adicional). Com isso, a estrutura básica do SWER/MRT pode ser mantida, necessitando apenas de um isolador e uma chave fusível adicionais em relação ao sistema monofásico original.
+
+\par A implementação e operação do sistema T2F, esquematizado na Figura \ref{fig:RedeT2FAdptadoMarchesan2023}, demandam atenção a aspectos de segurança relacionados à injeção de corrente no solo, inerente ao seu princípio de funcionamento com retorno parcial ou total pela terra. É fundamental realizar análises de segurança contra choque elétrico, seguindo padrões internacionais como a norma IEEE Std 80. Esta norma estabelece metodologias para avaliar os gradientes de potencial gerados pelo fluxo de corrente no solo nas proximidades dos eletrodos de aterramento. O guia da IEEE aborda conceitos essenciais para essa avaliação, como a corrente máxima tolerável pelo corpo humano, cenários de aterramento acidental e os critérios para determinação das tensões de segurança toleráveis (tensões de toque e passo).
+
+\begin{figure}[H]
+	\centering
+	\caption{Rede proposta por Marchesan.}
+	\includegraphics[width=0.8\textwidth]{figuras/Imagem3T2F2023.png}
+	\caption*{Fonte: Adaptado de \cite{marchesan_three-phase-two-wire_2023}}
+	\label{fig:RedeT2FAdptadoMarchesan2023}
+\end{figure}
+
+\par Embora o sistema Trifásico a Dois Fios (T2F) possua similaridades com outras tecnologias como o PRE, ele apresenta características particulares que são cruciais para sua correta implementação e operação, conforme destacado por Marchesan et al. (\citeyear{marchesan_three-phase-two-wire_2023}) pela Figura \ref{fig:RedeT2FAdptadoMarchesan2023}. Destacam-se os seguintes pontos:
+
+\begin{itemize}
+	\item \textbf{Transformador de Isolação Mandatório}: A implementação do T2F requer obrigatoriamente um transformador de isolação específico. Este atua como interface entre a rede de suprimento trifásica convencional e a linha T2F não convencional.
+	\item \textbf{Configuração do Transformador}: O primário deste transformador é alimentado por tensão trifásica simétrica. No secundário, uma das três fases é solidamente aterrada no local, enquanto as outras duas fases são conectadas aos condutores aéreos da linha T2F.
+	\item \textbf{Capacidade de Suprimento Trifásico}: O sistema T2F é capaz de suprir cargas trifásicas balanceadas (até 100\% da capacidade) utilizando transformadores de distribuição Média Tensão/Baixa Tensão (MT/BT) convencionais, desde que estes possuam conexão primária em delta (ou outra que não exija neutro) e secundária em estrela-aterrada. Isso permite, por exemplo, a alimentação de motores de indução trifásicos de maior porte, essenciais para diversas atividades rurais.
+	\item \textbf{Segurança do Aterramento}: A circulação de corrente pelo solo, inerente à topologia, exige um projeto criterioso do sistema de aterramento. É imperativo garantir a segurança de seres humanos e animais (controle de tensões de toque e passo), prevenir aquecimento excessivo do solo e evitar interferência eletromagnética em sistemas de comunicação adjacentes.
+\end{itemize} 
+
+\par O objetivo primário da instalação do transformador isolador é isolar galvanicamente o circuito T2F da rede de alimentação principal. Essa isolação restringe a propagação de correntes de falta (especialmente as de sequência zero) para a rede a montante, o que facilita o controle das tensões de passo e de toque no trecho T2F durante condições anormais. Dada a criticidade do sistema de aterramento, recomenda-se o monitoramento periódico da sua integridade, tanto no ponto do transformador isolador quanto nos pontos de aterramento dos transformadores dos consumidores.
+
+\par Finalmente, as condições de alimentação no primário do transformador isolador T2F são compatíveis com os níveis de tensão de média tensão (MT) padronizados e usualmente empregados pelas concessionárias para alimentar redes trifásicas convencionais em zonas rurais.
+
+
+
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % % % % % % % % % % % % FIM DAS PAGINAS TEXTUAIS % % % % % % % % % % % % % % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 

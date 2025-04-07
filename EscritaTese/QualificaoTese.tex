@@ -508,7 +508,38 @@ SIGLAMAX &	Nome Completo da Sigla MAX \\
 
 \section{Elo Fusível}
 
-\par O elo fusível é um dispositivo de proteção utilizado em sistemas elétricos para interromper a corrente elétrica em caso de sobrecarga ou curto-circuito. Ele é projetado para se fundir e abrir o circuito quando a corrente ultrapassa um determinado limite, protegendo assim os equipamentos e os condutores contra danos.
+\par O elo fusível é um dispositivo de proteção utilizado em sistemas elétricos para interromper a corrente elétrica em caso de sobrecarga ou curto-circuito. Ele é projetado para se fundir e abrir o circuito quando a corrente ultrapassa um determinado limite, protegendo assim os equipamentos e os condutores contra danos. O elo fusível é composto por um fio condutor de material metálico, geralmente de cobre ou alumínio, que é projetado para derreter quando a corrente elétrica atinge um nível crítico. Quando isso acontece, o elo fusível se rompe, interrompendo o fluxo de corrente e evitando danos aos equipamentos conectados.
+
+\par Segundo \cite{gonen_electric_1988} o elo fusível é o dispositivo de proteção mais utilizado em sistemas elétricos, devido à sua simplicidade e eficácia. Ele é amplamente utilizado para proteção de ramais e equipamentos, como transformadores e banco de capacitores. O elo fusível é projetado para operar em condições específicas de temperatura e corrente, e sua escolha deve ser feita com base nas características do sistema elétrico em que será instalado.
+
+\par De acordo com \cite{gers_protection_2011} os fusíveis mais comumente utilizados em sistemas de distribuição são de tipo cartucho de explusão. São chamados assim pelo método de operação, eles explusam o acumulo de gases de ionizantes. A chave fusível é composta por três componentes: a base, o porta-fusível (ou cartucho) e o fusível propriamente dito. O porta-fusível é o componente que abriga o fusível e permite a sua substituição quando necessário. O fusível é o elemento que se funde em caso de sobrecarga ou curto-circuito, interrompendo o fluxo de corrente elétrica.
+
+\subsection{Principio de Funcionamento do Elo Fusível}
+
+\par O funcionamento do elo fusível é baseado no princípio de Joule, que estabelece que a energia dissipada em um condutor é proporcional ao quadrado da corrente elétrica que passa por ele. Quando a corrente elétrica ultrapassa o limite especificado, o calor gerado pelo efeito Joule faz com que o fio condutor do fusível se funda, interrompendo o fluxo de corrente e protegendo o circuito.
+
+\par O elo fusível é um dispositivo de proteção fundamental em sistemas elétricos, projetado com uma dupla funcionalidade essencial. Em regime normal de operação, ele deve ser capaz de conduzir a corrente nominal do circuito sem que suas características intrínsecas sejam alteradas. Contudo, quando submetido a uma condição de sobrecorrente, sua função é interromper o circuito através da fusão de seu elemento condutor, o que deve ocorrer em um intervalo de tempo precisamente determinado pela sua curva característica tempo x corrente.
+
+\par O processo de interrupção em uma chave-fusível inicia-se com a passagem da sobrecorrente, que eleva a temperatura do elemento fusível até o ponto de fusão devido ao efeito Joule. A liquefação e vaporização do elemento interrompem o circuito metálico, porém, dão origem a um arco elétrico de elevada temperatura. A energia deste arco provoca a ablação (queima e decomposição) do material de revestimento interno do cartucho porta-fusível. Este processo gera gases em alta pressão que, confinados no interior do cartucho, atuam como meio extintor, extinguindo o arco elétrico eficazmente, usualmente no instante de uma passagem natural da corrente por zero.
+
+\par É relevante notar que o tempo exato de fusão de um elo fusível não é função exclusiva da magnitude da sobrecorrente. Diversos outros fatores exercem influência, como apontado por Giguer (\citeyear{giguer_protecao_1970}). Entre estes fatores destacam-se: a densidade de corrente no elemento, as propriedades físicas e térmicas do material constituinte do elemento fusível e do material que o encapsula (quando aplicável), a temperatura ambiente externa e o grau de envelhecimento ou degradação prévia do componente.
+
+\par As características construtivas e materiais do elemento fusível definem sua curva característica tempo-corrente, a qual, conforme descrito por Giguer (\citeyear{giguer_protecao_1970}), exibe uma relação inversamente proporcional entre o tempo para fusão e o valor eficaz da corrente. Esta relação inversa é a base para a fabricação de elos fusíveis com diferentes perfis de atuação (curvas tempo-corrente padronizadas – por exemplo, tipos H, K, T), permitindo a coordenação seletiva da proteção em sistemas elétricos complexos.
+
+
+\subsubsection{CURVAS CARACTERÍSTICAS TEMPO X CORRENTE}
+
+\par Um princípio fundamental no projeto e fabricação de elos fusíveis é assegurar sua intercambialidade entre diferentes fabricantes, como ressaltado por Anderson (\citeyear{anderson_power_1999}). Para atingir esse objetivo, eles são produzidos seguindo dimensões físicas padronizadas e, de forma crucial, com Curvas Tempo-Corrente (TCC – Time-Current Curves) normalizadas. Essas curvas definem os atributos operacionais específicos de cada tipo de elo, sendo fornecidas pelos fabricantes em gráficos com escalas logarítmicas (eixo X e Y), formato que facilita a análise em estudos de coordenação e seletividade da proteção em sistemas elétricos.
+
+\par De acordo com normativas técnicas, como a publicada na \cite{ieee_pc3741d7_2024} (referente a padrões para distribuição), o desempenho de cada elo fusível é precisamente definido por um conjunto de três curvas características:
+\begin{itemize}
+	\item \textbf{Curva de Tempo Mínimo de Fusão (Minimum Melting Time - MMT / Mínima Fusão - MF)}: Representa o limite inferior da faixa de tempo em que o elemento fusível pode derreter para um determinado valor de corrente de falta. Ou seja, é o tempo mais rápido esperado para a fusão ocorrer.
+	\item \textbf{Curva de Tempo Máximo de Fusão (Maximum Melting Time)}: Indica o limite superior da faixa de tempo para a fusão do elemento, para o mesmo valor de corrente. Esta curva, juntamente com a MMT, define a banda de tolerância de fabricação para o tempo de fusão do elo.
+	\item \textbf{Curva de Tempo Máximo de Interrupção Total (Maximum Total Clearing Time - TCT / Máxima Interrupção - MI)}: Esta curva representa o tempo total decorrido desde o início da sobrecorrente até a completa extinção do arco elétrico dentro da chave-fusível. Portanto, o TCT inclui o tempo de fusão (que pode variar entre MMT e o Tempo Máximo de Fusão) somado ao tempo de duração do arco elétrico (tempo de arco). Esta é a curva mais relevante para estudos de coordenação, pois representa o tempo total que o circuito permanece energizado sob condição de falta.
+\end{itemize}
+
+
+
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % % % % % % % % % % % % FIM DAS PAGINAS TEXTUAIS % % % % % % % % % % % % % % 

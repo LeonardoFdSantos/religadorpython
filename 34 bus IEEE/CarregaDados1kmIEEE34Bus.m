@@ -59,7 +59,7 @@ Ceq=Cct-Ccc; %capacitancia de equalização F/km
 Ze = Zp-2*Zm; %OHM/km
 %%IMPEDANCIAS S�RIE
 Zl = Zp-Zm; %OHM/km
-dd =[ 1 ];
+dd =[ 15 ]; 
 for compensada=[0 1 2]
 %fazer tudo em fun��o da distancia
     for z = 1:length(dd) % Dist�ncia em KM   

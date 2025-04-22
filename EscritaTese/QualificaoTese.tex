@@ -567,12 +567,35 @@ SIGLAMAX &	Nome Completo da Sigla MAX \\
 \par Religadores podem ter sua capacidade analisada quanto o número de fases, atualmente se disponibliza para padrão comercial os modelos de religador monofásicos e trifásicos, quais apresentam algumas diversidades entre sí.
 Religadores Monofásicos, são utilizados em controle de cargas ou ramais, qual são de predominância monofásica, qual a eventualidade de occorência de uma falta contra terra é maior, assim bloqueia-se aquela fase com a falha. Esse tipo de carga nominalmente não impacta no desequilibrio na rede ou alimentador, desta forma não será capaz de fazer a proteção de retaguarda de algum eventual equipamento abrir.
 
-\par Já os relgiadores trifásicos são utilizados onde é necessário o bloqueio das três fases simultaneamente, assim qualquer falha do tipo permamente qual afete uma ou duas fases do sistema, para que as cargas não sejam alimentadas por apenas uma ou duas fases, assim fazendo-se o bloqueio evita tal problema. 
+\par Já os relgiadores trifásicos são utilizados onde é necessário o bloqueio das três fases simultaneamente, assim qualquer falha do tipo permamente qual afete uma ou duas fases do sistema, para que as cargas não sejam alimentadas por apenas uma ou duas fases, assim fazendo-se o bloqueio evita tal problema.
+
 \begin{itemize}
 	\item Trifásicos com Operação Monofásica e Bloqueio Trifásico: O construtivo desses religadores são a combinação de três religadores monofásicos, montados num único tanque, com mecanismos interligados apenas para ser processado o bloqueio trifásico. A operação de cada fase é interdependente em realação as correntes de falha, se qualquer fase operar dentro do número pré-determinado para bloqueio, as duas outras fases são abertas e bloqueadas através do mecanismo de interligação.
 	\item Trifaásicos com operação Trifásica e Bloqueio Trifásico: Já este tipo de religador, é formado por um construtivo único, qual a operação e bloqueio é sempre trifásica, independente do tipo de falha qual ocorre. Isto é mesmo que a falha afete uma das fases unicamente, todos eles 
 \end{itemize}
 
+\par Podemos também segmentar os Religadores Automáticos, pelo tipo de controle apresentado, podemos separar em controle hidráulico ou controle Eletrônico. Assim podemos estânciar que o controle hidráulico tem em sua predominância que as correntes são detectadas pelas bobinas de disparo, quais estão ligadas em série com a linha. Quando, a corrente flui de forma igual ou superior a corrente mínima (pick-up), quando esta atravessa a bobina, fazendo com que o núcleo da bobina é atraido pelo seu interior, isso causa a abertura dos contatos principais do religador. Podemos listar os dois tipos de fechamento dos religadores com controle hidráulico, podendo ser eles:
+
+\begin{itemize}
+	\item Em religadores de até 200 A, são empregadas molas de fechamento, estas são carregas pelo movimento do núcleo da bobina em série.
+	\item Em religadores automáticos operando com correntes nominais de 250 A, 280 A, 400 A e 560 A, a função de fechamento do dispositivo é realizada por meio de uma bobina dedicada, cuja energização é derivada diretamente da tensão da linha. Adicionalmente, o sistema de controle hidráulico empregado apresenta vantagens como economia, simplicidade de implementação, eficiência operacional e uma vida útil prolongada. Essas características tornam tais dispositivos adequados para aplicação em áreas com baixa densidade de carga, ou em contextos onde não sejam requeridos níveis elevados de precisão na operação, correntes de disparo (pickup) extremamente baixas (tanto para faltas de fase quanto de neutro), ou alta velocidade na interrupção.
+\end{itemize}
+
+\par Os religadores automáticos equipados com controle eletrônico apresentam vantagens significativas em relação aos modelos com controle hidráulico, incluindo maior flexibilidade, facilidade para ajuste e ensaios, além de uma precisão superior na operação. Não obstante, a seleção entre religadores com controle hidráulico e aqueles com controle eletrônico deve ser guiada pela análise da viabilidade econômica das vantagens proporcionadas pelo controle eletrônico em cada aplicação específica. A maior facilidade de ajuste e ensaios dos religadores eletrônicos decorre de sua arquitetura construtiva, na qual a unidade de controle eletrônico é segregada fisicamente da parte de força do religador (mecanismo de interrupção), sendo geralmente abrigada em um invólucro separado. Esta configuração permite realizar modificações e ajustes nos parâmetros de operação do equipamento sem a necessidade de acesso direto ou abertura do compartimento principal, viabilizando as seguintes modificações de ajuste:
+
+\begin{itemize}
+	\item Característica tempo x corrente;
+	\item Níveis de corrrente de disparo;
+	\item sequencia de operação.
+\end{itemize}
+
+\par Essas alterações não precisam que o religador seja desernegizado o religador, nem mesmo abrir o religador para acesso ao mecanismo no interior do tanque. Também temos a classificação quanto ao meio de interrupção, qual podem ser:
+\begin{itemize}
+	\item Religadores com interrupção a óleo;
+	\item Religadores com interrupção a vácuo.
+\end{itemize}
+
+\par Sendo que os religadores com interrupção a vácuo apresentam a possibilidade de período de trabalho de cerca de 3 a 4 vezes o do primeiro tipo, entre manutenções. Contudo os valores da manutenção com vácuo, normalmente são mais caros, por necessitar de equipe qualificada, custo das garrafas de vácuo e também equipamentos.
 
 
 

@@ -1,0 +1,135 @@
+% Curto Circuito Metodo total
+clc;
+clear all; 
+close all;
+
+% Distancias_de_rede = [5:1:120];
+Distancias_de_rede = [5:1:10];
+Parametros_testes = [0.01:0.01:0.99];
+Esquenas_de_curto_circuito = [1:1:5];
+Potencias_Transformadores = [15, 30, 45, 75, 112.5, 150, 200, 225, 250, 300, 400, 500, 600]*1e3;
+Resistencias = 10;
+rti = Resistencias;
+rtc = Resistencias;
+
+valores_resultados_fim_linha_sem_compensacao(1, :) = string({'dd' 'tipoCurto' 'Potencia_Carga' 'IA_Sim' 'IB_Sim' 'IC_Sim' 'VA_Sim' 'VB_Sim' 'VC_Sim' 'VA_Entrada_TRIF' 'VB_Entrada_TRIF' 'VC_Entrada_TRIF'});
+valores_resultados_meio_linha_sem_compensacao(1, :) = string({'dd' 'n' 'tipoCurto' 'Potencia_Carga' 'IA_Sim' 'IB_Sim' 'IC_Sim' 'VA_Sim' 'VB_Sim' 'Vc_Sim' 'VA_Entrada_TRIF' 'VB_Entrada_TRIF' 'VC_Entrada_TRIF'});
+
+Contador_Fim_Linha = 0;
+Contador_Meio_Linha = 0;
+
+for dd = Distancias_de_rede
+    [lp, lm, rp, rm, re, le, ccc, cct, cequa, NRE] = calcula_parametro_linha(dd, 0.92);
+    for potencia = Potencias_Transformadores
+        Potencia_Trafo_Isolador = potencia;
+        Potencia_Trafo_Consumidor = potencia;
+        Potencia_Consumidor = potencia;
+
+        for b = [1:1:5]
+                if b == 1
+                    Raf = 1e-5;
+                    Rbf = 1e-5;
+                    Rcf = 1e-5;
+                    RaTrif = 1e-5;
+                    RbTrif = 1e-5;
+                    RcTrif = 1e-5;
+                    tipoCurto = 1;
+                elseif b == 2
+                    Raf = 1e-5;
+                    Rbf = 1e-5;
+                    Rcf = 1e-5;
+                    RaTrif = 1e-5;
+                    RbTrif = 1e-5;
+                    RcTrif = 1e-5;
+                    tipoCurto = 2;
+                elseif b == 3
+                    Raf = 1e-5;
+                    Rbf = 1e6;
+                    Rcf = 1e-5;
+                    RaTrif = 1e-5;
+                    RbTrif = 1e6;
+                    RcTrif = 1e-5;
+                    tipoCurto = 3;
+                elseif b == 4
+                    RaTrif = 1e6;
+                    RbTrif = 1e-5;
+                    RcTrif = 1e-5;
+                    Raf = 1e6;
+                    Rbf = 1e-5;
+                    Rcf = 1e-5;
+                    tipoCurto = 4;
+                elseif b == 5
+                    RaTrif = 1e-5; 
+                    RbTrif = 1e-5;
+                    RcTrif = 1e6;
+                    Raf = 1e-5;
+                    Rbf = 1e-5;
+                    Rcf = 1e6;
+                    tipoCurto = 5;
+                end
+        end
+        sim('.\Sim_Curto_Circuito_Fim_Linha.slx')
+        Corrente_T2F_Ensaio = abs(CorrenteT2F)/sqrt(2);
+        Tensao_Trif_Ensaio = abs(TensaoEntradaTri)/sqrt(2);
+        Tensao_T2F_Ensaio = abs(TensaoA)/sqrt(2);
+        valores_resultados_fim_linha_sem_compensacao(Contador_Fim_Linha+1, :) = [dd tipoCurto Potencia_Consumidor Corrente_T2F_Ensaio Tensao_T2F_Ensaio Tensao_Trif_Ensaio];
+        Contador_Fim_Linha = Contador_Fim_Linha + 1;
+    
+        for n = Parametros_testes
+            m1 = n;
+            m2 = 1 - m1;
+            for b = [1:1:5]
+                if b == 1
+                    Raf = 1e-5;
+                    Rbf = 1e-5;
+                    Rcf = 1e-5;
+                    RaTrif = 1e-5;
+                    RbTrif = 1e-5;
+                    RcTrif = 1e-5;
+                    tipoCurto = 1;
+                elseif b == 2
+                    Raf = 1e-5;
+                    Rbf = 1e-5;
+                    Rcf = 1e-5;
+                    RaTrif = 1e-5;
+                    RbTrif = 1e-5;
+                    RcTrif = 1e-5;
+                    tipoCurto = 2;
+                elseif b == 3
+                    Raf = 1e-5;
+                    Rbf = 1e6;
+                    Rcf = 1e-5;
+                    RaTrif = 1e-5;
+                    RbTrif = 1e6;
+                    RcTrif = 1e-5;
+                    tipoCurto = 3;
+                elseif b == 4
+                    RaTrif = 1e6;
+                    RbTrif = 1e-5;
+                    RcTrif = 1e-5;
+                    Raf = 1e6;
+                    Rbf = 1e-5;
+                    Rcf = 1e-5;
+                    tipoCurto = 4;
+                elseif b == 5
+                    RaTrif = 1e-5; 
+                    RbTrif = 1e-5;
+                    RcTrif = 1e6;
+                    Raf = 1e-5;
+                    Rbf = 1e-5;
+                    Rcf = 1e6;
+                    tipoCurto = 5;
+                end
+                sim('.\Sim_Curto_Circuito_Meio_Linha.slx')
+                Corrente_T2F_Ensaio = abs(CorrenteT2F)/sqrt(2);
+                Tensao_Trif_Ensaio = abs(TensaoEntradaTri)/sqrt(2);
+                Tensao_T2F_Ensaio = abs(TensaoA)/sqrt(2);
+                valores_resultados_meio_linha_sem_compensacao(Contador_Meio_Linha+1, :) = [dd m1 tipoCurto Potencia_Consumidor Corrente_T2F_Ensaio Tensao_T2F_Ensaio Tensao_Trif_Ensaio];
+                Contador_Meio_Linha = Contador_Meio_Linha + 1;
+            end
+        end
+    end
+    fprintf('Terminado! Distância de %2.f. Potencia de %4.f \n', dd, potencia);
+end
+writematrix(valores_resultados_meio_linha_sem_compensacao, 'Output/dissertacao_Franco_valores_resultados_meio_linha_sem_compensacao.csv');
+writematrix(valores_resultados_fim_linha_sem_compensacao, 'Output/dissertacao_Franco_valores_resultados_fim_linha_sem_compensacao.csv');

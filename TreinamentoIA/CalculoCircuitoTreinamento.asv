@@ -12,8 +12,8 @@ Resistencias = 10;
 rti = Resistencias;
 rtc = Resistencias;
 
-valores_resultados_fim_linha_sem_compensacao(1, :) = string({'dd' 'tipoCurto' 'Potencia_Carga' 'IA_Sim' 'IB_Sim' 'IC_Sim' 'VA_Sim' 'VB_Sim' 'VC_Sim' 'VA_Entrada_TRIF' 'VB_Entrada_TRIF' 'VC_Entrada_TRIF' 'IA_Entrada_TRIF' 'IB_Entrada_TRIF' 'IC_Entrada_TRIF'});
-valores_resultados_meio_linha_sem_compensacao(1, :) = string({'dd' 'n' 'tipoCurto' 'Potencia_Carga' 'IA_Sim' 'IB_Sim' 'IC_Sim' 'VA_Sim' 'VB_Sim' 'Vc_Sim' 'VA_Entrada_TRIF' 'VB_Entrada_TRIF' 'VC_Entrada_TRIF' 'IA_Entrada_TRIF' 'IB_Entrada_TRIF' 'IC_Entrada_TRIF'});
+valores_resultados_fim_linha_sem_compensacao(1, :) = string({'dd' 'tipoCurto' 'Potencia_Carga' 'IA_Sim' 'IB_Sim' 'IC_Sim' 'VA_Sim' 'VB_Sim' 'VC_Sim' 'VA_Entrada_TRIF' 'VB_Entrada_TRIF' 'VC_Entrada_TRIF'});
+valores_resultados_meio_linha_sem_compensacao(1, :) = string({'dd' 'n' 'tipoCurto' 'Potencia_Carga' 'IA_Sim' 'IB_Sim' 'IC_Sim' 'VA_Sim' 'VB_Sim' 'Vc_Sim' 'VA_Entrada_TRIF' 'VB_Entrada_TRIF' 'VC_Entrada_TRIF'});
 
 Contador_Fim_Linha = 0;
 Contador_Meio_Linha = 0;
@@ -70,10 +70,10 @@ for dd = Distancias_de_rede
         end
         sim('.\Sim_Curto_Circuito_Fim_Linha.slx')
         Corrente_T2F_Ensaio = abs(CorrenteT2F)/sqrt(2);
-        Corrente_Entrada_T2F = abs(CorrenteTrifasico)/sqrt(2);
+        Corrente_Entrada_T2F = abs(CorrenteTrifasico)
         Tensao_Trif_Ensaio = abs(TensaoEntradaTri)/sqrt(2);
         Tensao_T2F_Ensaio = abs(TensaoA)/sqrt(2);
-        valores_resultados_fim_linha_sem_compensacao(Contador_Fim_Linha+1, :) = [dd tipoCurto Potencia_Consumidor Corrente_T2F_Ensaio Tensao_T2F_Ensaio Tensao_Trif_Ensaio Corrente_Entrada_T2F];
+        valores_resultados_fim_linha_sem_compensacao(Contador_Fim_Linha+1, :) = [dd tipoCurto Potencia_Consumidor Corrente_T2F_Ensaio Tensao_T2F_Ensaio Tensao_Trif_Ensaio];
         Contador_Fim_Linha = Contador_Fim_Linha + 1;
     
         for n = Parametros_testes

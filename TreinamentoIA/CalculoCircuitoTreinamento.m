@@ -67,15 +67,15 @@ for dd = Distancias_de_rede
                     Rcf = 1e6;
                     tipoCurto = 5;
                 end
+                sim('.\Sim_Curto_Circuito_Fim_Linha.slx')
+                Corrente_T2F_Ensaio = abs(CorrenteT2F)/sqrt(2);
+                Corrente_Entrada_T2F = abs(CorrenteTrifasico)/sqrt(2);
+                Tensao_Trif_Ensaio = abs(TensaoEntradaTri)/sqrt(2);
+                Tensao_T2F_Ensaio = abs(TensaoA)/sqrt(2);
+                valores_resultados_fim_linha_sem_compensacao(Contador_Fim_Linha+1, :) = [dd tipoCurto Potencia_Consumidor Corrente_T2F_Ensaio Tensao_T2F_Ensaio Tensao_Trif_Ensaio Corrente_Entrada_T2F];
+                Contador_Fim_Linha = Contador_Fim_Linha + 1;
         end
-        sim('.\Sim_Curto_Circuito_Fim_Linha.slx')
-        Corrente_T2F_Ensaio = abs(CorrenteT2F)/sqrt(2);
-        Corrente_Entrada_T2F = abs(CorrenteTrifasico)/sqrt(2);
-        Tensao_Trif_Ensaio = abs(TensaoEntradaTri)/sqrt(2);
-        Tensao_T2F_Ensaio = abs(TensaoA)/sqrt(2);
-        valores_resultados_fim_linha_sem_compensacao(Contador_Fim_Linha+1, :) = [dd tipoCurto Potencia_Consumidor Corrente_T2F_Ensaio Tensao_T2F_Ensaio Tensao_Trif_Ensaio Corrente_Entrada_T2F];
-        Contador_Fim_Linha = Contador_Fim_Linha + 1;
-    
+        
         for n = Parametros_testes
             m1 = n;
             m2 = 1 - m1;
@@ -123,9 +123,10 @@ for dd = Distancias_de_rede
                 end
                 sim('.\Sim_Curto_Circuito_Meio_Linha.slx')
                 Corrente_T2F_Ensaio = abs(CorrenteT2F)/sqrt(2);
+                Corrente_Entrada_T2F = abs(CorrenteTrifasico)/sqrt(2);
                 Tensao_Trif_Ensaio = abs(TensaoEntradaTri)/sqrt(2);
                 Tensao_T2F_Ensaio = abs(TensaoA)/sqrt(2);
-                valores_resultados_meio_linha_sem_compensacao(Contador_Meio_Linha+1, :) = [dd m1 tipoCurto Potencia_Consumidor Corrente_T2F_Ensaio Tensao_T2F_Ensaio Tensao_Trif_Ensaio];
+                valores_resultados_meio_linha_sem_compensacao(Contador_Meio_Linha+1, :) = [dd m1 tipoCurto Potencia_Consumidor Corrente_T2F_Ensaio Tensao_T2F_Ensaio Tensao_Trif_Ensaio Corrente_Entrada_T2F];
                 Contador_Meio_Linha = Contador_Meio_Linha + 1;
             end
         end
